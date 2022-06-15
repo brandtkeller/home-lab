@@ -17,9 +17,19 @@ The hardware I currently have:
 ## High Level Plan
 Major parts of this refresh include:
 - Additional hardware components for resiliency
+  - 2x 1TB SSD for primary node storage
 - Updating Hypervisor OS and configuration
-- Domain and certificate inforamtion
+  - Latest Proxmox
+- Domain and certificate information
 - DNS server / NFS server / Loadbalancer Configuration as Code
 - VM Configuration as Code
 - Kubernetes deployment (RKE2) Configuration as Code
+  - OpenEBS storage (primary)
+  - NFS storage
 - Kubernetes application configuration w/ Zarf
+  - Big Bang Core
+  - Nextcloud
+    - Syncing to S3
+  - Calibre
+  - Valheim
+
