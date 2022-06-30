@@ -6,3 +6,4 @@ This will outline the plan and catalog the current state.
 - Playbook for RKE2 installation
     - Include OpenEBS installation
     - Include NFS dynamic provisioner
+    - Disable Metrics-Server
