@@ -28,7 +28,7 @@ Major parts of this refresh include:
   - NFS storage
 - Kubernetes application configuration w/ Zarf
   - Big Bang Core
-  - Nextcloud
+  - Nextcloud (Or other photo application?)
     - Syncing to S3
   - Calibre
   - Valheim
