@@ -10,6 +10,6 @@ Zarf package
     - Logging
     - Kyverno
     - Metrics Server
-- Nextcloud
+- Nextcloud (or other photo syncing application?)
 - Calibre
 - Valheim
