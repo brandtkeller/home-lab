@@ -9,27 +9,14 @@ I wanted to document and catalog the updates to my home lab for multiple reasons
 ## Hardware 
 The hardware I currently have:
 - Dell R710
-  - 120gb Memory, 1TB SSD, 2x 8 core 3GHz Processors, HBA card
-- Netapp Disk Shelf
-  - 13 x 2TB HDD
+  - 120gb Memory
+  - 2x 8 core 3GHz Processors
+  - 2x 1tb SSD (raid1)
+  - 4x 500gb SSD (raid10)
 - 2x RPI 4 4GB
+- 1x ubuntu laptop
+  - 16gb memory
+  - i5 quad core processor
 
-## High Level Plan
-Major parts of this refresh include:
-- Additional hardware components for resiliency
-  - 2x 1TB SSD for primary node storage
-- Updating Hypervisor OS and configuration
-  - Latest Proxmox
-- Domain and certificate information
-- DNS server / NFS server / Loadbalancer Configuration as Code
-- VM Configuration as Code
-- Kubernetes deployment (RKE2) Configuration as Code
-  - OpenEBS storage (primary)
-  - NFS storage
-- Kubernetes application configuration w/ Zarf
-  - Big Bang Core
-  - Nextcloud (Or other photo application?)
-    - Syncing to S3
-  - Calibre
-  - Valheim
+
 
