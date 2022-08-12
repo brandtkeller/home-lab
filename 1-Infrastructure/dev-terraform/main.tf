@@ -9,8 +9,6 @@ terraform {
 
 provider "proxmox" {
   pm_api_url      = "https://192.168.0.14:8006/api2/json"
-  pm_user         = "root@pam"
-  pm_password     = ""
   pm_tls_insecure = "true"
 }
 
@@ -21,14 +19,14 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
   clone       = "ubuntu-cloudimg"
   os_type     = "cloud-init"
   cores       = 4
-  sockets     = "1"
+  sockets     = "2"
   cpu         = "host"
-  memory      = 2048
+  memory      = 16384
   scsihw      = "virtio-scsi-pci"
   bootdisk    = "scsi0"
   # bios        = "ovmf"
   disk {
-    size    = "20G"
+    size    = "60G"
     type    = "scsi"
     storage = "ssdpool1"
   }
@@ -41,11 +39,36 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
       network,
     ]
   }
+
+  provisioner "file" {
+    source      = "setup.sh"
+    destination = "/tmp/setup.sh"
+    connection {
+      type     = "ssh"
+      user     = "dev"
+      private_key = file("${var.ssh_priv_key_path}")
+      host     = "192.168.0.5${count.index + 1}"
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/setup.sh",
+      "/tmp/setup.sh",
+    ]
+    connection {
+      type     = "ssh"
+      user     = "dev"
+      private_key = file("${var.ssh_priv_key_path}")
+      host     = "192.168.0.5${count.index + 1}"
+    }
+  }
+  
   # Cloud Init Settings
   ipconfig0 = "ip=192.168.0.5${count.index + 1}/24,gw=192.168.0.1"
   ciuser    = "dev"
-  cipassword = ""
+  cipassword = var.vm_password
   sshkeys   = <<EOF
-  ${var.ssh_key}
+  ${file(var.ssh_pub_key_path)}
   EOF
 }

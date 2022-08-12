@@ -2,27 +2,29 @@
 
 This document will outline the plan and catalog current state of the infrastructure.
 
-## Scope
-- Installation of only REQUIRED tooling via package managers.
-- Anything that can be packaged and installed with zarf should do so. Distro specific packages w/ complex dependencies can be baked into the base image.
-
-## Plan
-
-- Disk Health analysis - Review current raid arrays
-- Install New SSD's
+## Hardware
+R710
+- Purpose: Hosting long-lived kubernetes cluster - Provide no-cloud-cost dev environments for quick provision w/ terraform
+- Storage
     - Raid 1 initialize 2x 1tb SSD's
     - Raid 10 initialize 4x 500gb SSD's
-- Host NFS server from separate machine
+Ryzen Desktop
+- Purpose: Host NFS server full-time - provide amd64 dev machine (can host multiple k3d clusters)
+- Storage
     - 2x 4tb btrfs raid1 array
+Raspberry Pi 4 - 4gb
+- Purpose: Hosts DNS server via CoreDNS
+
+## Directories
+- [dev-terraform](./dev-terraform/README.md)
+    - Captures quick-spinup linux VM's for amd64 development projects
+- [rke2-terraform](./rke2-terraform/README.md)
+    - Captures cluster configurations for the home "stable" cluster
+
+## Plan
 - Host DNS server on Raspberry pi (until this can be co-located with required workloads)
     - Analyze current configuration and systemctl entries
     - Anisible script for reproducible configuration
-
-Terraform Usage:
-- Add passwords to main.tf
-    - Look at using an exported variable
-- Add public ssh key to variables.tf
-- terraform init 
 
 Relevant Content:
 - https://pve.proxmox.com/wiki/Cloud-Init_Support
