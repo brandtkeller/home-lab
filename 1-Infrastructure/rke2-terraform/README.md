@@ -19,3 +19,6 @@ Collecting the artifacts required for "air gap" installation will reduce downloa
 ## Dependencies
 - DNS
 - Loadbalancing for highly-available clusters
+
+## TODO
+- add machine configurations for Big Bang
