@@ -1,6 +1,13 @@
 # Infrastructure
 
-This document will outline the plan and catalog current state of the infrastructure.
+This document will outline the plan to establish and update infrastructure.
+
+## Cattle-not-Pets
+Having a plan for keeping infrastructure from becoming stale. Define a process for blue/green and updating underyling virtual machines and cluster as required to stay up-to-date.
+
+### Blue/Green
+What would this look like based on the services provided?
+
 
 ## Hardware
 R710
