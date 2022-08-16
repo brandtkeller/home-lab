@@ -2,7 +2,7 @@
 
 This document will outline the plan to establish and update infrastructure.
 
-## Cattle-not-Pets
+## Cattle-not-Pets (CnP)
 Having a plan for keeping infrastructure from becoming stale. Define a process for blue/green and updating underyling virtual machines and cluster as required to stay up-to-date.
 
 ### Blue/Green
@@ -37,3 +37,52 @@ Relevant Content:
 - https://pve.proxmox.com/wiki/Cloud-Init_Support
 - https://github.com/Telmate/terraform-provider-proxmox
 - https://www.terraform.io/language/modules/develop
+
+## Highly Available cluster w/ ability to upgrade OS/Kubernetes version via CnP
+
+### Cluster Initialization
+
+- "Bootstrap" server node is established as the first cluster node
+    - Default nameserver configuration
+    - Comes online
+    - Deploy DNS daemonset (to worker nodes)
+        - Entries
+            - k8s.kellerhome.us
+            - *.k8s.kellerhome.us
+            - k8s-server-01.kellerhome.us
+            - ...
+    - Deploy Loadbalancer daemonset (to worker nodes)
+        - Entries
+            - 6443
+            - 9345
+            - 443
+            - 80
+- Deploy second server
+    - Nameserver = IP of bootstrap
+    - server = https://k8s.home.local:9345
+    - Comes online
+    - Ensure daemonset scales
+- Deploy third server
+    - Nameserver = IP of second server
+    - server = https://k8s.home.local:9345
+    - Comes online
+    - Ensure daemonset scales
+- Remove bootstrap node & deploy new first server
+    - Drain/cordon node
+    - De-provision
+    - Provisioner new node
+        - Nameserver = IP of third node
+    - server = https://k8s.home.local:9345
+    - Comes online
+    - Ensure daemonset scales
+
+### Cluster Upgrades
+By not using a loop for the terraform, we can de-provision nodes singularly and update.
+
+Node 1/3
+- Drain & cordon node
+- Deprovision
+- re-provision with explicit image template & kubernetes version
+
+Rinse and repeat
+

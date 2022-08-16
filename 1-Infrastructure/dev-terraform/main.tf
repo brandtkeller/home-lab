@@ -66,6 +66,7 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
   
   # Cloud Init Settings
   ipconfig0 = "ip=192.168.0.5${count.index + 1}/24,gw=192.168.0.1"
+  nameserver = "192.168.0.130"
   ciuser    = "dev"
   cipassword = var.vm_password
   sshkeys   = <<EOF
