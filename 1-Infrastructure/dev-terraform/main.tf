@@ -32,7 +32,7 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
   }
   network {
     model  = "virtio"
-    bridge = "vmbr0"
+    bridge = "vmbr1"
   }
   lifecycle {
     ignore_changes = [
@@ -47,7 +47,7 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
       type     = "ssh"
       user     = "dev"
       private_key = file("${var.ssh_priv_key_path}")
-      host     = "192.168.0.5${count.index + 1}"
+      host     = "192.168.1.1${count.index + 1}"
     }
   }
 
@@ -60,13 +60,13 @@ resource "proxmox_vm_qemu" "proxmox_vm" {
       type     = "ssh"
       user     = "dev"
       private_key = file("${var.ssh_priv_key_path}")
-      host     = "192.168.0.5${count.index + 1}"
+      host     = "192.168.1.1${count.index + 1}"
     }
   }
   
   # Cloud Init Settings
-  ipconfig0 = "ip=192.168.0.5${count.index + 1}/24,gw=192.168.0.1"
-  nameserver = "192.168.0.130"
+  ipconfig0 = "ip=192.168.1.1${count.index + 1}/24,gw=192.168.1.1"
+  nameserver = "192.168.0.130 8.8.8.8"
   ciuser    = "dev"
   cipassword = var.vm_password
   sshkeys   = <<EOF

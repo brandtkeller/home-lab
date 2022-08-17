@@ -35,6 +35,7 @@ Raspberry Pi 4 - 4gb
 
 Relevant Content:
 - https://pve.proxmox.com/wiki/Cloud-Init_Support
+- https://registry.terraform.io/providers/Telmate/proxmox/latest/docs/resources/vm_qemu
 - https://github.com/Telmate/terraform-provider-proxmox
 - https://www.terraform.io/language/modules/develop
 
@@ -79,7 +80,7 @@ Relevant Content:
 ### Cluster Upgrades
 By not using a loop for the terraform, we can de-provision nodes singularly and update.
 
-Node 1/3
+For each node
 - Drain & cordon node
 - Deprovision
 - re-provision with explicit image template & kubernetes version

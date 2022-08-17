@@ -6,7 +6,7 @@ variable "ssh_priv_key_path" {
   default = "~/.ssh/nopass"
 }
 
-variable "vm_password" {
+variable "password" {
   description = "vm user password"
   type        = string
   sensitive   = true
