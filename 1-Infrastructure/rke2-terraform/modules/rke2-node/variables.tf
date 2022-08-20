@@ -74,3 +74,8 @@ variable "primary" {
   type = bool
   default = false
 }
+
+variable "server_addr" {
+  description = "server address"
+  type = string
+}

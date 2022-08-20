@@ -17,8 +17,10 @@ module "rke2-master" {
 
   name = "rke2-server-01"
   role = "server"
+  primary = true
 
   ip_addr = "192.168.1.20"
-  nameservers = "1.1.1.1"
+  server_addr = "192.168.1.20"
+  nameservers = "192.168.1.21 192.168.1.22 8.8.8.8"
   password = var.password
 }

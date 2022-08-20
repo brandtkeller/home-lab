@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-resource "proxmox_vm_qemu" "primary_server" {
+resource "proxmox_vm_qemu" "rke2_node" {
   name        = var.name
   target_node = "pve"
   clone       = var.clone_image
@@ -35,7 +35,7 @@ resource "proxmox_vm_qemu" "primary_server" {
   }
 
   provisioner "file" {
-    content      = templatefile("${path.module}/files/config.yaml.tftpl", { primary=var.primary, role=var.role })
+    content      = templatefile("${path.module}/files/config.yaml.tftpl", { primary=var.primary, role=var.role, ip_addr=var.ip_addr, server_addr=var.server_addr})
     destination = "/home/dev/config.yaml"
     connection {
       type     = "ssh"

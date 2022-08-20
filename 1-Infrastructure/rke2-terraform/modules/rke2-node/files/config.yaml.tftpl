@@ -1,7 +1,7 @@
 %{ if primary == true }
-bind-address: 192.168.0.60
+bind-address: ${ip_addr}
 %{ else }
-server: https://192.168.0.60:9345
+server: https://192.168.1.20:9345
 %{ endif }
 write-kubeconfig-mode: "0644"
 token: my-shared-secret
