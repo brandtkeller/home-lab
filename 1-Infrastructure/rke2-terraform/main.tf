@@ -15,7 +15,7 @@ provider "proxmox" {
 module "rke2-master" {
   source = "./modules/rke2-node"
 
-  name = "rke2-server-01"
+  name = "rke2-server-01.k8s.kellerhome.us"
   role = "server"
   primary = true
 

@@ -1,2 +1,3 @@
 .terraform*
 *.tfstate*
+rke2.yaml
