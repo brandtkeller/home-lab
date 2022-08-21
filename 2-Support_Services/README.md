@@ -4,17 +4,13 @@ This will outline the plan and catalog the current state of support services.
 
 ## Services
 - On-premise Loadbalancer
-- ansible
+- On-premise DNS
 
 ## Plan
-- Create a Support Services Node
-    - This will act as both a jump-box where zarf executes from as well as the host for the loadbalancer server 
-    - Should this be a dedicated machine? what other purposes could this serve?
-- Zarf
-    - Package Pre-reqs
-        - Pull nginx/ansible image to local filesystem (as archives)
-        - Declare those images as file resources
-        - Create service definition files and declare them as file reosurces
-    - Deploy    
-        - `podman load` the images
-        - Load service defintion files into systemd
+- Creation of DNS and loadbalancer daemonset orchestration.
+
+## Questions
+- How to template DNS to make each pod aware of nodeIP 
+    - What does this look like for the pod? Does coredns have utilities to find/replace? (sed?)
+    - If so, put a unique identifier in the configmap and replace it at startup
+    - if not..... back to whiteboard
