@@ -1,0 +1,94 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: loadbalancer-config
+data:
+
+  nginx.conf: |
+    worker_processes  1;
+
+    error_log  /var/log/nginx/error.log warn;
+    pid        /var/run/nginx.pid;
+
+
+    events {
+        worker_connections  1024;
+    }
+
+
+    http {
+        default_type  application/octet-stream;
+
+        log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                          '$status $body_bytes_sent "$http_referer" '
+                          '"$http_user_agent" "$http_x_forwarded_for"';
+
+        access_log  /var/log/nginx/access.log  main;
+
+        sendfile        on;
+        #tcp_nopush     on;
+
+        keepalive_timeout  65;
+        map "$host:$server_port" $namehttp {
+            hostnames;
+
+            *.k8s.kellerhome.us:80 cluster_http;
+
+        }
+
+        upstream cluster_http {
+            server 192.168.1.20:80 max_fails=3 fail_timeout=10s;
+            server 192.168.1.21:80 max_fails=3 fail_timeout=10s;
+            server 192.168.1.22:80 max_fails=3 fail_timeout=10s;
+        }
+
+
+        log_format stream_http_routing '$remote_addr [$time_local] '
+                              'with SNI name "$host" '
+                              'on port "$server_port"'
+                              'combined is "$host:$server_port"'
+                              'proxying to "$namehttp" ';
+
+        server {
+            listen 80;
+            
+            location / {
+                proxy_pass http://$namehttp;
+                proxy_set_header Host $host;
+            }
+            access_log /dev/stdout stream_http_routing;
+        }
+    }
+    stream {
+
+        map "$ssl_preread_server_name:$server_port" $namehttps {
+            hostnames;
+            
+            *.k8s.kellerhome.us:443 k8s_https;
+            k8s.kellerhome.us:6443 k8s_kube;
+            k8s.kellerhome.us:9345 k8s_comm;
+        }
+
+        upstream k8s_https {
+            server 192.168.1.20:30002 max_fails=3 fail_timeout=10s;
+            server 192.168.1.21:30002 max_fails=3 fail_timeout=10s;
+            server 192.168.1.22:30002 max_fails=3 fail_timeout=10s;
+        }
+
+        log_format stream_https_routing '$remote_addr [$time_local] '
+                              'with SNI name "$ssl_preread_server_name" '
+                              'on port "$server_port"'
+                              'combined is "$ssl_preread_server_name:$server_port"'
+                              'proxying to "$namehttps" '
+                              '$protocol $status $bytes_sent $bytes_received '
+                              '$session_time';
+        
+        server {
+            listen 443;
+      
+            proxy_pass $namehttps;
+            ssl_preread on;
+            access_log /dev/stdout stream_https_routing;
+        }
+    }
+  

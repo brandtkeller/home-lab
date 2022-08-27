@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dnsfiles
+data:
+
+  Corefile: |
+    kellerhome.us:53 {
+        file /etc/coredns/dns.db
+        log
+        errors
+    }
+
+    .:53 {
+        forward . 8.8.8.8 9.9.9.9
+        log
+        errors
+    }
+
+  dns.db: |
+    kellerhome.us.        IN  SOA dns.kellerhome.us. keller.kellerhome.us. 2015082541 7200 3600 1209600 3600
+    router.kellerhome.us.       IN  A  192.168.0.1
+    k8s.kellerhome.us.          IN  A  ###NODEIP###
+    *.k8s.kellerhome.us.        IN  A  ###NODEIP###
+    manage.kellerhome.us.          IN  A  192.168.0.130
+  

@@ -1,9 +1,13 @@
 %{ if primary == true }
 bind-address: ${ip_addr}
 %{ else }
-server: https://192.168.1.20:9345
+server: https://${server_addr}:9345
 %{ endif }
+%{ if role == "server" }
 write-kubeconfig-mode: "0644"
+tls-san:
+  - k8s.kellerhome.us
+%{ endif }
 token: my-shared-secret
 disable:
   - rke2-metrics-server

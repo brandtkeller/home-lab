@@ -1,0 +1,36 @@
+kind: ZarfPackageConfig
+metadata:
+  name: "jiva-package-storage-class"
+
+components:
+  - name: openebs-localpv
+    description: "Local provisioner for storage"
+    images:
+      - openebs/provisioner-localpv:3.3.0
+      - openebs/linux-utils:3.3.0
+    charts:
+      - name: localpv-provisioner
+        url: https://openebs.github.io/dynamic-localpv-provisioner
+        version: 3.3.0
+        namespace: openebs
+        valuesFiles:
+          - localpv-values.yaml
+  - name: jiva-operator
+    description: "Add Jiva distributed storage to cluster"
+    images:
+      - openebs/jiva:3.3.0
+      - openebs/m-exporter:3.3.0
+      - openebs/jiva-operator:3.3.0
+      - k8s.gcr.io/sig-storage/csi-attacher:v3.1.0
+      - k8s.gcr.io/sig-storage/livenessprobe:v2.3.0
+      - k8s.gcr.io/sig-storage/csi-provisioner:v3.0.0
+      - k8s.gcr.io/sig-storage/csi-resizer:v1.2.0
+      - openebs/jiva-csi:3.3.0
+      - k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.3.0
+    charts:
+      - name: jiva
+        url: https://openebs.github.io/jiva-operator
+        version: 3.3.0
+        namespace: openebs
+        valuesFiles:
+          - jiva-values.yaml

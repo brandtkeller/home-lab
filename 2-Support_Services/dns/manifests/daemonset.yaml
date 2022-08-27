@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: bootstap-dns
+spec:
+  selector:
+    matchLabels:
+      name: bootstap-dns
+  template:
+    metadata:
+      labels:
+        name: bootstap-dns
+    spec:
+      nodeSelector:
+        node-role.kubernetes.io/master: "true"
+      initContainers:
+      - name: ubi-templater
+        image: registry.access.redhat.com/ubi8/ubi-minimal:8.6
+        command: ["/bin/sh", "-c"]
+        args:
+        - sed "s/###NODEIP###/$MY_NODE_IP/g" /tmp/config/dns.db >> /tmp/template/dns.db;
+          cp /tmp/config/Corefile /tmp/template/Corefile
+        env:
+        - name: MY_NODE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        volumeMounts:
+        - mountPath: /tmp/template
+          name: template-volume
+        - mountPath: /tmp/config
+          name: config-volume
+      containers:
+      - name: coredns
+        image: coredns/coredns:1.9.3
+        args:
+        - -conf
+        - /etc/coredns/Corefile
+        ports:
+        - containerPort: 53
+          hostPort: 53
+          protocol: UDP
+        - containerPort: 53
+          hostPort: 53
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /etc/coredns
+          name: template-volume
+      volumes:
+      - name: template-volume
+        emptyDir: {}
+      - name: config-volume
+        configMap:
+          defaultMode: 420
+          items:
+          - key: Corefile
+            path: Corefile
+          - key: dns.db
+            path: dns.db
+          name: dnsfiles

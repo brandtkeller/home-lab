@@ -1,3 +1,6 @@
 .terraform*
 *.tfstate*
 rke2.yaml
+*.tar.zst
+*.tar.gz
+*amd64.txt
