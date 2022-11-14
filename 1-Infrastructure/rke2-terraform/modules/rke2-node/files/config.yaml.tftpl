@@ -1,12 +1,15 @@
 %{ if primary == true }
 bind-address: ${ip_addr}
 %{ else }
-server: https://${server_addr}:9345
+server: https://${cluster_host}.${domain}:9345
 %{ endif }
 %{ if role == "server" }
 write-kubeconfig-mode: "0644"
 tls-san:
-  - k8s.kellerhome.us
+  - ${node_host}
+  - ${node_host}.${domain}
+  - ${cluster_host}
+  - ${cluster_host}.${domain}
 %{ endif }
 token: my-shared-secret
 disable:

@@ -7,20 +7,15 @@ I wanted to document and catalog the updates to my home lab for multiple reasons
 - Ensure all configurations are either declarative or idempotent - such that this can evolve over time.
 
 ## Work In-progress
+- DNS Configuration-as-Code
+  - TODO:
+    - Wipe RPI and install latest image of raspbian
+    - K8s or Ansible?
+    - CaC
 - Deployment of "stable" RKE2 cluster
   - TODO:
-    - Certificate Information - `kellerhome.us`
-      - `k8s.kellerhome.us`
-      - `*.k8s.kellerhome.us`
-    - DNS entries
-      - Short-term:
-        - Update existing DNS server
-      - Long-term:
-        - Create Highly-available and declarative DNS 
-    - Loadbalancer
-      - Short-term:
-        - Create Loadbalancer on dev machine
-      - Long-term:
-        - Create Highly-available and decalartive loadbalancing service
+    - Add an "additional manifests" directory under files
+    - Template vip.yaml file?
+    - Address storage plans - is this a post-flux installation?
 
 

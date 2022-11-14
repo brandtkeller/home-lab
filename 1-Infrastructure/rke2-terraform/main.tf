@@ -19,12 +19,14 @@ module "rke2-server-01" {
   role    = "server"
   primary = true
 
-  storage_size = "300G"
+  storage_size = "30G"
   memory       = 32768
 
   ip_addr     = "192.168.1.20"
-  server_addr = "192.168.1.20"
-  nameservers = "192.168.1.21 192.168.1.22"
+  node_host = "rke2-server-01"
+  cluster_host = "rke2-stable"
+  domain = "k8s.naps.dev"
+  nameservers = "192.168.1.10"
   password    = var.password
 }
 
@@ -39,9 +41,15 @@ module "rke2-server-02" {
   memory = 32768
 
   ip_addr = "192.168.1.21"
-  server_addr = "k8s.kellerhome.us"
-  nameservers = "192.168.1.20 192.168.1.22"
+  node_host = "rke2-server-01"
+  cluster_host = "rke2-stable"
+  domain = "k8s.naps.dev"
+  nameservers = "192.168.1.10"
   password = var.password
+
+  depends_on = [
+    module.rke2-server-01
+  ]
 }
 
 module "rke2-server-03" {
@@ -55,9 +63,15 @@ module "rke2-server-03" {
   memory = 32768
 
   ip_addr = "192.168.1.22"
-  server_addr = "k8s.kellerhome.us"
-  nameservers = "192.168.1.20 192.168.1.22"
+  node_host = "rke2-server-01"
+  cluster_host = "rke2-stable"
+  domain = "k8s.naps.dev"
+  nameservers = "192.168.1.10"
   password = var.password
+
+  depends_on = [
+    module.rke2-server-01
+  ]
 }
 
 # module "rke2-agent-01" {

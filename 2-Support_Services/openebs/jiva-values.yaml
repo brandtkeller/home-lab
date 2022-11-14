@@ -1,8 +1,0 @@
-openebsLocalpv:
-  enabled: false
-
-storageClass:
-  isDefaultClass: true
-
-defaultPolicy:
-  replicas: 3

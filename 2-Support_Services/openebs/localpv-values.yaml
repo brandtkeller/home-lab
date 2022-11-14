@@ -1,8 +1,0 @@
-openebsNDM:
-  enabled: false
-
-deviceClass:
-  enabled: false
-  
-# hostPathClass:
-#   isDefaultClass: true

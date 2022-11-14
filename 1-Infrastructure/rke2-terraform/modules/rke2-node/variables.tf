@@ -75,7 +75,22 @@ variable "primary" {
   default     = false
 }
 
-variable "server_addr" {
-  description = "server address"
+variable "domain" {
+  description = "domain"
+  type        = string
+}
+
+variable "hostname" {
+  description = "hostname"
+  type        = string
+}
+
+variable "node_host" {
+  description = "node host name for dns"
+  type        = string
+}
+
+variable "cluster_host" {
+  description = "cluster hostname for loadbalancing controlplane"
   type        = string
 }
