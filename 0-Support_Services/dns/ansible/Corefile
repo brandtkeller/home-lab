@@ -1,0 +1,11 @@
+home.local:53 {
+    file /home/pi/Management/home.db
+    log
+    errors
+}
+
+.:53 {
+    forward . 8.8.8.8 9.9.9.9
+    log
+    errors
+}
