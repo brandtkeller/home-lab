@@ -7,10 +7,13 @@ This is planned to target a desktop server that has a RAID volume of multiple di
 
 ## Questions
 - Should this remain a single server? or could this be the first of a larger cluster?
+- Single Server
+    - Can use Zarf more readily - as everything can be a concise package
+    - 
 
 ## Goals/Objectives
 - Dogfood Zarf
-- RKE2 distrobution
+- RKE2 distribution
 - Flux
 - Big Bang
     - Istio

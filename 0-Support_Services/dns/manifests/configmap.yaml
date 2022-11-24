@@ -2,8 +2,8 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: dnsfiles
+  namespace: dns
 data:
-
   Corefile: |
     kellerhome.us:53 {
         file /etc/coredns/dns.db
@@ -20,8 +20,8 @@ data:
   dns.db: |
     kellerhome.us.        IN  SOA dns.kellerhome.us. keller.kellerhome.us. 2015082541 7200 3600 1209600 3600
     router.kellerhome.us.         IN  A  192.168.0.1
-    infra.kellerhome.us.          IN  A  ###NODEIP###
-    *.infra.kellerhome.us.        IN  A  ###NODEIP###
+    infra.kellerhome.us.          IN  A  192.168.1.21
+    *.infra.kellerhome.us.        IN  A  192.168.1.22
     k8s.kellerhome.us.            IN  A  192.168.1.20
     *.k8s.kellerhome.us.          IN  A  192.168.1.20
     manage.kellerhome.us.         IN  A  192.168.0.130
