@@ -1,30 +1,16 @@
-# Support Cluster
+# Support Services
 
-Provides a kubernetes cluster and services deployed therein to support other downstream clusters.
+This will outline the plan and catalog the current state of support services.
 
-## Target
-This is planned to target a desktop server that has a RAID volume of multiple disks for redundancy.
+## DNS
+- Target = RPI4
+- Add `cgroup_enable=cpuset cgroup_enable=memory cgroup_memory=1` to end of `/boot/cmdline.txt` and reboot
+- Run `ssh-copy-id -i <publickey> pi@<IP>`
+- Run `k3sup install --ip <IP> --user pi --ssh-key <priv key> --no-extras`from remote host
+    - If this fails and you get it running on the PI, you can use `k3sup install --ip <IP> --user pi --ssh-key <priv key> --no-extras --skip-install` to get the kubeconfig
+- Create DNS manifest/configmap
+- Deploy and Test
+    - `dig @<IP> infra.kellerhome.us`
 
-## Questions
-- Should this remain a single server? or could this be the first of a larger cluster?
-- Single Server
-    - Can use Zarf more readily - as everything can be a concise package
-    - 
-
-## Goals/Objectives
-- Dogfood Zarf
-- RKE2 distribution
-- Flux
-- Big Bang
-    - Istio
-        - Needs a certificate - generate with cert-bot and dns-01 challenge
-        - `*.support.kellerhome.us`
-    - Monitoring
-    - Logging
-    - Minio Operator / Minio
-        - Look into [Minio Operator requirements](https://github.com/minio/operator/blob/master/README.md)
-        - Use a large portion of the Raid-array
-    - Nexus
-        - Establish docker proxies for docker hub and Registry 1
-    - Cert-Manager (Not Required Initially)
-- Flux terraform controller
+## Support Cluster
+- Target = Ryzen 7 Desktop w/ 32gb Memory

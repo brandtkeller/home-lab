@@ -1,0 +1,43 @@
+kind: ZarfPackageConfig
+metadata:
+  name: kube-vip
+  description: "Deploy kube-vip"
+  version: 0.5.6
+  architecture: amd64
+
+variables:
+  # Prompt user for the domain override
+  - name: INTERFACE
+    default: "eth0"
+    prompt: true
+  - name: VIP_IP
+    default: "192.168.0.60"
+    prompt: true
+  - name: RANGE_START
+    default: "192.168.0.61"
+    prompt: true
+  - name: RANGE_END
+    default: "192.168.0.61"
+    prompt: true
+  
+components:
+  - name: kube-vip
+    description: "kube vip daemonset"
+    required: true
+    manifests:
+      - name: kube-vip
+        files:
+          - manifests/rbac.yaml
+          - manifests/daemonset.yaml
+    images:
+      - ghcr.io/kube-vip/kube-vip:v0.5.6
+
+  - name: kube-vip-cloud-controller
+    description: "kube vip cloud controller"
+    required: true
+    manifests:
+      - name: kube-vip-cloud-controller
+        files:
+          - manifests/kube-vip-cloud-controller.yaml
+    images:
+      - ghcr.io/kube-vip/kube-vip-cloud-provider:v0.0.4
