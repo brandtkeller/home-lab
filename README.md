@@ -31,15 +31,17 @@ I focus on my daily work responsiblities without having to interact with this eq
 ## Work In-progress
 - Support Services
   - TODO:
-    - minio bucket for terraform backend
     - nexus docker proxy cache
 - Deployment of "stable" RKE2 cluster
   - TODO:
     - terraform updated to k8s 1.25
     - terraform backend initialized for local minio
+    - terraform rke2-node github repo created
+      - TODO: investigate airgap file transfer - may delay utilization
     - Add an "additional manifests" directory under files
     - registries.yaml file for proxy cache mirror
     - Template vip.yaml file in terraform
+    - Create sops key and create gitops Big Bang kustomization
     - Address storage plans - openebs Jiva w/ replication
 
     

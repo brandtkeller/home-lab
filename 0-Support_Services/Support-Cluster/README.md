@@ -14,3 +14,11 @@ This will outline the plan and catalog the current state of support services.
 
 ## Support Cluster
 - Target = Ryzen 7 Desktop w/ 32gb Memory
+- Setup:
+    - 0-rke2 / Vanilla install via install.sh script using the airgap install method
+    - 1-local-path / local path provisioner storage class - using public images currently
+    - 2-zarf / zarf initialization 
+    - 3-kube-vip / Kube VIP Zarf package w/ VIP daemonset and cloud controller manager
+    - 4-certbot / Requesting `*.infra.kellerhome.us` certificates
+    - 5-flux / Zarf packaged and deployed on its own
+    - 6-big-bang / Big Bang Core zarf package w/ Minio & Nexus

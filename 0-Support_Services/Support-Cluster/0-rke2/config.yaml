@@ -1,0 +1,10 @@
+write-kubeconfig-mode: "0644"
+tls-san:
+  - infra-01
+  - infra-01.kellerhome.us
+  - infra.kellerhome.us
+token: my-shared-secret
+disable:
+  - rke2-metrics-server
+  - rke2-ingress-nginx
+disable-cloud-controller: true
