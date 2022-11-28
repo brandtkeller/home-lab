@@ -29,14 +29,17 @@ I focus on my daily work responsiblities without having to interact with this eq
 
 
 ## Work In-progress
-- DNS Configuration-as-Code
+- Support Services
   - TODO:
-    - Wipe RPI and install latest image of raspbian
-    - K8s or Ansible?
-    - CaC
+    - minio bucket for terraform backend
+    - nexus docker proxy cache
 - Deployment of "stable" RKE2 cluster
   - TODO:
+    - terraform updated to k8s 1.25
+    - terraform backend initialized for local minio
     - Add an "additional manifests" directory under files
-    - Template vip.yaml file?
-    - Address storage plans - is this a post-flux installation?
+    - registries.yaml file for proxy cache mirror
+    - Template vip.yaml file in terraform
+    - Address storage plans - openebs Jiva w/ replication
+
     
