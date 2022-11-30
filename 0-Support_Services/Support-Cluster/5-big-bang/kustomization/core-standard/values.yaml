@@ -204,6 +204,19 @@ addons:
           volumesPerServer: 1
           ## size specifies the capacity per volume
           size: 1024Gi
+          storageClassName: ""
+          ## Used to specify annotations for pods
+          annotations: { }
+          ## Used to specify labels for pods
+          labels: { }
+          ## Used to specify a toleration for a pod
+          tolerations: [ ]
+          ## nodeSelector parameters for MinIO Pods. It specifies a map of key-value pairs. For the pod to be
+          ## eligible to run on a node, the node must have each of the
+          ## indicated key-value pairs as labels.
+          ## Read more here: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+          nodeSelector: { }
+
         buckets:
         - name: photosync
   nexus:
