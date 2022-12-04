@@ -29,9 +29,6 @@ I focus on my daily work responsiblities without having to interact with this eq
 
 
 ## Work In-progress
-- Support Services
-  - TODO:
-    - nexus docker proxy cache
 - Deployment of "stable" RKE2 cluster
   - TODO:
     - terraform updated to k8s 1.25

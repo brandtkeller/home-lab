@@ -72,26 +72,12 @@ resource "proxmox_vm_qemu" "rke2_node" {
     }
   }
 
-  # provisioner "remote-exec" {
-  #   inline = [
-  #     "sudo dpkg -i /home/dev/nfs-common_1.3.4-2.5+deb10u1_amd64.deb",
-  #     "mkdir -p /home/dev/nfs",
-  #     "sudo mkdir -p /root/rke2-artifacts",
-  #     "sudo mount -t nfs4 192.168.0.232:/ /home/dev/nfs",
-  #     "sudo cp /home/dev/nfs/kubernetes/rke2/${var.rke2_version}/* /root/rke2-artifacts/"
-  #   ]
-  #   connection {
-  #     type     = "ssh"
-  #     user     = "dev"
-  #     private_key = file("${var.ssh_priv_key_path}")
-  #     host     = var.ip_addr
-  #   }
-  # }
-
   # Execute all required processes
   provisioner "remote-exec" {
     inline = [
       "sudo mkdir -p /etc/rancher/rke2",
+      "sudo mkdir -p /data/volumes",
+      "sudo chmod 777 /data/volumes",
       "sudo cp /home/dev/config.yaml /etc/rancher/rke2/config.yaml",
       "sudo INSTALL_RKE2_ARTIFACT_PATH=/home/dev/rke2-artifacts %{if var.role != "server"}INSTALL_RKE2_TYPE='agent'%{endif} sh /home/dev/rke2-artifacts/install.sh",
       "sudo systemctl enable rke2-${var.role}.service"

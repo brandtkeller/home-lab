@@ -8,74 +8,54 @@ terraform {
 }
 
 provider "proxmox" {
-  pm_api_url      = "https://192.168.0.14:8006/api2/json"
-  pm_tls_insecure = "true"
+  pm_api_url      = "https://prox.kellerhome.us/api2/json"
 }
 
-module "rke2-server-01" {
-  source = "./modules/rke2-node"
+## The primary server is actually a different physical machine
 
-  name    = "rke2-server-01.kellerhome.us"
-  role    = "server"
-  primary = true
+module "infra-server-02" {
+  source = "../modules/rke2-node"
 
-  storage_size = "30G"
-  memory       = 32768
-
-  ip_addr     = "192.168.1.20"
-  node_host = "rke2-server-01"
-  cluster_host = "rke2-stable"
-  domain = "k8s.naps.dev"
-  nameservers = "192.168.1.10"
-  password    = var.password
-}
-
-module "rke2-server-02" {
-  source = "./modules/rke2-node"
-
-  name = "rke2-server-02.kellerhome.us"
+  name = "infra-server-02.kellerhome.us"
   role = "server"
   primary = false
 
-  storage_size = "300G"
+  storage_size = "500G"
+  memory = 32768
+
+  ip_addr = "192.168.1.20"
+  node_host = "infra-server-01"
+  cluster_host = "infra"
+  domain = "kellerhome.us"
+  nameservers = "192.168.0.130"
+  password = var.password
+
+}
+
+module "infra-server-03" {
+  source = "../modules/rke2-node"
+
+  name = "infra-server-03.kellerhome.us"
+  role = "server"
+  primary = false
+
+  storage_size = "500G"
   memory = 32768
 
   ip_addr = "192.168.1.21"
-  node_host = "rke2-server-01"
-  cluster_host = "rke2-stable"
-  domain = "k8s.naps.dev"
-  nameservers = "192.168.1.10"
+  node_host = "infra-server-01"
+  cluster_host = "infra"
+  domain = "kellerhome.us"
+  nameservers = "192.168.0.130"
   password = var.password
 
   depends_on = [
-    module.rke2-server-01
-  ]
-}
-
-module "rke2-server-03" {
-  source = "./modules/rke2-node"
-
-  name = "rke2-server-03.kellerhome.us"
-  role = "server"
-  primary = false
-
-  storage_size = "300G"
-  memory = 32768
-
-  ip_addr = "192.168.1.22"
-  node_host = "rke2-server-01"
-  cluster_host = "rke2-stable"
-  domain = "k8s.naps.dev"
-  nameservers = "192.168.1.10"
-  password = var.password
-
-  depends_on = [
-    module.rke2-server-01
+    module.infra-server-02
   ]
 }
 
 # module "rke2-agent-01" {
-#   source = "./modules/rke2-node"
+#   source = "../modules/rke2-node"
 
 #   name = "rke2-agent-01.kellerhome.us"
 #   role = "agent"

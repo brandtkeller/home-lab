@@ -1,6 +1,8 @@
 #!/bin/bash
 
-VERSION=v1.24.3%2Brke2r1
+VERSION=v1.25.4%2Brke2r1
+
+cd ../modules/rke2-node/files/artifacts/
 
 declare -a artifacts=(
     "https://github.com/rancher/rke2/releases/download/${VERSION}/rke2-images.linux-amd64.tar.zst"
@@ -11,4 +13,3 @@ declare -a artifacts=(
 for val in ${artifacts[@]}; do
    curl -LO $val
 done
-

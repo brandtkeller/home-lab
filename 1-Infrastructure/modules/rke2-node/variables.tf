@@ -80,11 +80,6 @@ variable "domain" {
   type        = string
 }
 
-variable "hostname" {
-  description = "hostname"
-  type        = string
-}
-
 variable "node_host" {
   description = "node host name for dns"
   type        = string

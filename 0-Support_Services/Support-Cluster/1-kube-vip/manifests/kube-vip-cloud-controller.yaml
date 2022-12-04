@@ -93,4 +93,4 @@ metadata:
   name: kubevip
   namespace: kube-system
 data:
-  range-global: ###ZARF_VAR_RANGE_START###-###ZARF_VAR_RANGE_END###     # Range-based IP range for use in all namespaces
+  range-global: 192.168.1.12-192.168.1.12    # Range-based IP range for use in all namespaces

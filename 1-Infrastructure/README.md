@@ -3,7 +3,7 @@
 This document will outline the plan to establish and update infrastructure.
 
 ## Cattle-not-Pets (CnP)
-Having a plan for keeping infrastructure from becoming stale. Define a process for blue/green and updating underyling virtual machines and cluster as required to stay up-to-date.
+Having a plan for keeping infrastructure from becoming stale. Define a process for blue/green and updating underlying virtual machines and cluster as required to stay up-to-date.
 
 ### Blue/Green
 What would this look like based on the services provided?
