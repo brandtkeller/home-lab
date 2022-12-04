@@ -4,6 +4,6 @@ kind: Kustomization
 # resources:
 # -
 bases: 
-- ../../storage
+- ../../bases/storage
 patchesStrategicMerge:
   - jiva-configmap.yaml
