@@ -51,3 +51,6 @@ sed -i "" "s/pgp: FALSE_KEY_HERE/pgp: ${fp}/" .sops.yaml
 git add .sops.yaml
 git commit -m "chore: update default encryption key"
 git push --set-upstream origin template-demo
+
+
+gpg --export-secret-key --armor ${fp} | kubectl create secret generic sops-gpg -n flux-system --from-file=devkey.asc=/dev/stdin

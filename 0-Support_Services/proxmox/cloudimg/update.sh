@@ -7,8 +7,10 @@ rm SHA256SUMS* || echo "no existing sums to delete"
 wget https://cloud-images.ubuntu.com/jammy/current/SHA256SUMS
 LATEST_SHA=$(cat SHA256SUMS | grep "jammy-server-cloudimg-amd64.img" | cut -d " " -f 1)
 CUR_SHA=$(sha256sum jammy-server-cloudimg-amd64.img | cut -d " " -f 1)
+DATE=$(date)
 
-# TODO: add a hash check here to prevent unneccessary downloads
+echo "${DATE} - Checking for updates"
+
 if [ $LATEST_SHA == $CUR_SHA ]; then
     echo "Image is latest - no download required"
 else

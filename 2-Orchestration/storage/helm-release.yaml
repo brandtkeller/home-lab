@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: openebs-jiva
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: jiva
+      version: 3.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: openebs-jiva
+  interval: 30s
+  targetNamespace: openebs
+  valuesFrom:
+  - kind: ConfigMap
+    name: jiva-cm

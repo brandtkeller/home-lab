@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jiva-cm
+  namespace: flux-system
+data:
+  values.yaml: |
+    localpv-provisioner:
+      localpv:
+        affinity:
+          nodeAffinity:
+            preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                - key: storage
+                  operator: In
+                  values:
+                  - large
