@@ -1,5 +1,5 @@
 bases:
-- ../../bases/bigbang
+- ../../../bases/bigbang
 configMapGenerator:
   - name: environment
     behavior: merge
