@@ -5,3 +5,32 @@ configMapGenerator:
     behavior: merge
     files:
       - values.yaml=configmap.yaml
+patchesStrategicMerge:
+## Enable the line below if a secrets.enc.yaml is created in this directory
+- secrets.enc.yaml
+- |-
+    apiVersion: source.toolkit.fluxcd.io/v1beta2
+    kind: GitRepository
+    metadata:
+      name: bigbang
+    spec:
+      ref:
+        $patch: replace
+        branch: "1.48.0"
+- |-
+  apiVersion: helm.toolkit.fluxcd.io/v2beta1
+  kind: HelmRelease
+  metadata:
+    name: bigbang
+  spec:
+    valuesFrom:
+      - kind: Secret
+        name: common-bb
+      - kind: ConfigMap
+        name: common
+      - kind: Secret
+        name: environment-bb
+      - kind: ConfigMap
+        name: environment
+      - kind: Secret
+        name: certs-bb
