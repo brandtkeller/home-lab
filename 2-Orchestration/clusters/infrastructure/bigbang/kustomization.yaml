@@ -5,6 +5,11 @@ configMapGenerator:
     behavior: merge
     files:
       - values.yaml=configmap.yaml
+secretGenerator:
+  - name: certs-bb
+    namespace: bigbang
+    behavior: create
+
 patchesStrategicMerge:
 ## Enable the line below if a secrets.enc.yaml is created in this directory
 - secrets.enc.yaml
