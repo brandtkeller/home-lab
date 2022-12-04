@@ -6,7 +6,15 @@ metadata:
 data:
   values.yaml: |
     localpv-provisioner:
+      # Disable installation of node-disk-manager components by default
+      openebsNDM:
+        enabled: false
+      # Disable openebs-device deviceClass by default.
+      deviceClass:
+        enabled: false
+
       localpv:
+        basePath: "/data/volumes"
         affinity:
           nodeAffinity:
             preferredDuringSchedulingIgnoredDuringExecution:
@@ -17,3 +25,6 @@ data:
                   operator: In
                   values:
                   - large
+    storageClass:
+      isDefaultClass: true
+        
