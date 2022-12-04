@@ -1,0 +1,26 @@
+monitoring:
+  enabled: false
+
+logging:
+  enabled: false
+
+clusterAuditor:
+  enabled: false
+
+gatekeeper:
+  enabled: false
+
+eckoperator:
+  enabled: false
+
+kiali:
+  enabled: false
+
+jaeger:
+  enabled: false
+
+fluentbit:
+  enabled: false
+
+twistlock:
+  enabled: false

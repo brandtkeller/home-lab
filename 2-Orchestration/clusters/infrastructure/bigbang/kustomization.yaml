@@ -1,0 +1,7 @@
+bases:
+- ../../bases/bigbang
+configMapGenerator:
+  - name: environment
+    behavior: merge
+    files:
+      - values.yaml=configmap.yaml
