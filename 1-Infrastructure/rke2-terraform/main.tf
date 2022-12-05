@@ -22,6 +22,7 @@ module "infra-server-02" {
 
   storage_size = "500G"
   memory = 32768
+  cpus = 8
 
   ip_addr = "192.168.1.20"
   node_host = "infra-server-01"
@@ -41,6 +42,7 @@ module "infra-server-03" {
 
   storage_size = "500G"
   memory = 32768
+  cpus = 8
 
   ip_addr = "192.168.1.21"
   node_host = "infra-server-01"
