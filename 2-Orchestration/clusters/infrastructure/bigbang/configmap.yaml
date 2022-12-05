@@ -43,25 +43,6 @@ addons:
 
         buckets:
         - name: photosync
-  nexus:
-    enabled: true
-    values:
-      persistence:
-        storageSize: 100Gi
-      nexus:
-        livenessProbe:
-          initialDelaySeconds: 120
-          periodSeconds: 30
-          failureThreshold: 10
-          timeoutSeconds: 10
-          path: /
-        readinessProbe:
-          initialDelaySeconds: 75
-          periodSeconds: 30
-          failureThreshold: 10
-          timeoutSeconds: 10
-          path: /
-
   
   metricsServer:
     enabled: true
