@@ -30,14 +30,17 @@ I focus on my daily work responsiblities without having to interact with this eq
 
 ## Work In-progress
 - Problem with an SSD in the server - investigate
-- Do I need USB 3.2 capabilities?
+  - 
 - Install proxmox on Desktop server
-  - Connect to primary proxmox server as cluster
-  - Test GPU pass-through
-- IaC
-  - Explore current options for pulumi
+  - Install SSD
+  - Install Memory
+  - Setup large storage volume
 - Deployment of "stable" RKE2 cluster
   - TODO:
+    - Core Cluster
+      - Primary server nodes on prox2
+      - 2/3 server nodes on prox1
+      - Agents?
     - terraform backend initialized for local minio
     - Move state to Minio
     - Review deploying harbor for use as a proxy cache
