@@ -29,12 +29,8 @@ I focus on my daily work responsiblities without having to interact with this eq
 
 
 ## Work In-progress
-- Problem with an SSD in the server - investigate
-  - 
 - Install proxmox on Desktop server
-  - Install SSD
-  - Install Memory
-  - Setup large storage volume
+  - Install SSD - In-Transit
 - Deployment of "stable" RKE2 cluster
   - TODO:
     - Core Cluster

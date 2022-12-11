@@ -12,6 +12,12 @@ variable "password" {
   sensitive   = true
 }
 
+variable "pve_node" {
+  description = "proxmox node to use for provisioning VM"
+  type        = string
+  default     = "pve"
+}
+
 variable "name" {
   description = "vm hostname"
   type        = string
@@ -31,7 +37,7 @@ variable "storage_size" {
 variable "storage_type" {
   description = "type of storage to allocate"
   type        = string
-  default     = "ssdpool1"
+  default     = "ssdpool2"
 }
 
 variable "memory" {
@@ -88,4 +94,10 @@ variable "node_host" {
 variable "cluster_host" {
   description = "cluster hostname for loadbalancing controlplane"
   type        = string
+}
+
+variable "net_bridge" {
+  description = "network bridge"
+  type        = string
+  default     = "vmbr0"
 }

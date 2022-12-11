@@ -9,7 +9,7 @@ terraform {
 
 resource "proxmox_vm_qemu" "rke2_node" {
   name        = var.name
-  target_node = "pve"
+  target_node = var.pve_node
   clone       = var.clone_image
   os_type     = "cloud-init"
   cores       = var.cpus
@@ -26,7 +26,7 @@ resource "proxmox_vm_qemu" "rke2_node" {
   }
   network {
     model  = "virtio"
-    bridge = "vmbr1"
+    bridge = var.net_bridge
   }
   lifecycle {
     ignore_changes = [
