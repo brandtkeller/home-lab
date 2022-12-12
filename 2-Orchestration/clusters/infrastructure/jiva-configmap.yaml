@@ -12,19 +12,12 @@ data:
       # Disable openebs-device deviceClass by default.
       deviceClass:
         enabled: false
+      hostpathClass:
+        reclaimPolicy: Retain
 
       localpv:
         basePath: "/data/volumes"
-        affinity:
-          nodeAffinity:
-            preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              preference:
-                matchExpressions:
-                - key: storage
-                  operator: In
-                  values:
-                  - large
     storageClass:
       isDefaultClass: true
+      reclaimPolicy: Retain
         
