@@ -22,10 +22,10 @@ data:
     router.kellerhome.us.                 IN  A  192.168.0.1
     prox.kellerhome.us.                   IN  A  192.168.1.9
     prox2.kellerhome.us.                  IN  A  192.168.1.10
-    infra.kellerhome.us.                  IN  A  192.168.1.22
+    infra.kellerhome.us.                  IN  A  192.168.1.20
     *.infra.kellerhome.us.                IN  A  192.168.1.21
     infra-server-01.kellerhome.us.        IN  A  192.168.1.22
-    k8s.kellerhome.us.                    IN  A  192.168.1.20
-    *.k8s.kellerhome.us.                  IN  A  192.168.1.20
+    infra-server-02.kellerhome.us.        IN  A  192.168.1.23
+    infra-server-03.kellerhome.us.        IN  A  192.168.1.24    
     manage.kellerhome.us.                 IN  A  192.168.0.130
   

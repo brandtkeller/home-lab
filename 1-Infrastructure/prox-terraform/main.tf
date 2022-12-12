@@ -40,15 +40,18 @@ module "infra-server-01" {
 #   source = "../modules/rke2-node"
 
 #   name = "infra-server-02.kellerhome.us"
+#   pve_node = "pve"
+#   clone_image  = "ubuntu-cloudimg-prox"
 #   role = "server"
-#   primary = false
+#   primary = true
 
 #   storage_size = "500G"
+#   storage_type = "ssdpool2"
 #   memory = 32768
 #   cpus = 8
 
 #   ip_addr = "192.168.1.23"
-#   node_host = "infra-server-01"
+#   node_host = "infra-server-02"
 #   cluster_host = "infra"
 #   domain = "kellerhome.us"
 #   nameservers = "192.168.0.130"
@@ -60,23 +63,23 @@ module "infra-server-01" {
 #   source = "../modules/rke2-node"
 
 #   name = "infra-server-03.kellerhome.us"
+#   pve_node = "prox2"
+#   clone_image  = "ubuntu-cloudimg-prox2"
 #   role = "server"
-#   primary = false
+#   primary = true
 
 #   storage_size = "500G"
+#   storage_type = "REPLACEME"
 #   memory = 32768
 #   cpus = 8
 
 #   ip_addr = "192.168.1.24"
-#   node_host = "infra-server-01"
+#   node_host = "infra-server-03"
 #   cluster_host = "infra"
 #   domain = "kellerhome.us"
 #   nameservers = "192.168.0.130"
 #   password = var.password
 
-#   depends_on = [
-#     module.infra-server-02
-#   ]
 # }
 
 # module "rke2-agent-01" {

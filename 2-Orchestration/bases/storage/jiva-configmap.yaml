@@ -17,3 +17,4 @@ data:
         basePath: "/data/volumes"
     storageClass:
       isDefaultClass: true
+      reclaimPolicy: Retain
