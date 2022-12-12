@@ -12,6 +12,8 @@ data:
       # Disable openebs-device deviceClass by default.
       deviceClass:
         enabled: false
+      hostpathClass:
+        reclaimPolicy: Retain
 
       localpv:
         basePath: "/data/volumes"
