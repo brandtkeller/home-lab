@@ -5,7 +5,7 @@ monitoring:
 
 loki:
   enabled: true
-  strategy: scalable
+  strategy: monolith
 
 promtail:
   enabled: true
