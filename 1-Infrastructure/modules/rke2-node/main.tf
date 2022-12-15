@@ -51,7 +51,7 @@ resource "proxmox_vm_qemu" "rke2_node" {
   }
 
   provisioner "file" {
-    content     = templatefile("${path.module}/files/config.yaml.tftpl", { primary = var.primary, role = var.role, ip_addr = var.ip_addr, cluster_host = var.cluster_host, node_host = var.node_host, domain = var.domain })
+    content     = templatefile("${path.module}/files/config.yaml.tftpl", { primary = var.primary, role = var.role, ip_addr = var.ip_addr, cluster_host = var.cluster_host, node_host = var.node_host, domain = var.domain, join_server = var.join_server })
     destination = "/home/dev/config.yaml"
     connection {
       type        = "ssh"

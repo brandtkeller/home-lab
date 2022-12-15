@@ -18,7 +18,7 @@ mkfs.btrfs -L data -d raid1 -m raid1 -f /dev/sda /dev/sdd
 
 929437c4-9111-412e-8d8b-acda5a53d521
 
-UUID=929437c4-9111-412e-8d8b-acda5a53d521 /mnt/hddpool1   btrfs   defaults    0   0
+UUID=f7414289-99f3-4a63-95c4-166f3e56154a /mnt/ssdpoolprox2  btrfs   defaults    0   0
 
 fdisk /dev/sda
 

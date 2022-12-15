@@ -96,6 +96,11 @@ variable "cluster_host" {
   type        = string
 }
 
+variable "join_server" {
+  description = "cluster join url for controlplane"
+  type        = string
+}
+
 variable "net_bridge" {
   description = "network bridge"
   type        = string

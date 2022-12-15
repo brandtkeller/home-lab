@@ -18,17 +18,7 @@ Raspberry Pi 4 - 4GB
 - Deploy and Test
     - `dig @<IP> infra.kellerhome.us`
 
-## Support Cluster
-
-Provides a kubernetes cluster and services deployed therein to support other downstream clusters.
-
-### Target
-This is planned to target a desktop server that has a RAID volume of multiple disks for redundancy.
-- 8CPU/16 thread @3.9Ghz
-- 32GB Memory @3200Mhz
-
-### Questions
-- Should this remain a single server? or could this be the first of a larger cluster?
+## Proxmox
 
 ### Valid Certificate Process
 - Purchase domain
@@ -39,30 +29,6 @@ This is planned to target a desktop server that has a RAID volume of multiple di
 - Questions:
     - Could I coordinate this locally?
 
-### Goals/Objectives
-- RKE2 distribution
-    - repeatable install w/o ansible
-- Storage Class
-    - Local-path-provisioner
-        - Zarf requires a storage class - will need to deploy this before zarf
-        - TODO - Evaluate pre-loading this with RKE2 in some fashion to prevent modification of Zarf constraints
-- Zarf
-    - Init w/ `v0.22.2`
-- Kube-VIP
-    - VIP daemonset
-    - Kube-VIP cloud controller manager
-- Flux
-- Big Bang
-    - Istio
-        - Needs a certificate - generate with cert-bot and dns-01 challenge
-        - `*.infra.kellerhome.us`
-    - Monitoring
-    - Logging
-    - Minio Operator / Minio
-        - Look into [Minio Operator requirements](https://github.com/minio/operator/blob/master/README.md)
-        - Use a large portion of the Raid-array
-    - Nexus
-        - Establish docker proxies for docker hub and Registry 1
-    - Cert-Manager (Stretch Goal)
-- Flux terraform controller
+### Ubuntu CloudImg
 
+Establish script to run in cronjob that checks for the current cloudimg release hash in order to reduce how often a new image is downloaded. 

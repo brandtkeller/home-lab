@@ -1,7 +1,7 @@
 %{ if primary == true }
 bind-address: ${ip_addr}
 %{ else }
-server: https://${cluster_host}.${domain}:9345
+server: https://${join_server}:9345
 %{ endif }
 %{ if role == "server" }
 write-kubeconfig-mode: "0644"
