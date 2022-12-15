@@ -5,6 +5,7 @@ monitoring:
 
 loki:
   enabled: true
+  strategy: scalable
 
 promtail:
   enabled: true
