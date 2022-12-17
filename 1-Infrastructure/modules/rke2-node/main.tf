@@ -11,6 +11,7 @@ resource "proxmox_vm_qemu" "rke2_node" {
   name        = var.name
   target_node = var.pve_node
   clone       = var.clone_image
+  onboot      = var.boot
   os_type     = "cloud-init"
   cores       = var.cpus
   sockets     = "1"

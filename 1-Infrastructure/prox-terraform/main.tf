@@ -17,6 +17,7 @@ module "infra-server-01" {
   source = "../modules/rke2-node"
 
   name = "infra-server-01.kellerhome.us"
+  boot = true
   join_server = ""
   pve_node = "pve"
   clone_image  = "ubuntu-cloudimg-prox"
@@ -41,6 +42,7 @@ module "infra-server-02" {
   source = "../modules/rke2-node"
 
   name = "infra-server-02.kellerhome.us"
+  boot = true
   join_server = "infra-server-01.kellerhome.us"
   pve_node = "pve"
   clone_image  = "ubuntu-cloudimg-prox"
@@ -65,6 +67,7 @@ module "infra-server-03" {
   source = "../modules/rke2-node"
 
   name = "infra-server-03.kellerhome.us"
+  boot = true
   join_server = "infra-server-01.kellerhome.us"
   pve_node = "prox2"
   clone_image  = "ubuntu-cloudimg-prox2"
@@ -97,3 +100,21 @@ module "infra-server-03" {
 #   nameservers = "192.168.1.20 192.168.1.21 192.168.1.22"
 #   password = var.password
 # }
+
+module "dev-node-01" {
+  source = "../modules/dev-node"
+
+  name = "dev-01.kellerhome.us"
+  pve_node = "pve"
+  clone_image  = "ubuntu-cloudimg-prox"
+
+  storage_size = "60G"
+  storage_type = "ssdpool2"
+  memory = 32768
+  cpus = 8
+
+  ip_addr = "192.168.1.60"
+  nameservers = "192.168.0.130"
+  password = var.password
+
+}

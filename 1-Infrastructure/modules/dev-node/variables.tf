@@ -64,51 +64,8 @@ variable "nameservers" {
   default     = "8.8.8.8"
 }
 
-variable "rke2_version" {
-  description = "version of rke2 to install"
-  type        = string
-  default     = "v1.24.3+rke2r1"
-}
-
-variable "role" {
-  description = "k8s role = server/agent"
-  type        = string
-}
-
-variable "primary" {
-  description = "is this the primary k8s server"
-  type        = bool
-  default     = false
-}
-
-variable "domain" {
-  description = "domain"
-  type        = string
-}
-
-variable "node_host" {
-  description = "node host name for dns"
-  type        = string
-}
-
-variable "cluster_host" {
-  description = "cluster hostname for loadbalancing controlplane"
-  type        = string
-}
-
-variable "join_server" {
-  description = "cluster join url for controlplane"
-  type        = string
-}
-
 variable "net_bridge" {
   description = "network bridge"
   type        = string
   default     = "vmbr0"
-}
-
-variable "boot" {
-  description = "boot on server start"
-  type        = bool
-  default     = false
 }
