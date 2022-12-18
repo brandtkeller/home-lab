@@ -5,5 +5,5 @@ resources:
 - namespace.yaml
 - helm-repository.yaml
 - configmap.yaml
-- secret.yaml
+- secret.enc.yaml
 - helm-release.yaml
