@@ -15,6 +15,15 @@ kyverno:
 
 kyvernopolicies:
   enabled: true
+  policies:
+    restrict-image-registries:
+      validationFailureAction: enforce
+      parameters:
+          allow:
+          - registry1.dso.mil
+          - registry.dso.mil
+          - docker.io
+
 
 addons:
   minioOperator:
