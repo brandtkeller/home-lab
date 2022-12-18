@@ -10,6 +10,12 @@ loki:
 promtail:
   enabled: true
 
+kyverno:
+  enabled: true
+
+kyvernopolicies:
+  enabled: true
+
 addons:
   minioOperator:
     enabled: true
