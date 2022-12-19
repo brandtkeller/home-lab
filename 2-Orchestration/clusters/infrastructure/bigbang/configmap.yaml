@@ -22,7 +22,8 @@ kyvernopolicies:
           allow:
           - registry1.dso.mil
           - registry.dso.mil
-          - docker.io
+          - nextcloud/*
+          - bitnami/*
 
 
 addons:
