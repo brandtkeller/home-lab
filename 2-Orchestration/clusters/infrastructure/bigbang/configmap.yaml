@@ -17,7 +17,7 @@ kyvernopolicies:
   enabled: true
   policies:
     restrict-image-registries:
-      validationFailureAction: enforce
+      validationFailureAction: audit
       parameters:
           allow:
           - registry1.dso.mil
