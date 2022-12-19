@@ -15,10 +15,11 @@ kyverno:
 
 kyvernopolicies:
   enabled: true
-  policies:
-    restrict-image-registries:
-      validationFailureAction: audit
-      parameters:
+  values:
+    policies:
+      restrict-image-registries:
+        validationFailureAction: enforce
+        parameters:
           allow:
           - registry1.dso.mil
           - registry.dso.mil
