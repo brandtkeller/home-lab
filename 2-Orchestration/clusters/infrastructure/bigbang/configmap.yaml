@@ -26,7 +26,31 @@ kyvernopolicies:
           - nextcloud
           - bitnami
           - docker.io
-
+      
+      disallow-privileged-containers:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
+      restrict-image-registries:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
+      require-non-root-group:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
+      require-non-root-user:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
 
 addons:
   minioOperator:
