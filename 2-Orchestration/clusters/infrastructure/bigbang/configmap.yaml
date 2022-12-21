@@ -51,6 +51,25 @@ kyvernopolicies:
             - resources:
                 namespaces:
                 - openebs
+      
+      restrict-host-path-mount:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
+      restrict-host-path-write:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
+      restrict-volume-types:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
 
 addons:
   minioOperator:
