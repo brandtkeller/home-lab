@@ -13,7 +13,7 @@ data:
       deviceClass:
         enabled: false
       hostpathClass:
-        reclaimPolicy: Retain
+        reclaimPolicy: Delete
 
       localpv:
         basePath: "/data/volumes"
