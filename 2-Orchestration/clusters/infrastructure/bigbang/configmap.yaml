@@ -18,6 +18,12 @@ kyvernopolicies:
   values:
     policies:
       restrict-image-registries:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
+                - nextcloud
         validationFailureAction: audit
         parameters:
           allow:
@@ -28,12 +34,6 @@ kyvernopolicies:
           - docker.io
       
       disallow-privileged-containers:
-        exclude:
-            any:
-            - resources:
-                namespaces:
-                - openebs
-      restrict-image-registries:
         exclude:
             any:
             - resources:
