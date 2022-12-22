@@ -8,14 +8,14 @@ data:
     nextcloud:
       host: cloud.infra.kellerhome.us
     livenessProbe:
-      enabled: true
+      enabled: false
       initialDelaySeconds: 125
       periodSeconds: 10
       timeoutSeconds: 5
       failureThreshold: 3
       successThreshold: 1
     readinessProbe:
-      enabled: true
+      enabled: false
       initialDelaySeconds: 90
       periodSeconds: 10
       timeoutSeconds: 5
