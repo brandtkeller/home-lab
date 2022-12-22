@@ -18,6 +18,11 @@ kyvernopolicies:
   values:
     policies:
       restrict-image-registries:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - nextcloud
         validationFailureAction: enforce
         parameters:
           allow:
@@ -64,6 +69,7 @@ kyvernopolicies:
             - resources:
                 namespaces:
                 - openebs
+                - nextcloud
       restrict-volume-types:
         exclude:
             any:
