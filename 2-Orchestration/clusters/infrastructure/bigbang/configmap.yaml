@@ -39,12 +39,28 @@ kyvernopolicies:
             - resources:
                 namespaces:
                 - openebs
+
+      disallow-host-namespaces:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
+
+      disallow-privilege-escalation:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - openebs
+
       require-non-root-group:
         exclude:
             any:
             - resources:
                 namespaces:
                 - openebs
+
       require-non-root-user:
         exclude:
             any:
@@ -58,6 +74,7 @@ kyvernopolicies:
             - resources:
                 namespaces:
                 - openebs
+
       restrict-host-path-write:
         exclude:
             any:
@@ -65,6 +82,7 @@ kyvernopolicies:
                 namespaces:
                 - openebs
                 - nextcloud
+
       restrict-volume-types:
         exclude:
             any:
