@@ -17,6 +17,11 @@ data:
               1 => 'cloud.infra.kellerhome.us',
               )
           );
+        overwrite.config.php: |-
+          <?php
+          $CONFIG = array (
+            ‘overwriteprotocol’ => ‘https’,)
+          );
     redis:
       enabled: true
     
