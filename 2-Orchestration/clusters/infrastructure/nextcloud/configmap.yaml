@@ -17,20 +17,6 @@ data:
               1 => 'cloud.infra.kellerhome.us',
               )
           );
-    livenessProbe:
-      enabled: true
-      initialDelaySeconds: 125
-      periodSeconds: 10
-      timeoutSeconds: 5
-      failureThreshold: 3
-      successThreshold: 1
-    readinessProbe:
-      enabled: true
-      initialDelaySeconds: 90
-      periodSeconds: 10
-      timeoutSeconds: 5
-      failureThreshold: 3
-      successThreshold: 1
     redis:
       enabled: true
     
