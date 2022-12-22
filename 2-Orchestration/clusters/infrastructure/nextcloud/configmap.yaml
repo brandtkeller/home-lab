@@ -20,7 +20,7 @@ data:
         overwrite.config.php: |-
           <?php
           $CONFIG = array (
-            ‘overwriteprotocol’ => ‘https’,
+            'overwriteprotocol' => 'https',
           );
     redis:
       enabled: true
