@@ -18,12 +18,7 @@ kyvernopolicies:
   values:
     policies:
       restrict-image-registries:
-        exclude:
-            any:
-            - resources:
-                namespaces:
-                - nextcloud
-        validationFailureAction: enforce
+        validationFailureAction: audit
         parameters:
           allow:
           - registry1.dso.mil
