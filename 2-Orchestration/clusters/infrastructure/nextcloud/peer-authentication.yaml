@@ -5,4 +5,4 @@ metadata:
   namespace: nextcloud
 spec:
   mtls:
-    mode: STRICT
+    mode: PERMISSIVE
