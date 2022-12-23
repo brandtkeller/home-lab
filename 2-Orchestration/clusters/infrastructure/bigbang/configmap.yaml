@@ -32,7 +32,20 @@ kyvernopolicies:
           - nextcloud
           - bitnami
           - docker.io
-      
+      disallow-image-tags:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - valheim
+
+      disallow-shared-subpath-volume-writes:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - valheim
+
       disallow-privileged-containers:
         exclude:
             any:
