@@ -4,5 +4,4 @@ metadata:
   name: nextcloud
   labels:
     app.kubernetes.io/name: nextcloud
-    app.kubernetes.io/component: "addon"
-    istio-injection: true
+    istio-injection: enabled
