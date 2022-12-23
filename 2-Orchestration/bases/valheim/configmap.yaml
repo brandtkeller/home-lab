@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: valheim-cm
+  namespace: flux-system
+data:
+  values.yaml: |
+    config:
+      SERVER_NAME: "Kellerhome Server"
+      SERVER_PORT: "2456"
+      WORLD_NAME: "Kellerhome Dedicated Server"
+    service:
+      type: LoadBalancer

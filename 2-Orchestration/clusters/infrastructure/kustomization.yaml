@@ -7,5 +7,6 @@ resources:
 bases: 
 - ../../bases/storage
 - ../../bases/kubevip
+- ../../bases/valheim
 patchesStrategicMerge:
   - jiva-configmap.yaml

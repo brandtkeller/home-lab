@@ -1,0 +1,18 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: GitRepository
+metadata:
+  name: valheim
+  namespace: flux-system
+spec:
+  gitImplementation: go-git
+  ignore: |
+    # exclude file extensions
+    /**/*.md
+    /**/*.txt
+    /**/*.sh
+    !/chart/tests/scripts/*.sh
+  interval: 2m
+  ref:
+    tag: 0.0.5
+  timeout: 60s
+  url: https://github.com/brandtkeller/helm-valheim.git

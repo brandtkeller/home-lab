@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: valheim
+  labels:
+    app.kubernetes.io/name: valheim
+    istio-injection: enabled
