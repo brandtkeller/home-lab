@@ -5,3 +5,4 @@ resources:
 - rbac.yaml
 - daemonset.yaml
 - kube-vip-cloud-controller.yaml
+- kube-vip-cloud-configmap.yaml

@@ -86,11 +86,3 @@ spec:
               matchExpressions:
               - key: node-role.kubernetes.io/master
                 operator: Exists
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: kubevip
-  namespace: kube-system
-data:
-  range-global: 192.168.1.21-192.168.1.21    # Range-based IP range for use in all namespaces

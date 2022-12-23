@@ -26,6 +26,7 @@ data:
     *.infra.kellerhome.us.                IN  A  192.168.1.21
     infra-server-01.kellerhome.us.        IN  A  192.168.1.22
     infra-server-02.kellerhome.us.        IN  A  192.168.1.23
-    infra-server-03.kellerhome.us.        IN  A  192.168.1.24    
+    infra-server-03.kellerhome.us.        IN  A  192.168.1.24
+    valheim.kellerhome.us.                IN  A  192.168.1.30    
     manage.kellerhome.us.                 IN  A  192.168.0.130
   
