@@ -24,9 +24,8 @@ data:
     prox2.kellerhome.us.                  IN  A  192.168.1.10
     infra.kellerhome.us.                  IN  A  192.168.1.20
     *.infra.kellerhome.us.                IN  A  192.168.1.21
-    infra-server-01.kellerhome.us.        IN  A  192.168.1.22
     infra-server-purple.kellerhome.us.    IN  A  192.168.1.23
-    infra-server-03.kellerhome.us.        IN  A  192.168.1.24
+    infra-server-blue.kellerhome.us.      IN  A  192.168.1.24
     infra-server-green.kellerhome.us.     IN  A  192.168.1.25
     infra-agent-green.kellerhome.us.      IN  A  192.168.1.26
     infra-agent-purple.kellerhome.us.     IN  A  192.168.1.27
