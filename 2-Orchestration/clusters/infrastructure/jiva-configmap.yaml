@@ -20,4 +20,15 @@ data:
     storageClass:
       isDefaultClass: true
       reclaimPolicy: Delete
+
+    defaultPolicy:
+      # Name of the default default JivaVolumePolicy
+      name: openebs-jiva-default-policy
+      # If true, enables creation of the openebs-jiva-default-policy JivaVolumePolicy
+      enabled: true
+      # replicaSC represents the storage class used for creating
+      # the pvc for the replica sts provisioned by localpv provisioner
+      replicaSC: openebs-hostpath
+      # replicas represent the desired replication factor for the jiva volume
+      replicas: 2
         
