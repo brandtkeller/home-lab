@@ -1,5 +1,5 @@
-# rke2-terraform
-This is intended to be a spin on the rke2 terraform that exists for cloud providers. Intent here is to provide an example for on-premise installations that can provision (and scale) clusters with nodes that are cattle and not pets.
+# prox-terraform
+This is intended to capture the live configuration of my proxmox development cluster (currently 2 physical machines). I will primarily use this to store 
 
 ## Structure
 
@@ -16,9 +16,8 @@ Collecting the artifacts required for "air gap" installation will reduce downloa
     - https://www.terraform.io/language/meta-arguments/depends_on
 - Execute provisioning remaining servers and agents
 
-## Dependencies
-- DNS
-- Loadbalancing for highly-available clusters
 
-## TODO
-- add machine configurations for Big Bang
+
+
+
+

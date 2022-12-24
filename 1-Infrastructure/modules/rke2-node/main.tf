@@ -63,7 +63,7 @@ resource "proxmox_vm_qemu" "rke2_node" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/files/artifacts/"
+    source      = "artifacts/"
     destination = "/home/dev/rke2-artifacts/"
     connection {
       type        = "ssh"

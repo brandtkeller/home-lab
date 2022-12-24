@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=v1.25.4%2Brke2r1
+VERSION=v1.26.0%2Brke2r1
 
 cd ../modules/rke2-node/files/artifacts/
 
