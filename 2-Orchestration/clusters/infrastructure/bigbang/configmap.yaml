@@ -86,6 +86,7 @@ kyvernopolicies:
             - resources:
                 namespaces:
                 - openebs
+                - nextcloud
       
       restrict-host-path-mount:
         exclude:
