@@ -22,6 +22,20 @@ data:
           $CONFIG = array (
             'overwriteprotocol' => 'https',
           );
+    livenessProbe:
+      enabled: true
+      initialDelaySeconds: 15
+      periodSeconds: 30
+      timeoutSeconds: 10
+      failureThreshold: 5
+      successThreshold: 1
+    readinessProbe:
+      enabled: true
+      initialDelaySeconds: 10
+      periodSeconds: 25
+      timeoutSeconds: 10
+      failureThreshold: 5
+      successThreshold: 1
     redis:
       enabled: true
     

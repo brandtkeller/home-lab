@@ -11,10 +11,10 @@ promtail:
   enabled: true
 
 kyverno:
-  enabled: true
+  enabled: false
 
 kyvernopolicies:
-  enabled: true
+  enabled: false
   values:
     resources:
         limits:
