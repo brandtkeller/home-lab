@@ -27,3 +27,6 @@ I focus on my daily work responsiblities without having to interact with this eq
 - [Orchestration](./2-Orchestration/README.md)
   - Documenting orchestration (and maybe storing GitOps manifests hopefully)
 
+## TODO
+- Rsync Cronjob chart to redundant storage (Onsite-Backup)
+- velero configuration to S3 (Offsite-Backup)

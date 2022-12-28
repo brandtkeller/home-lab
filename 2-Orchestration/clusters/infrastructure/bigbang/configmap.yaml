@@ -78,6 +78,7 @@ kyvernopolicies:
             - resources:
                 namespaces:
                 - openebs
+                - nextcloud
 
       require-non-root-user:
         exclude:
