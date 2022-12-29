@@ -95,10 +95,11 @@ resource "proxmox_vm_qemu" "rke2_support" {
   provisioner "remote-exec" {
     inline = [
       "sudo mkdir -p /etc/rancher/rke2",
-      "sudo mkdir -p /data/volumes",
+      "sudo mkdir -p /data",
       "sudo chmod +x /tmp/disk-setup.sh",
       "sudo /tmp/disk-setup.sh",
       "sudo mount -a",
+      "sudo mkdir -p /data/volumes"
       "sudo chmod 777 /data",
       "sudo cp /home/dev/config.yaml /etc/rancher/rke2/config.yaml",
       "sudo INSTALL_RKE2_ARTIFACT_PATH=/home/dev/rke2-artifacts sh /home/dev/rke2-artifacts/install.sh",

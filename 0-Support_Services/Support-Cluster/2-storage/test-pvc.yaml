@@ -4,6 +4,7 @@ metadata:
   name: backend-claim
   namespace: test
 spec:
+  storageClassName: "nfs-client"
   accessModes:
     - ReadWriteOnce
   volumeMode: Filesystem
