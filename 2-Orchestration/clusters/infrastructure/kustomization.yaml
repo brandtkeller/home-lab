@@ -5,7 +5,8 @@ resources:
 - ./bigbang
 - ./nextcloud
 bases: 
-- ../../bases/storage
+- ../../bases/storage/jiva
+- ../../bases/storage/nfs
 - ../../bases/kubevip
 - ../../bases/valheim
 patchesStrategicMerge:
