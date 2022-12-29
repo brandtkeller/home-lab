@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: local-nfs
+  namespace: nfs
+spec:
+  selector:
+    matchLabels:
+      name: local-nfs
+  template:
+    metadata:
+      labels:
+        name: local-nfs
+    spec:
+      containers:
+      - name: nfs
+        image: itsthenetwork/nfs-server-alpine:latest
+        securityContext:
+          privileged: true
+        env:
+        - name: SHARED_DIRECTORY
+          value: "/nfsshare"
+        ports:
+        - containerPort: 2049
+          hostPort: 2049
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /nfsshare
+          name: share-volume
+      volumes:
+      - name: share-volume
+        hostPath:
+          # directory location on host
+          path: /data
+          # this field is optional
+          type: Directory
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
+      - effect: NoExecute
+        operator: Exists
+        

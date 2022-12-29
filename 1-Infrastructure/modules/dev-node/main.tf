@@ -24,6 +24,11 @@ resource "proxmox_vm_qemu" "dev_node" {
     type    = "scsi"
     storage = var.storage_type
   }
+  disk {
+    size    = "80G"
+    type    = "scsi"
+    storage = "hddpool1"
+  }
   network {
     model  = "virtio"
     bridge = var.net_bridge
