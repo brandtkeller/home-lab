@@ -53,3 +53,4 @@ Thoughts:
 - Run a cronjob to rsync the data to a backup-point on prox1
   - Rsync container image and helm chart required
 
+rsync -av -e 'ssh -i nopass' /data/data/brandtkeller/ dev@192.168.1.15:/data/nextcloud/brandtkeller

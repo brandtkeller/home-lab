@@ -60,4 +60,10 @@ data:
     persistence:
       enabled: true
       accessMode: ReadWriteOnce
-      size: 300Gi
+      size: 10Gi
+
+      nextcloudData:
+        enabled: true
+        storageClass: "nfs-client"
+        accessMode: ReadWriteOnce
+        size: 400Gi
