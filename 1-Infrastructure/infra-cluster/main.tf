@@ -162,20 +162,20 @@ module "infra-agent-blue" {
 }
 
 
-module "dev-node-01" {
-  source = "../modules/dev-node"
+# module "dev-node-01" {
+#   source = "../modules/dev-node"
 
-  name = "dev-01.kellerhome.us"
-  pve_node = "pve"
-  clone_image  = "ubuntu-cloudimg-prox"
+#   name = "dev-01.kellerhome.us"
+#   pve_node = "pve"
+#   clone_image  = "ubuntu-cloudimg-prox"
 
-  storage_size = "60G"
-  storage_type = "ssdpool2"
-  memory = 32768
-  cpus = 8
+#   storage_size = "60G"
+#   storage_type = "ssdpool2"
+#   memory = 32768
+#   cpus = 8
 
-  ip_addr = "192.168.1.60"
-  nameservers = "192.168.0.130"
-  password = var.password
+#   ip_addr = "192.168.1.60"
+#   nameservers = "192.168.0.130"
+#   password = var.password
 
-}
+# }

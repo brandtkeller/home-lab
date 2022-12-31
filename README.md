@@ -39,18 +39,3 @@ Constraints:
 - I do not have a hddpool on each node
 - Multiple openebs storageclasses is complex at this time.
 
-Thoughts:
-- Spin-up a single-node rke2 server that runs an nfs service
-  - Can be extended later if required
-  - Attach large hddpool storage (2tb)
-  - Deploy NFS server w/ hostpath & host port exposed
-- Backup nextcloud data to nfs k8s node
-- Set nextcloud to use that storageclass for large data
-- Migrate nextcloud backup to the nfs provisioned pv/pvc
-- have nextcloud scan the data and test nfs capability
-- Install nfs utils on agent nodes
-- Install nfs dynamic provisioner storageclass on infra cluster
-- Run a cronjob to rsync the data to a backup-point on prox1
-  - Rsync container image and helm chart required
-
-rsync -av -e 'ssh -i nopass' /data/data/brandtkeller/ dev@192.168.1.15:/data/nextcloud/brandtkeller
