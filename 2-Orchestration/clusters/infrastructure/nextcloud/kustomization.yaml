@@ -9,4 +9,5 @@ resources:
 - helm-release.yaml
 - virtualservice.yaml
 - peer-authentication.yaml
+- ./aws-s3-cron
 # - ./network-policies

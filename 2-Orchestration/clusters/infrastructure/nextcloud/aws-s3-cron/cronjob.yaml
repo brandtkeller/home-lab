@@ -16,11 +16,11 @@ spec:
         spec:
           containers:
           - name: s3-sync
-            image: amazon/aws-cli:2.2.22
+            image: amazon/aws-cli:2.9.12
             command:
             - /bin/sh
             - -c
-            - aws s3 sync /data/data s3://keller-home-dev/nextcloud
+            - aws s3 sync /data/data/brandtkeller s3://keller-home-dev/nextcloud/brandtkeller
             volumeMounts:
             - name: aws-creds
               mountPath: "/root/.aws"
@@ -33,5 +33,5 @@ spec:
               secretName: aws-sec
           - name: data
             persistentVolumeClaim:
-              claimName: cloud-nextcloud-nextcloud
+              claimName: nextcloud-nextcloud-nextcloud
           restartPolicy: Never
