@@ -23,6 +23,7 @@ spec:
                     operator: In
                     values:
                     - nextcloud
+                topologyKey: "kubernetes.io/hostname"
           containers:
           - name: s3-sync
             image: amazon/aws-cli:2.9.12
