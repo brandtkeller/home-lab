@@ -14,6 +14,15 @@ spec:
       activeDeadlineSeconds: 28800
       template:
         spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                    - nextcloud
           containers:
           - name: s3-sync
             image: amazon/aws-cli:2.9.12
@@ -33,5 +42,5 @@ spec:
               secretName: aws-sec
           - name: data
             persistentVolumeClaim:
-              claimName: nextcloud-nextcloud-nextcloud
+              claimName: nextcloud-nextcloud-nextcloud-data
           restartPolicy: Never
