@@ -31,11 +31,5 @@ I focus on my daily work responsiblities without having to interact with this eq
 - Rsync Cronjob chart to redundant storage (Onsite-Backup)
 - velero configuration to S3 (Offsite-Backup)
 
-
-## Storage
-Problem: Currently running out of storage from the 1TB SSD pools due to large storage.
-
-Constraints:
-- I do not have a hddpool on each node
-- Multiple openebs storageclasses is complex at this time.
-
+## Notes
+- Can I create an additional gateway that uses a different wildcard domain/cert in order to separate admin utilities from those accessed by users (IE separate load balancers).
