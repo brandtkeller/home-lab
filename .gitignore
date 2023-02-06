@@ -4,5 +4,4 @@ rke2.yaml
 *.tar.zst
 *.tar.gz
 *amd64.txt
-0-Support_Services/Support-Cluster/certbot/letsencrypt/*
-0-Support_Services/proxmox/certbot/letsencrypt/*
+0-Support_Services/Support-Cluster/3-certbot/letsencrypt/*
