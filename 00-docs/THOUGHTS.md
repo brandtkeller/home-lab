@@ -10,6 +10,40 @@
 - Integrate Nextcloud to be a first-class Big Bang application
 - Cert-manager to keep certificates automatically up-to-date
 
+## Primary Cluster
+Ideal hardware
+1x Ryzen Desktop (already have)
+2x Ryzen minipc's
+
+Ryzen Desktop
+- Proxmox OS
+    - pfsense(?) VM
+        - 2 CPU / 8gb Memory
+        - 2.5Gbe card passthrough
+    - Zarf Packaged Infrastructure Node - Single Node Cluster
+        - 4 CPU / 8gb Memory
+        - NFS w/ 2x4Tb disks
+            - Move this workload to the ATX node
+            - Enclosure required?
+            - Ensure current stable cluster is associated
+        - DNS
+        - Image Proxy Cache
+            - Should enable 2.5Gbe image pulls?
+            - What kind of disk would be needed to support?
+                - hostPath SSD?
+    - K3s Server Node
+        - 4 CPU / 8gb Memory
+    - K3s Server Node
+        - 4 CPU / 8gb Memory
+    - K3s Worker Node
+        - 8 CPU / 32gb Memory
+
+Ryzen MiniPC
+- Proxmox OS
+    - K3s Server Node
+        - 4 CPU / 8gb Memory
+    - K3s Worker Node
+        - 8 CPU / 56gb Memory
 
 ## 2.5Gbe Network
 
@@ -20,10 +54,3 @@
 
 ### 2.5Gbe Extension
 - 2.5Gbe Switch - 8 port
-
-## Portable Rack
-
-- ATX extruded aluminum case
-- Extruded aluminum materials
-- Fan Controller / Fans
-- ABS Plastic panels
