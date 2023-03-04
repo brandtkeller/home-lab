@@ -20,7 +20,7 @@ Ryzen Desktop
     - pfsense(?) VM
         - 2 CPU / 8gb Memory
         - 2.5Gbe card passthrough
-    - Infrastructure Node - K3s Worker
+    - Infrastructure Node - RKE2 Worker
         - Should this be a single node cluster? Or a worker node with a label?
             - attached the to primary stable cluster means more efficient use of resources 
         - 4 CPU / 8gb Memory
@@ -33,19 +33,19 @@ Ryzen Desktop
             - Should enable 2.5Gbe image pulls?
             - What kind of disk would be needed to support?
                 - hostPath SSD?
-    - K3s Server Node
+    - RKE2 Server Node
         - 4 CPU / 8gb Memory
 
-    - K3s Worker Node
+    - RKE2 Worker Node
         - 8 CPU / 32gb Memory
 
 Ryzen MiniPC
 - Proxmox OS
-    - K3s Server Node
+    - RKE2 Server Node
         - 4 CPU / 8gb Memory
-    - K3s Server Node
+    - RKE2 Server Node
         - 4 CPU / 8gb Memory
-    - K3s Worker Node
+    - RKE2 Worker Node
         - 8 CPU / 32gb Memory
 
 ## 2.5Gbe Network
@@ -61,16 +61,28 @@ Ryzen MiniPC
 # Home Lab Update 
 
 - Backup the NFS files to another disk (spare 2tb)
+- suspend nextcloud flux reconciliation for HR
 - scale nextcloud to 0 replicas
-- Get postgresql dump file for database
+- scale nfs provisioner to 0 replicas
+- Shutdown/delete the NFS node on Proxmox1
+- Unmount the 2x 4tb drives from proxmox1 (fstab?)
+- shutdown proxmox1 & restart to remove disks from HBA
+- ensure proxmox1 can start again and shut it down
 - Move Ryzen Desktop to Rackmount case
 - Install Larger Memory
 - Install 2.5Gbe card
-- Shutdown/delete the NFS node on Proxmox1
 - Move the 2x 4Tb drives to the Ryzen Desktop from R710
+- Turn servers back on
+- re-use the same IP address/terraform for the support cluster node?
+- start node / rsync files to data directory
+- start rke2 nodes and reconcile
+
 - Separate proxmox nodes
 - Reattach with Ryzen Desktop as the primary 
 - Install pfsense VM
     - Optimally leave a port open for proxmox (port 0)
     - pass-through port 1-3
     - setup network
+- Create first server node for new cluster
+- zarf init
+- create zarf package for nfs, dns, image proxy, renovate?

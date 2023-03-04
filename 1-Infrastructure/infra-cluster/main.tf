@@ -15,7 +15,7 @@ module "infra-server-purple" {
   source = "../modules/rke2-node"
 
   name = "infra-server-purple.kellerhome.us"
-  boot = true
+  boot = false
   join_server = "infra-server-green.kellerhome.us"
   pve_node = "pve"
   clone_image  = "ubuntu-cloudimg-prox"
@@ -40,7 +40,7 @@ module "infra-server-blue" {
   source = "../modules/rke2-node"
 
   name = "infra-server-blue.kellerhome.us"
-  boot = true
+  boot = false
   join_server = "infra-server-green.kellerhome.us"
   pve_node = "prox2"
   clone_image  = "ubuntu-cloudimg-prox2"
@@ -65,7 +65,7 @@ module "infra-server-green" {
   source = "../modules/rke2-node"
 
   name = "infra-server-green.kellerhome.us"
-  boot = true
+  boot = false
   join_server = "infra-server-blue.kellerhome.us"
   pve_node = "pve"
   clone_image  = "ubuntu-cloudimg-prox"
@@ -90,7 +90,7 @@ module "infra-agent-green" {
   source = "../modules/rke2-node"
 
   name = "infra-agent-green.kellerhome.us"
-  boot = true
+  boot = false
   join_server = "infra-server-green.kellerhome.us"
   pve_node = "pve"
   clone_image  = "ubuntu-cloudimg-prox"
@@ -115,7 +115,7 @@ module "infra-agent-purple" {
   source = "../modules/rke2-node"
 
   name = "infra-agent-purple.kellerhome.us"
-  boot = true
+  boot = false
   join_server = "infra-server-green.kellerhome.us"
   pve_node = "pve"
   clone_image  = "ubuntu-cloudimg-prox"
@@ -140,7 +140,7 @@ module "infra-agent-blue" {
   source = "../modules/rke2-node"
 
   name = "infra-agent-blue.kellerhome.us"
-  boot = true
+  boot = false
   join_server = "infra-server-green.kellerhome.us"
   pve_node = "prox2"
   clone_image  = "ubuntu-cloudimg-prox2"
