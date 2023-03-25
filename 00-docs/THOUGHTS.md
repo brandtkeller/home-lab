@@ -60,29 +60,15 @@ Ryzen MiniPC
 
 # Home Lab Update 
 
-- Backup the NFS files to another disk (spare 2tb)
-- suspend nextcloud flux reconciliation for HR
-- scale nextcloud to 0 replicas
-- scale nfs provisioner to 0 replicas
-- Shutdown/delete the NFS node on Proxmox1
-- Unmount the 2x 4tb drives from proxmox1 (fstab?)
-- shutdown proxmox1 & restart to remove disks from HBA
-- ensure proxmox1 can start again and shut it down
-- Move Ryzen Desktop to Rackmount case
-- Install Larger Memory
-- Install 2.5Gbe card
-- Move the 2x 4Tb drives to the Ryzen Desktop from R710
-- Turn servers back on
-- re-use the same IP address/terraform for the support cluster node?
-- start node / rsync files to data directory
-- start rke2 nodes and reconcile
+How to get to the optimal networking configuration
+- Reinstall Proxmox on the Ryzen server
+    - Need to do something with the NFS data
+    - drain the nodes and de-provision
+    - re-install proxmox
+        - this also removes it from the cluster which is good
+    - re-provision the nfs node
+        - re-setup the data to nextcloud
+    - re-provision and join the rke2 nodes
 
-- Separate proxmox nodes
-- Reattach with Ryzen Desktop as the primary 
-- Install pfsense VM
-    - Optimally leave a port open for proxmox (port 0)
-    - pass-through port 1-3
-    - setup network
-- Create first server node for new cluster
-- zarf init
-- create zarf package for nfs, dns, image proxy, renovate?
+## Questions
+- Do I want to make any changes to domains?

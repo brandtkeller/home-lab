@@ -13,8 +13,8 @@ provider "proxmox" {
 
 resource "proxmox_vm_qemu" "rke2_support" {
   name        = "support-server-01"
-  target_node = "pve"
-  clone       = "ubuntu-cloudimg-prox"
+  target_node = "prox2"
+  clone       = "ubuntu-cloudimg-prox2"
   onboot      = true
   os_type     = "cloud-init"
   cores       = "4"
@@ -27,12 +27,12 @@ resource "proxmox_vm_qemu" "rke2_support" {
   disk {
     size    = "60G"
     type    = "scsi"
-    storage = "ssdpool2"
+    storage = "ssdpoolprox2"
   }
   disk {
     size    = "2000G"
     type    = "scsi"
-    storage = "hddpool1"
+    storage = "hddpoolprox2"
   }
   network {
     model  = "virtio"
@@ -46,7 +46,6 @@ resource "proxmox_vm_qemu" "rke2_support" {
   # iscsid required for openebs-jiva
   provisioner "remote-exec" {
     inline = [
-      "mkdir -p /home/dev/local-vols",
       "mkdir -p /home/dev/rke2-artifacts",
     ]
 
@@ -99,7 +98,7 @@ resource "proxmox_vm_qemu" "rke2_support" {
       "sudo chmod +x /tmp/disk-setup.sh",
       "sudo /tmp/disk-setup.sh",
       "sudo mount -a",
-      "sudo mkdir -p /data/volumes"
+      "sudo mkdir -p /data/volumes",
       "sudo chmod 777 /data",
       "sudo cp /home/dev/config.yaml /etc/rancher/rke2/config.yaml",
       "sudo INSTALL_RKE2_ARTIFACT_PATH=/home/dev/rke2-artifacts sh /home/dev/rke2-artifacts/install.sh",
