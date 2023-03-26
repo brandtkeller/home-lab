@@ -17,9 +17,6 @@ Ideal hardware
 
 Ryzen Desktop
 - Proxmox OS
-    - pfsense(?) VM
-        - 2 CPU / 8gb Memory
-        - 2.5Gbe card passthrough
     - Infrastructure Node - RKE2 Worker
         - Should this be a single node cluster? Or a worker node with a label?
             - attached the to primary stable cluster means more efficient use of resources 
@@ -60,15 +57,22 @@ Ryzen MiniPC
 
 # Home Lab Update 
 
-How to get to the optimal networking configuration
-- Reinstall Proxmox on the Ryzen server
-    - Need to do something with the NFS data
-    - drain the nodes and de-provision
-    - re-install proxmox
-        - this also removes it from the cluster which is good
-    - re-provision the nfs node
-        - re-setup the data to nextcloud
-    - re-provision and join the rke2 nodes
+Need to remove all VM's from node before joining it to a cluster
+- Should be able to remove/reprovision the rke2 nodes with relative ease
+- NFS is the core problem - Can I back this entire VM up to a separate location?
+    - Hookup the 2TB external HDD
+    - Backup the VM
+    - scale the nextcloud deployment to 0 replicas
+    - Delete the VM
+    - Restore the VM
+- If the above works, we can probably backup the current VM's, join the cluster and then restore them.
+
+Longer term goal is to migrate workloads
+- Change jiva configuration to 2x copies of data
+- de-provision pve VM's
+- Provision 2x rke2 server nodes on prox
+- Provision 1x rke2 worker nodes on prox
+- Once stable - re-provision prox2 nodes through TF
 
 ## Questions
 - Do I want to make any changes to domains?
