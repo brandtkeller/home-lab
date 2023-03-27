@@ -112,6 +112,10 @@ kyvernopolicies:
 
 neuvector:
   enabled: true
+  values:
+    k3s:
+      enabled: true
+
 
 addons:
   metricsServer:
