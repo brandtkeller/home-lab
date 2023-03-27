@@ -7,4 +7,4 @@ docker run -it --rm --name certbot \
             --dns 1.1.1.1 \
             -v "$(pwd)/letsencrypt:/etc/letsencrypt" \
             certbot/dns-route53 certonly --dns-route53 \
-            -d "*.infra.kellerhome.us" --dns-route53-propagation-seconds 60
+            -d $1 --dns-route53-propagation-seconds 60
