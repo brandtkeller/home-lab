@@ -12,24 +12,25 @@ provider "proxmox" {
 }
 
 
-## prox2 Hosts
+# prox2 Hosts
 module "infra-server-orange" {
   source = "../modules/rke2-node"
 
   name = "infra-server-orange.kellerhome.us"
   boot = true
-  join_server = "infra-server-green.kellerhome.us"
+  join_server = ""
   pve_node = "prox2"
   clone_image  = "ubuntu-cloudimg-prox2"
   role = "server"
-  primary = false
+  primary = true
+  taint = true
 
   storage_size = "100G"
   storage_type = "ssdpoolprox2"
   memory = 16384
-  cpus = 8
+  cpus = 4
 
-  ip_addr = "192.168.1.24"
+  ip_addr = "192.168.1.34"
   node_host = "infra-server-orange"
   cluster_host = "infra"
   domain = "kellerhome.us"
@@ -48,13 +49,14 @@ module "infra-agent-orange" {
   clone_image  = "ubuntu-cloudimg-prox2"
   role = "agent"
   primary = false
+  taint = false
 
   storage_size = "500G"
   storage_type = "ssdpoolprox2"
   memory = 32768
   cpus = 8
 
-  ip_addr = "192.168.1.28"
+  ip_addr = "192.168.1.36"
   node_host = "infra-agent-orange"
   cluster_host = "infra"
   domain = "kellerhome.us"
@@ -75,13 +77,14 @@ module "infra-server-red" {
   clone_image  = "ubuntu-cloudimg-prox"
   role = "server"
   primary = false
+  taint = false
 
   storage_size = "400G"
   storage_type = "local-lvm"
-  memory = 28672
+  memory = 32768
   cpus = 8
 
-  ip_addr = "192.168.1.25"
+  ip_addr = "192.168.1.35"
   node_host = "infra-server-red"
   cluster_host = "infra"
   domain = "kellerhome.us"
@@ -100,13 +103,14 @@ module "infra-server-blue" {
   clone_image  = "ubuntu-cloudimg-prox"
   role = "server"
   primary = false
+  taint = false
 
   storage_size = "400G"
   storage_type = "local-lvm"
   memory = 28672
   cpus = 8
 
-  ip_addr = "192.168.1.23"
+  ip_addr = "192.168.1.33"
   node_host = "infra-server-blue"
   cluster_host = "infra"
   domain = "kellerhome.us"
@@ -114,28 +118,3 @@ module "infra-server-blue" {
   password = var.password
 
 }
-
-# module "infra-agent-red" {
-#   source = "../modules/rke2-node"
-
-#   name = "infra-agent-red.kellerhome.us"
-#   boot = false
-#   join_server = "infra-server-red.kellerhome.us"
-#   pve_node = "prox"
-#   clone_image  = "ubuntu-cloudimg-prox"
-#   role = "agent"
-#   primary = false
-
-#   storage_size = "500G"
-#   storage_type = "local-lvm"
-#   memory = 32768
-#   cpus = 8
-
-#   ip_addr = "192.168.1.26"
-#   node_host = "infra-server-red"
-#   cluster_host = "infra"
-#   domain = "kellerhome.us"
-#   nameservers = "192.168.0.130"
-#   password = var.password
-
-# }

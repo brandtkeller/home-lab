@@ -110,38 +110,9 @@ kyvernopolicies:
                 namespaces:
                 - openebs
 
+neuvector:
+  enabled: true
+
 addons:
-  minioOperator:
-    enabled: true
-  minio:
-    enabled: true
-    values:
-      tenant:
-        pools:
-        ## Servers specifies the number of MinIO Tenant Pods / Servers in this pool.
-        ## For standalone mode, supply 1. For distributed mode, supply 4 or more.
-        ## Note that the operator does not support upgrading from standalone to distributed mode.
-        - servers: 1
-          ## custom name for the pool
-          ## name: pool-0
-          ## volumesPerServer specifies the number of volumes attached per MinIO Tenant Pod / Server.
-          volumesPerServer: 1
-          ## size specifies the capacity per volume
-          size: 200Gi
-          storageClassName: ""
-          ## Used to specify annotations for pods
-          annotations: { }
-          ## Used to specify labels for pods
-          labels: { }
-          ## Used to specify a toleration for a pod
-          tolerations: [ ]
-          ## nodeSelector parameters for MinIO Pods. It specifies a map of key-value pairs. For the pod to be
-          ## eligible to run on a node, the node must have each of the
-          ## indicated key-value pairs as labels.
-          ## Read more here: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
-          nodeSelector: {}
-        buckets:
-        - name: photosync
-  
   metricsServer:
     enabled: true

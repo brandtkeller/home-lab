@@ -37,6 +37,9 @@ resource "proxmox_vm_qemu" "rke2_node" {
   # iscsid required for openebs-jiva
   provisioner "remote-exec" {
     inline = [
+      "sudo sed -i 's/#\$nrconf{kernelhints} = -1;/\$nrconf{kernelhints} = -1;/g' /etc/needrestart/needrestart.conf",
+      "sudo sed -i 's/#\$nrconf{restart} = 'i';/\$nrconf{restart} = 'a';/g' /etc/needrestart/needrestart.conf",
+      "sudo apt install -y nfs-common",
       "mkdir -p /home/dev/local-vols",
       "mkdir -p /home/dev/rke2-artifacts",
       "sudo systemctl enable iscsid.service",
@@ -52,7 +55,7 @@ resource "proxmox_vm_qemu" "rke2_node" {
   }
 
   provisioner "file" {
-    content     = templatefile("${path.module}/files/config.yaml.tftpl", { primary = var.primary, role = var.role, ip_addr = var.ip_addr, cluster_host = var.cluster_host, node_host = var.node_host, domain = var.domain, join_server = var.join_server })
+    content     = templatefile("${path.module}/files/config.yaml.tftpl", { primary = var.primary, taint = var.taint, role = var.role, ip_addr = var.ip_addr, cluster_host = var.cluster_host, node_host = var.node_host, domain = var.domain, join_server = var.join_server })
     destination = "/home/dev/config.yaml"
     connection {
       type        = "ssh"

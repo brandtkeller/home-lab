@@ -81,6 +81,12 @@ variable "primary" {
   default     = false
 }
 
+variable "taint" {
+  description = "whether or not to taint the instance"
+  type        = bool
+  default     = false
+}
+
 variable "domain" {
   description = "domain"
   type        = string
