@@ -120,3 +120,22 @@ neuvector:
 addons:
   metricsServer:
     enabled: true
+
+packages:
+  podinfo:
+    enabled: true
+    wrapper:
+      enabled: true
+    git:
+      repo: https://github.com/stefanprodan/podinfo.git
+      tag: 6.3.4
+      path: charts/podinfo
+    istio:
+      hosts:
+        - names:
+            - podinfo
+          gateways:
+            - exposed
+          destination:
+            port: 9898
+```
