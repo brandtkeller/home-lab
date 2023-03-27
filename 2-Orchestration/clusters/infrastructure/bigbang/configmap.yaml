@@ -138,7 +138,8 @@ packages:
       path: charts/podinfo
     istio:
       hosts:
-        - names:
+        - domain: "k8s.kellerhome.us"
+          names:
             - podinfo
           gateways:
             - exposed
