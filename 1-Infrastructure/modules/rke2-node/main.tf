@@ -37,7 +37,6 @@ resource "proxmox_vm_qemu" "rke2_node" {
   # iscsid required for openebs-jiva
   provisioner "remote-exec" {
     inline = [
-      "sudo apt install -y nfs-common",
       "mkdir -p /home/dev/local-vols",
       "mkdir -p /home/dev/rke2-artifacts",
       "sudo systemctl enable iscsid.service",

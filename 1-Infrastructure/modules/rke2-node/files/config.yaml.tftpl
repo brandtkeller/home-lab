@@ -5,8 +5,6 @@ server: https://${join_server}:9345
 %{ endif }
 %{ if role == "server" }
 write-kubeconfig-mode: "0644"
-node-taint:
-  - "CriticalAddonsOnly=true:NoExecute"
 tls-san:
   - ${node_host}
   - ${node_host}.${domain}

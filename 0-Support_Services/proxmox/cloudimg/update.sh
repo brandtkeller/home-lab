@@ -1,9 +1,9 @@
 #!/bin/bash
 
-STORAGE=ssdpool1
-NODE=prox2
+STORAGE=local-lvm
+NODE=prox
 SECONDARY=""
-isPrimary=false
+isPrimary=true
 
 set -e
 
@@ -16,9 +16,8 @@ function create_template() {
     qm set $oldid --name old-ubuntu-cloudimg-$NODE || echo "template does not exist"
 
     echo "Starting creation of the new template"
-    qm create $newid --memory 2048 --net0 virtio,bridge=vmbr0
-    qm importdisk $newid jammy-server-cloudimg-amd64.img $STORAGE
-    qm set $newid --scsihw virtio-scsi-pci --scsi0 $STORAGE:$newid/vm-$newid-disk-0.raw
+    qm create $newid --memory 2048 --net0 virtio,bridge=vmbr0 --scsihw virtio-scsi-pci
+    qm set $newid --scsi0 $STORAGE:0,import-from=/root/jammy-server-cloudimg-amd64.img
     qm set $newid --ide2 $STORAGE:cloudinit
     qm set $newid --boot c --bootdisk scsi0
     qm set $newid --serial0 socket --vga serial0

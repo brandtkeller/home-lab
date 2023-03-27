@@ -20,16 +20,16 @@ data:
   dns.db: |
     kellerhome.us.        IN  SOA dns.kellerhome.us. keller.kellerhome.us. 2015082541 7200 3600 1209600 3600
     router.kellerhome.us.                 IN  A  192.168.0.1
-    prox.kellerhome.us.                   IN  A  192.168.1.9
+    prox.kellerhome.us.                   IN  A  192.168.1.8
     prox2.kellerhome.us.                  IN  A  192.168.1.10
     infra.kellerhome.us.                  IN  A  192.168.1.20
     *.infra.kellerhome.us.                IN  A  192.168.1.21
-    infra-server-purple.kellerhome.us.    IN  A  192.168.1.23
-    infra-server-blue.kellerhome.us.      IN  A  192.168.1.24
-    infra-server-green.kellerhome.us.     IN  A  192.168.1.25
-    infra-agent-green.kellerhome.us.      IN  A  192.168.1.26
-    infra-agent-purple.kellerhome.us.     IN  A  192.168.1.27
-    infra-agent-blue.kellerhome.us.       IN  A  192.168.1.28
+    infra-server-blue.kellerhome.us.      IN  A  192.168.1.23
+    infra-server-orange.kellerhome.us.    IN  A  192.168.1.24
+    infra-server-red.kellerhome.us.       IN  A  192.168.1.25
+    infra-agent-red.kellerhome.us.        IN  A  192.168.1.26
+    infra-agent-blue.kellerhome.us.       IN  A  192.168.1.27
+    infra-agent-orange.kellerhome.us.     IN  A  192.168.1.28
     valheim.kellerhome.us.                IN  A  192.168.1.30    
     manage.kellerhome.us.                 IN  A  192.168.0.130
   
