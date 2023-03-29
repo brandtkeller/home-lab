@@ -147,7 +147,7 @@ packages:
           destination:
             port: 9898
   wger:
-    enabled: false
+    enabled: true
     wrapper:
       enabled: true
     git:
