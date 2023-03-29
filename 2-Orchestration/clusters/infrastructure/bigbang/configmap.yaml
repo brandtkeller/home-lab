@@ -146,5 +146,22 @@ packages:
             - exposed
           destination:
             port: 9898
-
+  wger:
+    enabled: true
+    wrapper:
+      enabled: true
+    git:
+      repo: https://github.com/wger-project/helm-charts.git
+      tag: "wger-0.1.3"
+      path: charts/wger
+    istio:
+      injection: false
+      hosts:
+        - domain: "k8s.kellerhome.us"
+          names:
+            - fitness
+          gateways:
+            - exposed
+          destination:
+            port: 8000
 
