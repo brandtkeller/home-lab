@@ -147,13 +147,15 @@ packages:
           destination:
             port: 9898
   wger:
-    enabled: true
+    enabled: false
     wrapper:
       enabled: true
     git:
       repo: https://github.com/wger-project/helm-charts.git
       tag: "wger-0.1.3"
       path: charts/wger
+    network:
+      policies: false
     istio:
       injection: false
       hosts:
