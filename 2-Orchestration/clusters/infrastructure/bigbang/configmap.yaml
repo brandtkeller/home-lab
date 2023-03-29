@@ -163,6 +163,9 @@ packages:
           destination:
             port: 8000
     values:
-      environment:
-      - name: TIME_ZONE
-        value: PT
+      app:
+        global:
+          image: wger/server:2.2-dev
+        environment:
+        - name: TIME_ZONE
+          value: PT
