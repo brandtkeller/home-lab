@@ -162,6 +162,7 @@ packages:
           gateways:
             - exposed
           destination:
+            service: wger-http
             port: 8000
     values:
       app:
