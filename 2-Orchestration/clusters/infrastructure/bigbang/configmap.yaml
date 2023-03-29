@@ -43,6 +43,7 @@ kyvernopolicies:
             - resources:
                 namespaces:
                 - valheim
+                - wger
 
       disallow-shared-subpath-volume-writes:
         exclude:
