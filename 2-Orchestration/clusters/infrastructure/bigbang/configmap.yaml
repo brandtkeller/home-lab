@@ -177,7 +177,7 @@ packages:
             service: wger-http
             port: 8000
   ghost:
-    enabled: false
+    enabled: true
     wrapper:
       enabled: true
     oci:
