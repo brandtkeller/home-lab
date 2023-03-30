@@ -122,13 +122,13 @@ addons:
   metricsServer:
     enabled: true
 
-# ociRepositories:
-#   - name: "bitnami"
-#     repository: "oci://registry-1.docker.io/bitnamicharts"
-#     existingSecret: ""
-#     username: ""
-#     password: ""
-#     email: ""
+ociRepositories:
+  - name: "bitnami"
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+    existingSecret: ""
+    username: ""
+    password: ""
+    email: ""
 
 
 wrapper:
