@@ -176,12 +176,14 @@ packages:
           destination:
             service: wger-http
             port: 8000
-  # ghost:
-  #   enabled: true
-  #   wrapper:
-  #     enabled: true
-  #   oci:
-  #     name: "ghost"
-  #     tag: "19.1.79"
-  #     repo: "bitnami"
+  ghost:
+    enabled: true
+    wrapper:
+      enabled: true
+    oci:
+      name: "ghost"
+      tag: "19.1.79"
+      repo: "bitnami"
+    values:
+      ghostHost: "blog.k8s.kellerhome.us"
 
