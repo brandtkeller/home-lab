@@ -122,6 +122,15 @@ addons:
   metricsServer:
     enabled: true
 
+ociRepositories:
+  - name: "bitnami"
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+    existingSecret: ""
+    username: ""
+    password: ""
+    email: ""
+
+
 wrapper:
   git:
     repo: "https://repo1.dso.mil/big-bang/product/packages/wrapper.git"
@@ -167,4 +176,12 @@ packages:
           destination:
             service: wger-http
             port: 8000
+  ghost:
+    enabled: true
+    wrapper:
+      enabled: true
+    oci:
+      name: "ghost"
+      tag: "19.1.79"
+      repo: "bitnami"
 
