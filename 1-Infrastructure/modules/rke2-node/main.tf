@@ -14,7 +14,8 @@ resource "proxmox_vm_qemu" "rke2_node" {
   onboot      = var.boot
   os_type     = "cloud-init"
   cores       = var.cpus
-  sockets     = "1"
+  agent       = 0
+  sockets     = 1
   cpu         = "host"
   memory      = var.memory
   scsihw      = "virtio-scsi-pci"
@@ -34,16 +35,29 @@ resource "proxmox_vm_qemu" "rke2_node" {
       network,
     ]
   }
+
+  provisioner "file" {
+    source      = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+
+    connection {
+      type     = "ssh"
+      user     = "dev"
+      private_key = file("${var.ssh_priv_key_path}")
+      host     = var.ip_addr
+    }
+  }
+  
   # iscsid required for openebs-jiva
   provisioner "remote-exec" {
     inline = [
-      "sudo sed -i 's/#\$nrconf{kernelhints} = -1;/\$nrconf{kernelhints} = -1;/g' /etc/needrestart/needrestart.conf",
-      "sudo sed -i 's/#\$nrconf{restart} = 'i';/\$nrconf{restart} = 'a';/g' /etc/needrestart/needrestart.conf",
-      "sudo apt install -y nfs-common qemu-guest-agent",
+      "chmod +x /tmp/bootstrap.sh",
+      "/tmp/bootstrap.sh",
+      "sudo apt install -y nfs-common",
+      "sudo systemctl enable iscsid.service",
+      "sudo systemctl start iscsid.service",
       "mkdir -p /home/dev/local-vols",
       "mkdir -p /home/dev/rke2-artifacts",
-      "sudo systemctl enable iscsid.service",
-      "sudo systemctl start iscsid.service"
     ]
 
     connection {

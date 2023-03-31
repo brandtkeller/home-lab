@@ -30,6 +30,7 @@ I focus on my daily work responsiblities without having to interact with this eq
 ## Notes and Current Thoughts
 
 - Rename infrastructure to production
+  - will need a new certificate for BB
 - Update DNS to reflect
 - Re-provision a fresh rke2 cluster
 - Investigate kube-VIP for node comms loadbalancing
@@ -40,3 +41,4 @@ I focus on my daily work responsiblities without having to interact with this eq
     - Docker registry pull-through caches
       - docker hub
       - registry1
+    - S3 compatible storage

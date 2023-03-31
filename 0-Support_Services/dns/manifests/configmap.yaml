@@ -22,13 +22,13 @@ data:
     router.kellerhome.us.                 IN  A  192.168.0.1
     prox.kellerhome.us.                   IN  A  192.168.1.8
     prox2.kellerhome.us.                  IN  A  192.168.1.10
-    infra.kellerhome.us.                  IN  A  192.168.1.20
-    *.infra.kellerhome.us.                IN  A  192.168.1.21
+    prod.kellerhome.us.                   IN  A  192.168.1.20
+    *.prod.kellerhome.us.                 IN  A  192.168.1.21
     *.k8s.kellerhome.us.                  IN  A  192.168.1.22
-    infra-server-blue.kellerhome.us.      IN  A  192.168.1.33
-    infra-server-orange.kellerhome.us.    IN  A  192.168.1.34
-    infra-server-red.kellerhome.us.       IN  A  192.168.1.35
-    infra-agent-orange.kellerhome.us.     IN  A  192.168.1.36
+    prod-server-blue.kellerhome.us.       IN  A  192.168.1.33
+    prod-server-orange.kellerhome.us.     IN  A  192.168.1.34
+    prod-server-red.kellerhome.us.        IN  A  192.168.1.35
+    prod-agent-orange.kellerhome.us.      IN  A  192.168.1.36
     valheim.kellerhome.us.                IN  A  192.168.1.30    
     manage.kellerhome.us.                 IN  A  192.168.0.130
   

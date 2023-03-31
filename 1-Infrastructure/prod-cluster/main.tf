@@ -13,10 +13,10 @@ provider "proxmox" {
 
 
 # prox2 Hosts
-module "infra-server-orange" {
+module "prod-server-orange" {
   source = "../modules/rke2-node"
 
-  name = "infra-server-orange.kellerhome.us"
+  name = "prod-server-orange.kellerhome.us"
   boot = true
   join_server = ""
   pve_node = "prox2"
@@ -31,20 +31,20 @@ module "infra-server-orange" {
   cpus = 4
 
   ip_addr = "192.168.1.34"
-  node_host = "infra-server-orange"
-  cluster_host = "infra"
+  node_host = "prod-server-orange"
+  cluster_host = "prod"
   domain = "kellerhome.us"
   nameservers = "192.168.0.130"
   password = var.password
 
 }
 
-module "infra-agent-orange" {
+module "prod-agent-orange" {
   source = "../modules/rke2-node"
 
-  name = "infra-agent-orange.kellerhome.us"
+  name = "prod-agent-orange.kellerhome.us"
   boot = false
-  join_server = "infra-server-orange.kellerhome.us"
+  join_server = "prod-server-orange.kellerhome.us"
   pve_node = "prox2"
   clone_image  = "ubuntu-cloudimg-prox2"
   role = "agent"
@@ -57,8 +57,8 @@ module "infra-agent-orange" {
   cpus = 8
 
   ip_addr = "192.168.1.36"
-  node_host = "infra-agent-orange"
-  cluster_host = "infra"
+  node_host = "prod-agent-orange"
+  cluster_host = "prod"
   domain = "kellerhome.us"
   nameservers = "192.168.0.130"
   password = var.password
@@ -67,12 +67,12 @@ module "infra-agent-orange" {
 
 ## Prox Hosts
 
-module "infra-server-red" {
+module "prod-server-red" {
   source = "../modules/rke2-node"
 
-  name = "infra-server-red.kellerhome.us"
+  name = "prod-server-red.kellerhome.us"
   boot = true
-  join_server = "infra-server-orange.kellerhome.us"
+  join_server = "prod-server-orange.kellerhome.us"
   pve_node = "prox"
   clone_image  = "ubuntu-cloudimg-prox"
   role = "server"
@@ -85,20 +85,20 @@ module "infra-server-red" {
   cpus = 8
 
   ip_addr = "192.168.1.35"
-  node_host = "infra-server-red"
-  cluster_host = "infra"
+  node_host = "prod-server-red"
+  cluster_host = "prod"
   domain = "kellerhome.us"
   nameservers = "192.168.0.130"
   password = var.password
 
 }
 
-module "infra-server-blue" {
+module "prod-server-blue" {
   source = "../modules/rke2-node"
 
-  name = "infra-server-blue.kellerhome.us"
+  name = "prod-server-blue.kellerhome.us"
   boot = true
-  join_server = "infra-server-orange.kellerhome.us"
+  join_server = "prod-server-orange.kellerhome.us"
   pve_node = "prox"
   clone_image  = "ubuntu-cloudimg-prox"
   role = "server"
@@ -111,8 +111,8 @@ module "infra-server-blue" {
   cpus = 8
 
   ip_addr = "192.168.1.33"
-  node_host = "infra-server-blue"
-  cluster_host = "infra"
+  node_host = "prod-server-blue"
+  cluster_host = "prod"
   domain = "kellerhome.us"
   nameservers = "192.168.0.130"
   password = var.password
