@@ -61,7 +61,7 @@ kyvernopolicies:
             any:
             - resources:
                 namespaces:
-                - openebs
+                - longhorn
                 - nextcloud
         validationFailureAction: audit
         parameters:
@@ -92,28 +92,28 @@ kyvernopolicies:
             any:
             - resources:
                 namespaces:
-                - openebs
+                - longhorn
 
       disallow-host-namespaces:
         exclude:
             any:
             - resources:
                 namespaces:
-                - openebs
+                - longhorn
 
       disallow-privilege-escalation:
         exclude:
             any:
             - resources:
                 namespaces:
-                - openebs
+                - longhorn
 
       require-non-root-group:
         exclude:
             any:
             - resources:
                 namespaces:
-                - openebs
+                - longhorn
                 - nextcloud
 
       require-non-root-user:
@@ -121,30 +121,30 @@ kyvernopolicies:
             any:
             - resources:
                 namespaces:
-                - openebs
+                - longhorn
                 - nextcloud
       
-      restrict-host-path-mount:
-        exclude:
-            any:
-            - resources:
-                namespaces:
-                - openebs
+      # restrict-host-path-mount:
+      #   exclude:
+      #       any:
+      #       - resources:
+      #           namespaces:
+      #           - openebs
 
       restrict-host-path-write:
         exclude:
             any:
             - resources:
                 namespaces:
-                - openebs
+                - longhorn
                 - nextcloud
 
-      restrict-volume-types:
-        exclude:
-            any:
-            - resources:
-                namespaces:
-                - openebs
+      # restrict-volume-types:
+      #   exclude:
+      #       any:
+      #       - resources:
+      #           namespaces:
+      #           - openebs
 
 neuvector:
   git:
