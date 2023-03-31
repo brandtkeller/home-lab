@@ -19,7 +19,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-lab
-  path: ./2-Orchestration/clusters/infrastructure
+  path: ./2-Orchestration/clusters/production
   prune: true
   decryption:
     provider: sops
