@@ -16,7 +16,7 @@ I focus on my daily work responsiblities without having to interact with this eq
 ## High Level Plan
 - DNS that routes a legit domain internally.
 - A "stable" kubernetes cluster (Highly-available) to provide long-lived services. Ability to scale Agents.
-- IaC to reproducible establish a multi-node Highly-available Cluster. Preferrably using the same IaC as the stable cluster in a modular format.
+- IaC to reproducible establish a multi-node Highly-available Cluster. Preferably using the same IaC as the stable cluster in a modular format.
 - A single-node kubernetes cluster that uses large raid-spinning-disk storage and hosts services to backup data.
 
 ## Repository Structure
@@ -27,5 +27,16 @@ I focus on my daily work responsiblities without having to interact with this eq
 - [Orchestration](./2-Orchestration/README.md)
   - Documenting orchestration (and maybe storing GitOps manifests hopefully)
 
-## Notes
-- Can I create an additional gateway that uses a different wildcard domain/cert in order to separate admin utilities from those accessed by users (IE separate load balancers).
+## Notes and Current Thoughts
+
+- Rename infrastructure to production
+- Update DNS to reflect
+- Re-provision a fresh rke2 cluster
+- Investigate kube-VIP for node comms loadbalancing
+- Investigate longhorn for replicated storage
+- create an infrastructure directory under `0-Support_Services`
+  - Create a zarf.yaml manifest for the infrastructure node
+    - NFS server
+    - Docker registry pull-through caches
+      - docker hub
+      - registry1

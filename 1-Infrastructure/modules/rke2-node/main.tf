@@ -39,7 +39,7 @@ resource "proxmox_vm_qemu" "rke2_node" {
     inline = [
       "sudo sed -i 's/#\$nrconf{kernelhints} = -1;/\$nrconf{kernelhints} = -1;/g' /etc/needrestart/needrestart.conf",
       "sudo sed -i 's/#\$nrconf{restart} = 'i';/\$nrconf{restart} = 'a';/g' /etc/needrestart/needrestart.conf",
-      "sudo apt install -y nfs-common",
+      "sudo apt install -y nfs-common qemu-guest-agent",
       "mkdir -p /home/dev/local-vols",
       "mkdir -p /home/dev/rke2-artifacts",
       "sudo systemctl enable iscsid.service",
