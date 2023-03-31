@@ -4,7 +4,7 @@
     "dependencyDashboard": true,
     "dependencyDashboardHeader": "- [ ] Sync upstream versions with updated dependencies.",
     "dependencyDashboardTitle": "Renovate: Upgrade Package Dependencies",
-    "draftPR": true,
+    "draftPR": false,
     "enabledManagers": ["regex"],
     "labels": ["renovate"],
     "commitMessagePrefix": "",
