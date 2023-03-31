@@ -139,12 +139,13 @@ kyvernopolicies:
                 - longhorn
                 - nextcloud
 
-      # restrict-volume-types:
-      #   exclude:
-      #       any:
-      #       - resources:
-      #           namespaces:
-      #           - openebs
+      restrict-volume-types:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - nfs
+                - longhorn
 
 neuvector:
   git:
