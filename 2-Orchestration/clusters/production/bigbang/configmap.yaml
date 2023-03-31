@@ -212,7 +212,88 @@ packages:
         enabled: "{{ $.Values.istio.enabled }}"
       cronjob:
         schedule: '0 7 * * *'
+  nextcloud:
+    enabled: true
+    wrapper:
+      enabled: true
+    git:
+      repo: https://github.com/nextcloud/helm.git
+      tag: "nextcloud-3.5.4"
+      path: "./charts/nextcloud"
+    network:
+      policies: "{{ $.Values.networkPolicies.enabled }}"
+    istio:
+      injection: "{{ $.Values.istio.enabled }}"
+      hosts:
+        - names:
+            - cloud
+          gateways:
+            - public
+          destination:
+            service: nextcloud
+            port: 8080
+    values:
+      nextcloud:
+        host: cloud.prod.kellerhome.us
+        configs:
+          domains.config.php: |-
+            <?php
+            $CONFIG = array (
+              'trusted_domains' =>
+                array (
+                0 => 'localhost',
+                1 => 'cloud.prod.kellerhome.us',
+                )
+            );
+          overwrite.config.php: |-
+            <?php
+            $CONFIG = array (
+              'overwriteprotocol' => 'https',
+            );
+      livenessProbe:
+        enabled: true
+        initialDelaySeconds: 15
+        periodSeconds: 30
+        timeoutSeconds: 10
+        failureThreshold: 5
+        successThreshold: 1
+      readinessProbe:
+        enabled: true
+        initialDelaySeconds: 10
+        periodSeconds: 25
+        timeoutSeconds: 10
+        failureThreshold: 5
+        successThreshold: 1
+      redis:
+        enabled: true
       
+      postgresql:
+        enabled: true
+        primary:
+          persistence:
+            enabled: true
 
+      internalDatabase:
+        enabled: false
+
+      externalDatabase:
+        enabled: true
+
+        ## Supported database engines: mysql or postgresql
+        type: postgresql
+
+        ## Database name
+        database: nextcloud
+
+      persistence:
+        enabled: true
+        accessMode: ReadWriteOnce
+        size: 10Gi
+
+        nextcloudData:
+          enabled: true
+          storageClass: "nfs-client"
+          accessMode: ReadWriteOnce
+          size: 400Gi
 
 
