@@ -219,7 +219,7 @@ packages:
       repo: https://github.com/nextcloud/helm.git
       tag: "nextcloud-3.5.4"
       path: "./charts/nextcloud"
-    enabled: false
+    enabled: true
     wrapper:
       enabled: true
     network:
