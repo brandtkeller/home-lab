@@ -37,6 +37,7 @@ promtail:
   enabled: true
 
 kyverno:
+  git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno.git
     tag: "2.6.5-bb.3"
     path: "./chart"
