@@ -175,7 +175,7 @@ addons:
 
 wrapper:
   git:
-    repo: "https://repo1.dso.mil/big-bang/product/packages/wrapper.git"
+    repo: https://repo1.dso.mil/big-bang/product/packages/wrapper.git
     tag: "0.1.1"
     path: "./chart"
 
