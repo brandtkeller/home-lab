@@ -213,17 +213,17 @@ packages:
       cronjob:
         schedule: '0 7 * * *'
   nextcloud:
-    enabled: true
-    wrapper:
-      enabled: true
     git:
       repo: https://github.com/nextcloud/helm.git
       tag: "nextcloud-3.5.4"
       path: "./charts/nextcloud"
+    enabled: true
+    wrapper:
+      enabled: true
     network:
       policies: "{{ $.Values.networkPolicies.enabled }}"
     istio:
-      injection: "{{ $.Values.istio.enabled }}"
+      injection: true
       hosts:
         - names:
             - cloud
