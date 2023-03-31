@@ -1,0 +1,128 @@
+{
+    "baseBranches": ["main"],
+    "configWarningReuseIssue": false,
+    "dependencyDashboard": true,
+    "dependencyDashboardHeader": "- [ ] Sync upstream versions with updated dependencies.",
+    "dependencyDashboardTitle": "Renovate: Upgrade Package Dependencies",
+    "draftPR": true,
+    "enabledManagers": ["regex"],
+    "labels": ["renovate"],
+    "commitMessagePrefix": "",
+    "packageRules": [
+        {
+            "matchDatasources": ["git-tags"]
+          }
+    ],
+    "regexManagers": [
+        {
+            "fileMatch": ["^2-Orchestration/bases/bigbang/kustomization\\.yaml$"],
+            "matchStrings": [
+              ".+?ref=+(?<currentValue>.+)"
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/big-bang/bigbang.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/kustomization\\.yaml$"],
+            "matchStrings": [
+              "tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/big-bang/bigbang.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "istio:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "istiooperator:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "monitoring:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/core/monitoring.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "loki:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/loki.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "promtail:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/promtail.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "kyverno:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "kyvernopolicies:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno-policies.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "neuvector:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/neuvector.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "metricsServer:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/metrics-server.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        },
+        {
+            "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
+            "matchStrings": [
+              "wrapper:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+            ],
+            "depNameTemplate": "https://repo1.dso.mil/big-bang/product/packages/wrapper.git",
+            "datasourceTemplate": "git-tags",
+            "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
+        }
+        
+    ],
+    "separateMajorMinor": false
+}

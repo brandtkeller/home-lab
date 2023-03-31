@@ -1,19 +1,52 @@
-domain: infra.kellerhome.us
+domain: prod.kellerhome.us
+
+istio:
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
+    tag: "1.17.1-bb.0"
+    path: "./chart"
+  enabled: true
+
+istiooperator:
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
+    tag: "1.17.1-bb.0"
+    path: "./chart"
+  enabled: true
 
 monitoring:
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/monitoring.git
+    tag: "43.1.2-bb.4"
+    path: "./chart"
   enabled: true
 
 loki:
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/loki.git
+    tag: "4.8.0-bb.0"
+    path: "./chart"
   enabled: true
   strategy: monolith
 
 promtail:
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/promtail.git
+    tag: "6.8.1-bb.1"
+    path: "./chart"
   enabled: true
 
 kyverno:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno.git
+    tag: "2.6.5-bb.3"
+    path: "./chart"
   enabled: true
 
 kyvernopolicies:
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno-policies.git
+    tag: "1.1.0-bb.3"
+    path: "./chart"
   enabled: true
   values:
     resources:
@@ -112,6 +145,10 @@ kyvernopolicies:
                 - openebs
 
 neuvector:
+  git:
+    repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/neuvector.git
+    tag: "2.4.2-bb.5"
+    path: "./chart"
   enabled: true
   values:
     k3s:
@@ -120,15 +157,19 @@ neuvector:
 
 addons:
   metricsServer:
+    git:
+      repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/metrics-server.git
+      tag: "3.8.4-bb.0"
+      path: "./chart"
     enabled: true
 
-ociRepositories:
-  - name: "bitnami"
-    repository: "oci://registry-1.docker.io/bitnamicharts"
-    existingSecret: ""
-    username: ""
-    password: ""
-    email: ""
+# ociRepositories:
+#   - name: "bitnami"
+#     repository: "oci://registry-1.docker.io/bitnamicharts"
+#     existingSecret: ""
+#     username: ""
+#     password: ""
+#     email: ""
 
 
 wrapper:
