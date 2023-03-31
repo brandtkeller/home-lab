@@ -29,12 +29,8 @@ I focus on my daily work responsiblities without having to interact with this eq
 
 ## Notes and Current Thoughts
 
-- Rename infrastructure to production
-  - will need a new certificate for BB
-- Update DNS to reflect
-- Re-provision a fresh rke2 cluster
 - Investigate kube-VIP for node comms loadbalancing
-- Investigate longhorn for replicated storage
+  - How necessary is this really?
 - create an infrastructure directory under `0-Support_Services`
   - Create a zarf.yaml manifest for the infrastructure node
     - NFS server

@@ -6,8 +6,7 @@ resources:
 # - ./nextcloud
 bases: 
 - ../../bases/storage/longhorn
-# - ../../bases/storage/jiva
-# - ../../bases/storage/nfs
+- ../../bases/storage/nfs
 - ../../bases/kubevip
 # - ../../bases/valheim
 # patchesStrategicMerge:
