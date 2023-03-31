@@ -71,6 +71,7 @@ kyvernopolicies:
           - nextcloud
           - bitnami
           - docker.io
+          - registry.k8s.io
       disallow-image-tags:
         exclude:
             any:
