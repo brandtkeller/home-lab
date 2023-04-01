@@ -223,7 +223,7 @@ packages:
     wrapper:
       enabled: true
     network:
-      policies: "{{ $.Values.networkPolicies.enabled }}"
+      policies: false
     istio:
       injection: false
       hosts:
