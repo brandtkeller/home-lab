@@ -225,7 +225,7 @@ packages:
     network:
       policies: "{{ $.Values.networkPolicies.enabled }}"
     istio:
-      injection: true
+      injection: false
       hosts:
         - names:
             - cloud
