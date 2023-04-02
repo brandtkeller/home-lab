@@ -29,6 +29,12 @@ I focus on my daily work responsiblities without having to interact with this eq
 
 ## Notes and Current Thoughts
 
+### Priority
+- [Mover](https://github.com/brandtkeller/Mover) MVP
+- Hugo + Nginx
+- Nginx Reverse Proxy for serving multiple domains from a single public IP
+
+### Investigation
 - Investigate kube-VIP for node comms loadbalancing
   - How necessary is this really?
 - create an infrastructure directory under `0-Support_Services`
@@ -38,3 +44,9 @@ I focus on my daily work responsiblities without having to interact with this eq
       - docker hub
       - registry1
     - S3 compatible storage
+- telmate/prox-api-go
+    - Build CLI for local dev?
+    - Integrate with k8s autoscaler?
+- Rsync Cronjob chart to redundant storage (Onsite-Backup)
+- velero configuration to S3 (Offsite-Backup)
+- Cert-manager to keep certificates automatically up-to-date
