@@ -31,8 +31,11 @@ I focus on my daily work responsiblities without having to interact with this eq
 
 ### Priority
 - [Mover](https://github.com/brandtkeller/Mover) MVP
-- Hugo + Nginx
+- [Nginx + Hugo](https://gideonwolfe.com/posts/sysadmin/hugonginx/)
 - Nginx Reverse Proxy for serving multiple domains from a single public IP
+- Rebuild support cluster
+  - Update docs/scripts
+  - Utilize [Zarf](https://github.com/defenseunicorns/zarf) to remove reliance on upstream availability/connectivity
 
 ### Investigation
 - Investigate kube-VIP for node comms loadbalancing
