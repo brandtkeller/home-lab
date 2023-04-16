@@ -31,6 +31,8 @@ I focus on my daily work responsiblities without having to interact with this eq
 
 ### Priority
 - [Mover](https://github.com/brandtkeller/Mover) MVP
+- [CouchDB](https://github.com/apache/couchdb-helm) Deployment to Prod
+  - Connect from and test Obsidian self-hosted sync
 - [Nginx + Hugo](https://gideonwolfe.com/posts/sysadmin/hugonginx/)
 - Nginx Reverse Proxy for serving multiple domains from a single public IP
 - Rebuild support cluster
