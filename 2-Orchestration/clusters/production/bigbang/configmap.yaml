@@ -226,7 +226,7 @@ packages:
     network:
       policies: false
     istio:
-      injection: false
+      injection: "enabled"
       hosts:
         - names:
             - cloud
