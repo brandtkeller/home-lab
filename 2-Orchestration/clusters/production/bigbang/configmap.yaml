@@ -300,7 +300,7 @@ packages:
           size: 400Gi
 
   proxy:
-    enabled: false
+    enabled: true
     wrapper:
       enabled: true
     helmRepo:
