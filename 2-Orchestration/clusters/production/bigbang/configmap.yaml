@@ -318,8 +318,16 @@ packages:
       service:
         type: ClusterIP
       # TODO: map the configmap from wrapper to a volume/volumeMount  
-      extraVolumes: []
-      extraVolumeMounts: []
+      extraVolumes:
+      - name: config-volume
+        configMap:
+          name: proxy-conf
+          items:
+          - key: nginx.conf
+            path: nginx.conf
+      extraVolumeMounts:
+      - name: config-volume
+        mountPath: /etc/nginx
     configMaps:
     - name: proxy-conf
       data:
