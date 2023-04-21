@@ -234,7 +234,7 @@ packages:
             matchLabels:
               app.kubernetes.io/name: postgresql
           mtls:
-            mode: UNSET
+            mode: STRICT
           portLevelMtls:
             5432:
               mode: PERMISSIVE
