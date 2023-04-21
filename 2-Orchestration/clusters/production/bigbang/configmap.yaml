@@ -7,7 +7,7 @@ istio:
     path: "./chart"
   enabled: true
 
-istioOperator:
+istiooperator:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
     tag: "1.17.1-bb.0"
@@ -43,7 +43,7 @@ kyverno:
     path: "./chart"
   enabled: true
 
-kyvernoPolicies:
+kyvernopolicies:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/kyverno-policies.git
     tag: "1.1.0-bb.4"
@@ -300,7 +300,7 @@ packages:
           size: 400Gi
 
   proxy:
-    enabled: true
+    enabled: false
     wrapper:
       enabled: true
     helmRepo:
