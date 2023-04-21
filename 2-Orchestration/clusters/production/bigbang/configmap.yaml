@@ -237,7 +237,7 @@ packages:
             mode: UNSET
           portLevelMtls:
             5432:
-              mode: DISABLE
+              mode: PERMISSIVE
       hosts:
         - names:
             - cloud
