@@ -227,6 +227,17 @@ packages:
       policies: false
     istio:
       injection: "enabled"
+      peerAuthentications: 
+      - name: permissive-db
+        spec:
+          selector:
+            matchLabels:
+              app.kubernetes.io/name: postgresql
+          mtls:
+            mode: UNSET
+          portLevelMtls:
+            5432:
+              mode: DISABLE
       hosts:
         - names:
             - cloud
