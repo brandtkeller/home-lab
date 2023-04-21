@@ -232,7 +232,7 @@ packages:
         spec:
           selector:
             matchLabels:
-              app.kubernetes.io/name: postgresql
+              app.kubernetes.io/instance: nextcloud
           mtls:
             mode: STRICT
           portLevelMtls:
