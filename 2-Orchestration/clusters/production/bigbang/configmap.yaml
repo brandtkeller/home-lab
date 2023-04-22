@@ -513,14 +513,14 @@ packages:
         # ACLs
         # -------------------------------
 
-        acl acl_MISSION      req.ssl_sni -i *.missionfocused.dev
+        # acl acl_MISSION      req.ssl_sni -i *.missionfocused.dev
         acl acl_PROD_KH      req.ssl_sni -i *.prod.kellerhome.us
 
         # -------------------------------
         # Conditions
         # -------------------------------
 
-        use_backend backend_MISSION if acl_MISSION
+        # use_backend backend_MISSION if acl_MISSION
         use_backend backend_PROD_KH if acl_PROD_KH
 
         #---------------------------------------------------------------------
@@ -528,12 +528,12 @@ packages:
         #---------------------------------------------------------------------
 
         # MISSION
-        backend backend_MISSION
-            description MISSION
-            mode tcp
-            balance source
-            option ssl-hello-chk
-            server server_MISSION mission-ingressgateway:443 check
+        # backend backend_MISSION
+        #     description MISSION
+        #     mode tcp
+        #     balance source
+        #     option ssl-hello-chk
+        #     server server_MISSION mission-ingressgateway:443 check
 
         # PRODUCTION
         backend backend_PROD_KH
@@ -541,4 +541,4 @@ packages:
             mode tcp
             balance source
             option ssl-hello-chk
-            server server_PRODUCTION exposed-ingressgateway:443 check
+            server server_PRODUCTION exposed-ingressgateway.istio-system.svc:443 check
