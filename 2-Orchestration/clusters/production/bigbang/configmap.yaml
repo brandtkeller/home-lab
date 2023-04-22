@@ -445,4 +445,100 @@ packages:
                   access_log /var/log/nginx/stream.log stream_https_routing;
               }
           }
-    
+  
+  haproxy:
+    enabled: true
+    wrapper:
+      enabled: true
+    git:
+      repo: https://repo1.dso.mil/big-bang/product/packages/haproxy.git
+      tag: "1.12.0-bb.0"
+      path: "./chart"
+    values:
+      config: |
+        #---------------------------------------------------------------------
+        # Global settings
+        #---------------------------------------------------------------------
+        global
+            daemon
+            user                haproxy
+            group               haproxy
+            log                 /dev/log local6 notice
+            log                 /dev/log local5 info
+            maxconn             50000
+            #chroot              /var/lib/haproxy
+            pidfile             /var/run/haproxy.pid
+
+        #---------------------------------------------------------------------
+        # common defaults that all the 'listen' and 'backend' sections will
+        # use if not designated in their block
+        #---------------------------------------------------------------------
+        defaults
+            mode                 tcp
+            option               tcplog
+            log                  global
+            option               dontlognull
+            timeout connect      5000
+            timeout client       50000
+            timeout server       50000
+
+        #---------------------------------------------------------------------
+        # dedicated stats page
+        #---------------------------------------------------------------------
+        listen stats
+            mode http
+            bind :22222
+            stats enable
+            stats uri            /haproxy?stats
+            stats realm          Haproxy\ Statistics
+            stats auth           test:test123
+            stats refresh        30s
+
+        #---------------------------------------------------------------------
+        # main frontend which proxys to the backends
+        #---------------------------------------------------------------------
+        frontend main_https_listen
+            bind *:443
+            mode                tcp
+            option              tcplog
+            log                 global
+            tcp-request inspect-delay 5s
+            tcp-request content accept if { req.ssl_hello_type 1 }
+
+        #---------------------------------------------------------------------
+        # Common HAProxy nodes configuration
+        #---------------------------------------------------------------------
+
+        # -------------------------------
+        # ACLs
+        # -------------------------------
+
+        acl acl_MISSION      req.ssl_sni -i *.missionfocused.dev
+        acl acl_PROD_KH      req.ssl_sni -i *.prod.kellerhome.us
+
+        # -------------------------------
+        # Conditions
+        # -------------------------------
+
+        use_backend backend_MISSION if acl_MISSION
+        use_backend backend_PROD_KH if acl_PROD_KH
+
+        #---------------------------------------------------------------------
+        # Backends
+        #---------------------------------------------------------------------
+
+        # MISSION
+        backend backend_MISSION
+            description MISSION
+            mode tcp
+            balance source
+            option ssl-hello-chk
+            server server_MISSION mission-ingressgateway:443 check
+
+        # PRODUCTION
+        backend backend_PROD_KH
+            description PRODUCTION
+            mode tcp
+            balance source
+            option ssl-hello-chk
+            server server_PRODUCTION exposed-ingressgateway:443 check
