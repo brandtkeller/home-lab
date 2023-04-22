@@ -167,13 +167,13 @@ addons:
       path: "./chart"
     enabled: true
 
-helmRepositories:
-  - name: "bitnami"
-    repository: "oci://registry-1.docker.io/bitnamicharts"
-    existingSecret: ""
-    username: ""
-    password: ""
-    email: ""
+# helmRepositories:
+#   - name: "bitnami"
+#     repository: "oci://registry-1.docker.io/bitnamicharts"
+#     existingSecret: ""
+#     username: ""
+#     password: ""
+#     email: ""
 
 
 wrapper:
@@ -315,7 +315,7 @@ packages:
     enabled: true
     wrapper:
       enabled: true
-    gitRepo:
+    git:
       repo: https://github.com/brandtkeller/nginx-helm.git
       tag: "13.2.34"
       path: "./chart"
