@@ -228,6 +228,7 @@ packages:
     istio:
       injection: "enabled"
       peerAuthentications: 
+      # https://github.com/nextcloud/helm/issues/383
       - name: permissive-db
         spec:
           selector:
@@ -311,13 +312,16 @@ packages:
           size: 400Gi
 
   proxy:
-    enabled: false
+    enabled: true
     wrapper:
       enabled: true
     helmRepo:
       repoName: "bitnami"
       chartName: "nginx"
-      tag: "13.2.33"
+      tag: "13.2.34"
+    dependsOn:
+    - name: proxy-wrapper
+      namespace: proxy
     values:
       image:
         registry: cgr.dev
