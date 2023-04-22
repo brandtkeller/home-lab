@@ -312,13 +312,13 @@ packages:
           size: 400Gi
 
   proxy:
-    enabled: false
+    enabled: true
     wrapper:
       enabled: true
-    helmRepo:
-      repoName: "bitnami"
-      chartName: "nginx"
+    gitRepo:
+      repo: https://github.com/brandtkeller/nginx-helm.git
       tag: "13.2.34"
+      path: "./chart"
     dependsOn:
     - name: proxy-wrapper
       namespace: proxy
