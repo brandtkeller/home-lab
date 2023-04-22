@@ -463,11 +463,9 @@ packages:
             daemon
             user                haproxy
             group               haproxy
-            log                 /dev/log local6 notice
-            log                 /dev/log local5 info
+            log stdout format raw local0
             maxconn             50000
             #chroot              /var/lib/haproxy
-            pidfile             /var/run/haproxy.pid
 
         #---------------------------------------------------------------------
         # common defaults that all the 'listen' and 'backend' sections will
