@@ -540,5 +540,5 @@ packages:
             description PRODUCTION
             mode tcp
             balance source
-            option tcp-chk
+            option tcp-check
             server server_PRODUCTION exposed-ingressgateway.istio-system.svc:443 check
