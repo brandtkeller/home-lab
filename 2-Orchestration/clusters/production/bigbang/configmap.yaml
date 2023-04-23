@@ -514,7 +514,9 @@ packages:
         # -------------------------------
 
         # acl acl_MISSION      req.ssl_sni -i *.missionfocused.dev
-        acl acl_KUBE_KH      req.ssl_sni -i *.k8s.kellerhome.us
+        # acl acl_KUBE_KH      req.ssl_sni -i *.k8s.kellerhome.us
+        # acl acl_KUBE_KH hdr(host) -m reg -i ^[^\.]+\.k8s\.kellerhome\.us$
+        acl acl_KUBE_KH req.ssl_sni -m end .k8s.kellerhome.us
 
         # -------------------------------
         # Conditions
