@@ -514,14 +514,14 @@ packages:
         # -------------------------------
 
         # acl acl_MISSION      req.ssl_sni -i *.missionfocused.dev
-        acl acl_PROD_KH      req.ssl_sni -i *.prod.kellerhome.us
+        acl acl_KUBE_KH      req.ssl_sni -i *.k8s.kellerhome.us
 
         # -------------------------------
         # Conditions
         # -------------------------------
 
         # use_backend backend_MISSION if acl_MISSION
-        use_backend backend_PROD_KH if acl_PROD_KH
+        use_backend backend_KUBE_KH if acl_KUBE_KH
 
         #---------------------------------------------------------------------
         # Backends
@@ -536,7 +536,7 @@ packages:
         #     server server_MISSION mission-ingressgateway:443 check
 
         # PRODUCTION
-        backend backend_PROD_KH
+        backend backend_KUBE_KH
             description PRODUCTION
             mode tcp
             balance source
