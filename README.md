@@ -54,4 +54,18 @@ I focus on my daily work responsiblities without having to interact with this eq
     - Integrate with k8s autoscaler?
 - Rsync Cronjob chart to redundant storage (Onsite-Backup)
 - velero configuration to S3 (Offsite-Backup)
-- Cert-manager to keep certificates automatically up-to-date
+
+### Cert-Manager native Integration with Big Bang
+
+- Will need the ability to deploy cert-manager
+  - `packages` can work here
+- Configure cert-manager
+  - Should there be a helm-chart that essentially allows templating a list of resources generically?
+    - Could wrapper do this?
+  - Deploy Cluster-issuer resource
+  - Deploy certificate resources (into istio-system namespace)
+- Umbrella modifications
+  - Ideally need the ability to make the istio helm release `dependsOn` the cert-manager helm release
+  - Configure gateways
+    - Use the correct secrets from the cert-manager certificates
+    - Can likely opt-out of umbrella gateways and instead use istio `values` directly
