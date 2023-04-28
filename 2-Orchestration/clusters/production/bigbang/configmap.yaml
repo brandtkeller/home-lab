@@ -32,7 +32,7 @@ loki:
 promtail:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/promtail.git
-    tag: "6.8.1-bb.2"
+    tag: "6.10.0-bb.1"
     path: "./chart"
   enabled: true
 
