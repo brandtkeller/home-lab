@@ -26,9 +26,8 @@
         {
             "fileMatch": ["^2-Orchestration/clusters/production/bigbang/configmap\\.yaml$"],
             "matchStrings": [
-              "istio:\\s+git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
+              "git:\\s+repo:\\s+(?<depName>.+)\\s+tag:\\s+\"(?<currentValue>.+)\""
             ],
-            "depNameTemplate": "https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git",
             "datasourceTemplate": "git-tags",
             "versioningTemplate": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)-bb\\.(?<build>\\d+)$"
         }
