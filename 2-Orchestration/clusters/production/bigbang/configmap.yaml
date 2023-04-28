@@ -203,7 +203,7 @@ packages:
   renovate:
     git:
       repo: https://repo1.dso.mil/big-bang/product/packages/renovate.git
-      tag: "34.120.0-bb.0"
+      tag: "34.120.0-bb.1"
       path: "./chart"
     enabled: true
     wrapper:
