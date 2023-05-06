@@ -10,7 +10,7 @@ istio:
 istioOperator:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    tag: "1.17.2-bb.0"
+    tag: "1.17.2-bb.1"
     path: "./chart"
   enabled: true
 
