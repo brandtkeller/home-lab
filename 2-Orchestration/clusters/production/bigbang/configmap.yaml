@@ -17,7 +17,7 @@ istioOperator:
 monitoring:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/monitoring.git
-    tag: "43.1.2-bb.4"
+    tag: "43.1.2-bb.5"
     path: "./chart"
   enabled: true
 
