@@ -9,3 +9,6 @@ kiali:
 
 jaeger:
   enabled: false
+
+tempo:
+  enabled: false
