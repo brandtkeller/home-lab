@@ -125,12 +125,12 @@ kyvernoPolicies:
                 - longhorn
                 - nextcloud
       
-      # restrict-host-path-mount:
-      #   exclude:
-      #       any:
-      #       - resources:
-      #           namespaces:
-      #           - openebs
+      restrict-host-path-mount:
+        exclude:
+            any:
+            - resources:
+                namespaces:
+                - longhorn
 
       restrict-host-path-write:
         exclude:
