@@ -17,14 +17,14 @@ istioOperator:
 monitoring:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/monitoring.git
-    tag: "43.1.2-bb.5"
+    tag: "45.27.2-bb.0"
     path: "./chart"
   enabled: true
 
 loki:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/loki.git
-    tag: "5.0.0-bb.2"
+    tag: "5.0.0-bb.3"
     path: "./chart"
   enabled: true
   strategy: monolith
