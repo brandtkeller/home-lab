@@ -1,0 +1,26 @@
+kind: ZarfPackageConfig
+metadata:
+  name: home-automation
+  description: "Components comprising my home automation orchestration"
+  version: 0.0.1
+components:
+  - name: istio-operator
+    required: true
+    manifests:
+      - istio-values.yaml
+    charts:
+      - name: flux-generic
+        namespace: gitops
+
+  - name: istio-controlplane
+  - name: home-assistant
+    required: true
+    charts:
+      - name: home-assistant
+        localPath: chart
+        namespace: home-assistant
+        version: 0.1.0
+    images:
+      - ghcr.io/home-assistant/home-assistant:2023.5.3
+      - zwavejs/zwave-js-ui:8.16.1
+  - name: home-assistant-virtualservice
