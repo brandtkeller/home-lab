@@ -24,7 +24,7 @@ monitoring:
 loki:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/loki.git
-    tag: "5.0.0-bb.4"
+    tag: "5.5.0-bb.4"
     path: "./chart"
   enabled: true
   strategy: monolith
