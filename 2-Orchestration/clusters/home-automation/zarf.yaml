@@ -18,7 +18,7 @@ components:
       - name: flux-generics
         localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart
         namespace: gitops
-        version: 0.1.0
+        version: 0.0.1
         valuesFiles:
           - configs/istio-operator/flux.yaml
     repos:

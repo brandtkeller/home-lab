@@ -18,12 +18,9 @@ helmrelease:
     path: "chart/"
     gitRepoName: "istio-operator"
     gitRepoNamespace: "gitops"
-  helmRepo:
-    chartName: "test"
-    tag: "0.1.0"
-    repoName: "test"
-    helmRepoNamespace: "test"
   valuesFrom: 
+    - name: istio-operator-config
+      kind: ConfigMap
   dependsOn: []
   postRenderers: {}
   

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: istio-operator-config
+data:
+  values.yaml: |
+    createNamespace: false
+
+    enterprise: false
+    imagePullPolicy: Always
+
+    networkPolicies:
+      enabled: true
+      controlPlaneCidr: 0.0.0.0/0
+    monitoring:
+      enabled: false
