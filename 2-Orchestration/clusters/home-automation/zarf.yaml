@@ -7,20 +7,34 @@ components:
   - name: istio-operator
     required: true
     manifests:
-      - istio-values.yaml
+    - name: istio-operator-config
+      namespace: gitops
+      files:
+        - configs/istio-operator/config.yaml
+    - name: istio-namespace
+      files:
+        - configs/istio-operator/namespace.yaml
     charts:
-      - name: flux-generic
+      - name: flux-generics
+        localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart
         namespace: gitops
-
-  - name: istio-controlplane
-  - name: home-assistant
-    required: true
-    charts:
-      - name: home-assistant
-        localPath: chart
-        namespace: home-assistant
         version: 0.1.0
+        valuesFiles:
+          - configs/istio-operator/flux.yaml
+    repos:
+      - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.17.2-bb.1
     images:
-      - ghcr.io/home-assistant/home-assistant:2023.5.3
-      - zwavejs/zwave-js-ui:8.16.1
-  - name: home-assistant-virtualservice
+      - registry1.dso.mil/ironbank/opensource/istio/operator:1.17.2
+
+  # - name: istio-controlplane
+  # - name: home-assistant
+  #   required: true
+  #   charts:
+  #     - name: home-assistant
+  #       localPath: chart
+  #       namespace: home-assistant
+  #       version: 0.1.0
+  #   images:
+  #     - ghcr.io/home-assistant/home-assistant:2023.5.3
+  #     - zwavejs/zwave-js-ui:8.16.1
+  # - name: home-assistant-virtualservice

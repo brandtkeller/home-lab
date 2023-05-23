@@ -1,0 +1,29 @@
+gitrepo:
+  enabled: true
+  name: istio-operator
+  url: https://repo1.dso.mil/big-bang/product/packages/istio-operator.git
+  interval: "5m0s"
+  ref:
+    tag: "1.17.2-bb.1"
+    # branch: ""
+    # commit: ""
+    # semver: ""
+
+helmrelease:
+  enabled: true
+  name: istio-operator
+  sourceType: "git"
+  targetNamespace: istio-operator
+  gitRepo:
+    path: "chart/"
+    gitRepoName: "istio-operator"
+    gitRepoNamespace: "gitops"
+  helmRepo:
+    chartName: "test"
+    tag: "0.1.0"
+    repoName: "test"
+    helmRepoNamespace: "test"
+  valuesFrom: 
+  dependsOn: []
+  postRenderers: {}
+  
