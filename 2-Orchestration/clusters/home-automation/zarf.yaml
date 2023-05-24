@@ -15,7 +15,7 @@ components:
       files:
         - configs/istio-operator/namespace.yaml
     charts:
-      - name: flux-generics
+      - name: flux-generics-istio-operator
         localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart
         namespace: gitops
         version: 0.0.1
@@ -25,8 +25,35 @@ components:
       - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.17.2-bb.1
     images:
       - registry1.dso.mil/ironbank/opensource/istio/operator:1.17.2
-
-  # - name: istio-controlplane
+  
+  - name: istio-controlplane
+    required: true
+    manifests:
+    - name: istio-config
+      namespace: gitops
+      files:
+        - configs/istio/config.yaml
+    - name: istio-namespace
+      files:
+        - configs/istio/namespace.yaml
+    - name: istio-gateway-certs
+      namespace: istio-system
+      files:
+        - home-gateway.yaml
+    charts:
+      - name: flux-generics-istio
+        localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart
+        namespace: gitops
+        version: 0.0.1
+        valuesFiles:
+          - configs/istio/flux.yaml
+    repos:
+      - https://repo1.dso.mil/big-bang/product/packages/istio-controlplane.git@1.17.2-bb.1
+    images:
+      - registry1.dso.mil/ironbank/big-bang/base:2.0.0
+      - registry1.dso.mil/ironbank/opensource/istio/pilot:1.17.2
+      - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.17.2
+      - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.17.2
   # - name: home-assistant
   #   required: true
   #   charts:

@@ -1,0 +1,26 @@
+gitrepo:
+  enabled: true
+  name: istio
+  url: https://repo1.dso.mil/big-bang/product/packages/istio-controlplane.git
+  interval: "5m0s"
+  ref:
+    tag: "1.17.2-bb.1"
+    # branch: ""
+    # commit: ""
+    # semver: ""
+
+helmrelease:
+  enabled: true
+  name: istio
+  sourceType: "git"
+  targetNamespace: istio-system
+  gitRepo:
+    path: "chart/"
+    gitRepoName: "istio"
+    gitRepoNamespace: "gitops"
+  valuesFrom: 
+    - name: istio-config
+      kind: ConfigMap
+  dependsOn: []
+  postRenderers: {}
+  

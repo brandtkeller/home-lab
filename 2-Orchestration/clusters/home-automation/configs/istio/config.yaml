@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: istio-config
+data:
+  values.yaml: |
+    authservice:
+      enabled: false
+    domain: home.kellerhome.us
+    enterprise: false
+    gateways:
+      exposed:
+        autoHttpRedirect:
+          enabled: true
+        selector:
+          app: exposed-ingressgateway
+        servers:
+        - hosts:
+          - '*.k8s.kellerhome.us'
+          port:
+            name: https
+            number: 8443
+            protocol: HTTPS
+          tls:
+            credentialName: exposed-cert
+            mode: SIMPLE
+      main: null
+      public:
+        autoHttpRedirect:
+          enabled: true
+        selector:
+          app: public-ingressgateway
+        servers:
+        - hosts:
+          - '*.prod.kellerhome.us'
+          port:
+            name: https
+            number: 8443
+            protocol: HTTPS
+          tls:
+            credentialName: public-cert
+            mode: SIMPLE
+    imagePullPolicy: IfNotPresent
+    ingressGateways:
+      exposed-ingressgateway:
+        k8s:
+          service:
+            type: ClusterIP
+      istio-ingressgateway:
+        enabled: false
+      public-ingressgateway:
+        k8s:
+          service:
+            type: LoadBalancer
+    istiod:
+      env:
+      - name: ENABLE_LEGACY_FSGROUP_INJECTION
+        value: "false"
+      hpaSpec:
+        metrics:
+        - resource:
+            name: cpu
+            target:
+              averageUtilization: 60
+              type: Utilization
+          type: Resource
+    kiali:
+      enabled: false
+    monitoring:
+      enabled: false
+    networkPolicies:
+      controlPlaneCidr: 0.0.0.0/0
+      enabled: true
+    openshift: false
