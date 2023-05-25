@@ -2,6 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: kubevip-ip-config
+  name: kubevip
+  namespace: kube-system
 data:
   range-global: ###ZARF_VAR_VIP_IP_RANGE###    # Range-based IP range for use in all namespaces

@@ -28,7 +28,7 @@ variables:
     sensitive: true
 
 components:
-  - name: kubeVIP
+  - name: kube-vip
     required: true
     manifests:
     - name: kube-vip
@@ -36,33 +36,14 @@ components:
       files:
       - configs/kubevip/rbac.yaml
       - configs/kubevip/daemonset.yaml
-      - configs/kubevip/kube-vip-cloud-configmap.yaml
       - configs/kubevip/kube-vip-cloud-controller.yaml
+    - name: kube-vip-config
+      files:
+      - configs/kubevip/kube-vip-cloud-configmap.yaml
     images:
     - ghcr.io/kube-vip/kube-vip:v0.5.6
     - ghcr.io/kube-vip/kube-vip-cloud-provider:v0.0.4
-  - name: istio-operator
-    required: true
-    manifests:
-    - name: istio-operator-config
-      namespace: gitops
-      files:
-        - configs/istio-operator/config.yaml
-    - name: istio-namespace
-      files:
-        - configs/istio-operator/namespace.yaml
-    charts:
-      - name: flux-generics-istio-operator
-        localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart
-        namespace: gitops
-        version: 0.0.1
-        valuesFiles:
-          - configs/istio-operator/flux.yaml
-    repos:
-      - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.17.2-bb.1
-    images:
-      - registry1.dso.mil/ironbank/opensource/istio/operator:1.17.2
-
+  
   - name: flux
     required: true
     manifests:
@@ -75,6 +56,29 @@ components:
       - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v0.35.1
       - registry1.dso.mil/ironbank/fluxcd/notification-controller:v0.33.0
       - registry1.dso.mil/ironbank/fluxcd/source-controller:v0.36.1
+
+  - name: istio-operator
+    required: true
+    manifests:
+    - name: istio-operator-config
+      namespace: gitops
+      files:
+        - configs/istio-operator/config.yaml
+    - name: istio-namespace
+      files:
+        - configs/istio-operator/namespace.yaml
+    charts:
+      - name: flux-generics
+        localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart
+        releaseName: flux-istio-operator
+        namespace: gitops
+        version: 0.0.1
+        valuesFiles:
+          - configs/istio-operator/flux.yaml
+    repos:
+      - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.17.2-bb.1
+    images:
+      - registry1.dso.mil/ironbank/opensource/istio/operator:1.17.2
 
   - name: istio-controlplane
     required: true
@@ -91,8 +95,9 @@ components:
       files:
         - configs/istio/tls.yaml
     charts:
-      - name: flux-generics-istio
+      - name: flux-generics
         localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart
+        releaseName: flux-istio
         namespace: gitops
         version: 0.0.1
         valuesFiles:
