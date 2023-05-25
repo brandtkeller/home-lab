@@ -3,7 +3,44 @@ metadata:
   name: home-automation
   description: "Components comprising my home automation orchestration"
   version: 0.0.1
+  architecture: amd64
+
+variables:
+  - name: VIP_INTERFACE
+    description: "Interface for the VIP"
+    prompt: true
+    sensitive: false
+  - name: VIP_ADDRESS
+    description: "IP address for the VIP"
+    prompt: true
+    sensitive: false
+  - name: VIP_IP_RANGE
+    description: "Range of ip addresses for loadbalancers 192.168.0.12-192.168.0.13"
+    prompt: true
+    sensitive: false
+  - name: CERTIFICATE_BASE64
+    description: "Fullchain certificate for the domain"
+    prompt: true
+    sensitive: true
+  - name: PRIVKEY_BASE64
+    description: "Private key for the domain"
+    prompt: true
+    sensitive: true
+
 components:
+  - name: kubeVIP
+    required: true
+    manifests:
+    - name: kube-vip
+      namespace: kube-vip
+      files:
+      - configs/kubevip/rbac.yaml
+      - configs/kubevip/daemonset.yaml
+      - configs/kubevip/kube-vip-cloud-configmap.yaml
+      - configs/kubevip/kube-vip-cloud-controller.yaml
+    images:
+    - ghcr.io/kube-vip/kube-vip:v0.5.6
+    - ghcr.io/kube-vip/kube-vip-cloud-provider:v0.0.4
   - name: istio-operator
     required: true
     manifests:
@@ -25,7 +62,20 @@ components:
       - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.17.2-bb.1
     images:
       - registry1.dso.mil/ironbank/opensource/istio/operator:1.17.2
-  
+
+  - name: flux
+    required: true
+    manifests:
+      - name: flux-installer
+        # This will be built on the package create side and deployed as a regular manifest on package deploy
+        kustomizations:
+          - https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base/flux?ref=2.2.0
+    images:
+      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v0.32.1
+      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v0.35.1
+      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v0.33.0
+      - registry1.dso.mil/ironbank/fluxcd/source-controller:v0.36.1
+
   - name: istio-controlplane
     required: true
     manifests:
@@ -36,10 +86,10 @@ components:
     - name: istio-namespace
       files:
         - configs/istio/namespace.yaml
-    - name: istio-gateway-certs
+    - name: istio-gateway-cert
       namespace: istio-system
       files:
-        - home-gateway.yaml
+        - configs/istio/tls.yaml
     charts:
       - name: flux-generics-istio
         localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart

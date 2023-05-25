@@ -9,46 +9,27 @@ data:
     domain: home.kellerhome.us
     enterprise: false
     gateways:
-      exposed:
-        autoHttpRedirect:
-          enabled: true
-        selector:
-          app: exposed-ingressgateway
-        servers:
-        - hosts:
-          - '*.k8s.kellerhome.us'
-          port:
-            name: https
-            number: 8443
-            protocol: HTTPS
-          tls:
-            credentialName: exposed-cert
-            mode: SIMPLE
       main: null
-      public:
+      home:
         autoHttpRedirect:
           enabled: true
         selector:
-          app: public-ingressgateway
+          app: home-ingressgateway
         servers:
         - hosts:
-          - '*.prod.kellerhome.us'
+          - '*.home.kellerhome.us'
           port:
             name: https
             number: 8443
             protocol: HTTPS
           tls:
-            credentialName: public-cert
+            credentialName: home-cert
             mode: SIMPLE
     imagePullPolicy: IfNotPresent
     ingressGateways:
-      exposed-ingressgateway:
-        k8s:
-          service:
-            type: ClusterIP
       istio-ingressgateway:
         enabled: false
-      public-ingressgateway:
+      home-ingressgateway:
         k8s:
           service:
             type: LoadBalancer
