@@ -109,14 +109,31 @@ components:
       - registry1.dso.mil/ironbank/opensource/istio/pilot:1.17.2
       - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.17.2
       - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.17.2
-  # - name: home-assistant
-  #   required: true
-  #   charts:
-  #     - name: home-assistant
-  #       localPath: chart
-  #       namespace: home-assistant
-  #       version: 0.1.0
-  #   images:
-  #     - ghcr.io/home-assistant/home-assistant:2023.5.3
-  #     - zwavejs/zwave-js-ui:8.16.1
-  # - name: home-assistant-virtualservice
+
+  - name: home-assistant
+    required: true
+    manifests:
+    - name: home-assistant-config
+      namespace: gitops
+      files:
+        - configs/home-assistant/config.yaml
+    - name: home-assistant-namespace
+      files:
+        - configs/home-assistant/namespace.yaml
+    - name: virtualservice
+      namespace: home-assistant
+      files:
+        - configs/home-assistant/virtualservice.yaml
+    charts:
+      - name: flux-generics
+        localPath: /Users/brandtkeller/repos/github/flux-generic-helm/chart
+        releaseName: flux-home-assistant
+        namespace: gitops
+        version: 0.0.1
+        valuesFiles:
+          - configs/home-assistant/flux.yaml
+    repos:
+      - https://github.com/brandtkeller/home-assistant-helm.git@0.1.1
+    images:
+      - ghcr.io/home-assistant/home-assistant:2023.5.3
+      - zwavejs/zwave-js-ui:8.16.1

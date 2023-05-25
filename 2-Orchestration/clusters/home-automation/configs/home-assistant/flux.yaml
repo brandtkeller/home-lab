@@ -1,0 +1,26 @@
+gitrepo:
+  enabled: true
+  name: home-assistant
+  url: https://github.com/brandtkeller/home-assistant-helm.git
+  interval: "5m0s"
+  ref:
+    tag: "0.1.1"
+    # branch: ""
+    # commit: ""
+    # semver: ""
+
+helmrelease:
+  enabled: true
+  name: home-assistant
+  sourceType: "git"
+  targetNamespace: home-assistant
+  gitRepo:
+    path: "chart/"
+    gitRepoName: "home-assistant"
+    gitRepoNamespace: "gitops"
+  valuesFrom:
+    - name: home-assistant-config
+      kind: ConfigMap
+  dependsOn: []
+  postRenderers: {}
+  

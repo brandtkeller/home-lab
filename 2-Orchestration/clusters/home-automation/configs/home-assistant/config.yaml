@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: home-assistant-config
+data:
+  values.yaml: |
+    persistence:
+      enabled: true
+    zwavejs:
+      enabled: true
+      usb:
+        path: /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_f0d36ebf3694eb118dec3a703d98b6d1-if00-port0

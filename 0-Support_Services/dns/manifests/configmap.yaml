@@ -31,4 +31,6 @@ data:
     prod-agent-orange.kellerhome.us.      IN  A  192.168.1.36
     valheim.kellerhome.us.                IN  A  192.168.1.30    
     manage.kellerhome.us.                 IN  A  192.168.0.130
+    home.kellerhome.us.                   IN  A  192.168.0.132
+    *.home.kellerhome.us.                 IN  A  192.168.0.133
   
