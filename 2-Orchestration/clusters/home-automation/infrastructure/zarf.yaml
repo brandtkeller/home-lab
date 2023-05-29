@@ -18,6 +18,22 @@ variables:
     description: "Range of ip addresses for loadbalancers 192.168.0.12-192.168.0.13"
     prompt: true
     sensitive: false
+  - name: CERT_EMAIL
+    description: "certificate email for requesting letsencrypt cert"
+    prompt: true
+    sensitive: false
+  - name: DNS_ZONE
+    description: "DNS zone for certificate issuing"
+    prompt: true
+    sensitive: false
+  - name: SECRET_ACCESS_KEY
+    description: "Secret access key for cert-manager aws access"
+    prompt: true
+    sensitive: true
+  - name: ACCESS_KEY
+    description: "Access key for cert-manager aws access"
+    prompt: true
+    sensitive: true
 
 
 components:
@@ -58,78 +74,78 @@ components:
       - quay.io/jetstack/cert-manager-acmesolver:v1.12.1
       - quay.io/jetstack/cert-manager-ctl:v1.12.1
   
-  # - name: cert-manager-addons
-  #   required: true
-  #   manifests:
-  #   - name: cert-manager-addons
-  #     namespace: cert-manager
-  #     files:
-  #     - configs/cert-manager/secret.yaml
-  #     - configs/cert-manager/cluster-issuer.yaml
+  - name: cert-manager-addons
+    required: true
+    manifests:
+    - name: cert-manager-addons
+      namespace: cert-manager
+      files:
+      - configs/cert-manager/secret.yaml
+      - configs/cert-manager/cluster-issuer.yaml
 
   
-  # - name: flux
-  #   required: true
-  #   manifests:
-  #     - name: flux-installer
-  #       # This will be built on the package create side and deployed as a regular manifest on package deploy
-  #       kustomizations:
-  #         - https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base/flux?ref=2.2.0
-  #   images:
-  #     - registry1.dso.mil/ironbank/fluxcd/helm-controller:v0.32.1
-  #     - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v0.35.1
-  #     - registry1.dso.mil/ironbank/fluxcd/notification-controller:v0.33.0
-  #     - registry1.dso.mil/ironbank/fluxcd/source-controller:v0.36.1
+  - name: flux
+    required: true
+    manifests:
+      - name: flux-installer
+        # This will be built on the package create side and deployed as a regular manifest on package deploy
+        kustomizations:
+          - https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base/flux?ref=2.2.0
+    images:
+      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v0.32.1
+      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v0.35.1
+      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v0.33.0
+      - registry1.dso.mil/ironbank/fluxcd/source-controller:v0.36.1
 
-  # - name: istio-operator
-  #   required: true
-  #   manifests:
-  #   - name: istio-operator-config
-  #     namespace: gitops
-  #     files:
-  #       - configs/istio-operator/config.yaml
-  #   - name: istio-namespace
-  #     files:
-  #       - configs/istio-operator/namespace.yaml
-  #   charts:
-  #     - name: flux-generics
-  #       url: oci://ghcr.io/brandtkeller/flux-generics
-  #       releaseName: flux-istio-operator
-  #       namespace: gitops
-  #       version: 0.0.1
-  #       valuesFiles:
-  #         - configs/istio-operator/flux.yaml
-  #   repos:
-  #     - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.17.2-bb.1
-  #   images:
-  #     - registry1.dso.mil/ironbank/opensource/istio/operator:1.17.2
+  - name: istio-operator
+    required: true
+    manifests:
+    - name: istio-operator-config
+      namespace: gitops
+      files:
+        - configs/istio-operator/config.yaml
+    - name: istio-namespace
+      files:
+        - configs/istio-operator/namespace.yaml
+    charts:
+      - name: flux-generics
+        url: oci://ghcr.io/brandtkeller/flux-generics
+        releaseName: flux-istio-operator
+        namespace: gitops
+        version: 0.0.1
+        valuesFiles:
+          - configs/istio-operator/flux.yaml
+    repos:
+      - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.17.2-bb.1
+    images:
+      - registry1.dso.mil/ironbank/opensource/istio/operator:1.17.2
 
-  # - name: istio-controlplane
-  #   required: true
-  #   manifests:
-  #   - name: istio-config
-  #     namespace: gitops
-  #     files:
-  #       - configs/istio/config.yaml
-  #   - name: istio-namespace
-  #     files:
-  #       - configs/istio/namespace.yaml
-  #   - name: istio-gateway-cert
-  #     namespace: istio-system
-  #     files:
-  #       - configs/istio/tls.yaml
-  #   charts:
-  #     - name: flux-generics
-  #       url: oci://ghcr.io/brandtkeller/flux-generics
-  #       releaseName: flux-istio
-  #       namespace: gitops
-  #       version: 0.0.1
-  #       valuesFiles:
-  #         - configs/istio/flux.yaml
-  #   repos:
-  #     - https://repo1.dso.mil/big-bang/product/packages/istio-controlplane.git@1.17.2-bb.1
-  #   images:
-  #     - registry1.dso.mil/ironbank/big-bang/base:2.0.0
-  #     - registry1.dso.mil/ironbank/opensource/istio/pilot:1.17.2
-  #     - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.17.2
-  #     - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.17.2
+  - name: istio-controlplane
+    required: true
+    manifests:
+    - name: istio-config
+      namespace: gitops
+      files:
+        - configs/istio/config.yaml
+    - name: istio-namespace
+      files:
+        - configs/istio/namespace.yaml
+    - name: istio-gateway-cert
+      namespace: istio-system
+      files:
+        - configs/istio/certificate.yaml
+    charts:
+      - name: flux-generics
+        url: oci://ghcr.io/brandtkeller/flux-generics
+        releaseName: flux-istio
+        namespace: gitops
+        version: 0.0.1
+        valuesFiles:
+          - configs/istio/flux.yaml
+    repos:
+      - https://repo1.dso.mil/big-bang/product/packages/istio-controlplane.git@1.17.2-bb.1
+    images:
+      - registry1.dso.mil/ironbank/big-bang/base:2.0.0
+      - registry1.dso.mil/ironbank/opensource/istio/pilot:1.17.2
+      - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.17.2
+      - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.17.2
