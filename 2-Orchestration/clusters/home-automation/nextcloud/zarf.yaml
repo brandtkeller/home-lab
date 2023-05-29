@@ -1,0 +1,41 @@
+kind: ZarfPackageConfig
+metadata:
+  name: nextcloud
+  description: "Components comprising my home automation orchestration"
+  version: 0.0.1
+  architecture: amd64
+
+# variables:
+#   - name: VIP_INTERFACE
+#     description: "Interface for the VIP"
+#     prompt: true
+#     sensitive: false
+
+components:
+  - name: nextcloud
+    required: true
+    manifests:
+    - name: nextcloud-config
+      namespace: gitops
+      files:
+        - configs/nextcloud/config.yaml
+    - name: nextcloud-namespace
+      files:
+        - configs/nextcloud/namespace.yaml
+    - name: virtualservice
+      namespace: nextcloud
+      files:
+        - configs/nextcloud/virtualservice.yaml
+        - configs/nextcloud/zwave-virtualservice.yaml
+    charts:
+      - name: flux-generics
+        url: oci://ghcr.io/brandtkeller/flux-generics
+        releaseName: flux-nextcloud
+        namespace: gitops
+        version: 0.0.1
+        valuesFiles:
+          - configs/nextcloud/flux.yaml
+    repos:
+      - 
+    images:
+      - 

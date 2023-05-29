@@ -4,7 +4,7 @@ gitrepo:
   url: https://github.com/brandtkeller/home-assistant-helm.git
   interval: "5m0s"
   ref:
-    tag: "0.1.1"
+    tag: "0.1.2"
     # branch: ""
     # commit: ""
     # semver: ""
@@ -21,6 +21,8 @@ helmrelease:
   valuesFrom:
     - name: home-assistant-config
       kind: ConfigMap
-  dependsOn: []
+  dependsOn:
+    - name: istio
+      namespace: gitops
   postRenderers: {}
   

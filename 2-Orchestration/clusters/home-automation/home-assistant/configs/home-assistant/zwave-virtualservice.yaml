@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: zwave
+spec:
+  exportTo:
+  - istio-system
+  gateways:
+  - istio-system/home
+  hosts:
+  - zwave.home.kellerhome.us
+  http:
+  - route:
+    - destination:
+        host: zwave
+        port:
+          number: 80
