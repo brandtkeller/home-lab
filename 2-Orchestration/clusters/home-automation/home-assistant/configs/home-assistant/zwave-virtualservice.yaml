@@ -12,6 +12,6 @@ spec:
   http:
   - route:
     - destination:
-        host: zwave
+        host: home-assistant-home-assistant-zwave
         port:
           number: 80

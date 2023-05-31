@@ -23,7 +23,7 @@ data:
             number: 8443
             protocol: HTTPS
           tls:
-            credentialName: cert-sec
+            credentialName: home-kellerhome-tls
             mode: SIMPLE
     imagePullPolicy: IfNotPresent
     ingressGateways:
