@@ -3,14 +3,14 @@ domain: prod.kellerhome.us
 istio:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    tag: "1.17.2-bb.1"
+    tag: "1.17.2-bb.2"
     path: "./chart"
   enabled: true
 
 istioOperator:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    tag: "1.17.2-bb.1"
+    tag: "1.17.2-bb.2"
     path: "./chart"
   enabled: true
 
