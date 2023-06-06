@@ -1,0 +1,27 @@
+kind: ZarfPackageConfig
+metadata:
+  name: home-dns
+  description: "dns component for home automation cluster"
+  version: 0.0.1
+  architecture: amd64
+
+# variables:
+#   - name: VIP_INTERFACE
+#     description: "Interface for the VIP"
+#     prompt: true
+#     sensitive: false
+
+components:
+  - name: coredns
+    required: true
+    manifests:
+    - name: dns-namespace
+      files:
+        - configs/namespace.yaml
+    - name: dns-resources
+      namespace: dns
+      files:
+        - configs/configmap.yaml
+        - configs/daemonset.yaml
+    images:
+      - coredns/coredns:1.10.0
