@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-automation
   description: "Components comprising my home automation orchestration"
-  version: 0.0.1
+  version: 0.0.2
   architecture: amd64
 
 variables:
@@ -37,6 +37,12 @@ variables:
 
 
 components:
+  - name: local-path-provisioner
+    required: true
+    import:
+      url: oci://ghcr.io/brandtkeller/zarf/local-path-provisioner:0.0.2-skeleton
+      name: local-path-provisioner
+
   - name: kube-vip
     required: true
     manifests:
