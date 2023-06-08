@@ -5,10 +5,9 @@ metadata:
   labels:
     run: rsync
   name: rsync
-  namespace: test
+  namespace: nextcloud
 spec:
   # specifically assigning to node manually - update to dynamic in future orchestration
-  nodeName: infra-agent-orange
   containers:
   # replace sleep with a full rsync command
   - args:
@@ -24,7 +23,7 @@ spec:
   volumes:
   - name: data-vol
     persistentVolumeClaim:
-      claimName: test-pvc
+      claimName: nextcloud-nextcloud
   dnsPolicy: ClusterFirst
   restartPolicy: Always
 status: {}

@@ -4,6 +4,9 @@ metadata:
   name: home-assistant-config
 data:
   values.yaml: |
+    env:
+    - name: TZ
+      value: America/Los_Angeles
     persistence:
       enabled: true
     zwavejs:

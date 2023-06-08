@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-assistant
   description: "Components comprising my home automation orchestration"
-  version: 0.0.2
+  version: 0.0.3
   architecture: amd64
 
 # variables:
@@ -36,7 +36,7 @@ components:
         valuesFiles:
           - configs/home-assistant/flux.yaml
     repos:
-      - https://github.com/brandtkeller/home-assistant-helm.git@0.1.3
+      - https://github.com/brandtkeller/home-assistant-helm.git@0.1.4
     images:
-      - ghcr.io/home-assistant/home-assistant:2023.5.3
+      - ghcr.io/home-assistant/home-assistant:2023.6.0
       - zwavejs/zwave-js-ui:8.17.1
