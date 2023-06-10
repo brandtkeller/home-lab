@@ -17,15 +17,5 @@ Cluster used to provide home automation orchestration. This resides on a subnet 
     - All other components of the system
 
 
-## Ideal Architecture
-
-- k3s
-- zarf init
-- zarf package
-    - flux
-    - istio
-        - controlplane
-            - gateway w/ cert
-        - operator
-    - home-assistant + zwavejs
-    - home-assistant virtualservice
+## Important Notes
+- K3s as deployed with Zarf will need `--disable=servicelb` set on the server as we are using `kubevip` for loadbalancing

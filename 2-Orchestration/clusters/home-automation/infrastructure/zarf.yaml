@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-automation
   description: "Components comprising my home automation orchestration"
-  version: 0.0.3
+  version: 0.0.4
   architecture: amd64
 
 variables:
@@ -56,8 +56,8 @@ components:
       files:
       - configs/kubevip/kube-vip-cloud-configmap.yaml
     images:
-    - ghcr.io/kube-vip/kube-vip:v0.5.6
-    - ghcr.io/kube-vip/kube-vip-cloud-provider:v0.0.4
+    - ghcr.io/kube-vip/kube-vip:v0.6.0
+    - ghcr.io/kube-vip/kube-vip-cloud-provider:v0.0.7
 
 
   - name: cert-manager-chart
@@ -155,3 +155,9 @@ components:
       - registry1.dso.mil/ironbank/opensource/istio/pilot:1.17.2
       - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.17.2
       - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.17.2
+  
+  - name: import-openvpn
+    required: true
+    import:
+      name: openvpn
+      url: oci://ghcr.io/brandtkeller/zarf/openvpn:0.0.4-skeleton

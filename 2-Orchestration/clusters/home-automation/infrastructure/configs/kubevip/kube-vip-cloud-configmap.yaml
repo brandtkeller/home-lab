@@ -5,4 +5,5 @@ metadata:
   name: kubevip
   namespace: kube-system
 data:
-  range-global: ###ZARF_VAR_VIP_IP_RANGE###    # Range-based IP range for use in all namespaces
+  range-istio-system: 192.168.0.133-192.168.0.133
+  range-openvpn: 192.168.0.134-192.168.0.134
