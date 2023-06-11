@@ -2,14 +2,40 @@ kind: ZarfPackageConfig
 metadata:
   name: nextcloud
   description: "Components comprising my home automation orchestration"
-  version: 0.0.2
+  version: 0.0.3
   architecture: amd64
 
-# variables:
-#   - name: VIP_INTERFACE
-#     description: "Interface for the VIP"
-#     prompt: true
-#     sensitive: false
+variables:
+  - name: CRON_SCHEDULE
+    description: "Cron Schedule for the aws sync"
+    default: "0 8 * * *"
+    prompt: true
+    sensitive: false
+  - name: BACKUP_DIR
+    description: "Directory in the mounted pod to backup - starts with `/data`"
+    default: "/data/mydirectory"
+    prompt: true
+    sensitive: false
+  - name: S3_BUCKET_PATH
+    description: "Path to the S3 bucket and sub-directory in the bucket - `s3://my-bucket/somedir`"
+    prompt: true
+    sensitive: false
+  - name: CLAIM_NAME
+    description: "Perisistent volume claim to sync to s3"
+    prompt: true
+    sensitive: false
+  - name: SECRET_ACCESS_KEY
+    description: "Secret access key for cert-manager aws access"
+    prompt: true
+    sensitive: true
+  - name: ACCESS_KEY
+    description: "Access key for cert-manager aws access"
+    prompt: true
+    sensitive: true
+  - name: REGION
+    description: "region for the aws configuration"
+    prompt: true
+    sensitive: false
 
 components:
 - name: import-nextcloud
@@ -25,3 +51,13 @@ components:
     namespace: nextcloud
     files:
     - configs/virtualservice.yaml
+
+- name: nextcloud-s3-sync
+  required: true
+  manifests:
+  - name: s3-sync
+    namespace: nextcloud
+    files:
+    - configs/cronjob.yaml
+  images:
+  - amazon/aws-cli:2.9.12

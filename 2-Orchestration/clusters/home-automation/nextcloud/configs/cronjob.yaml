@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cloud-sync-cronjob
+spec:
+  schedule: '###ZARF_VAR_CRON_SCHEDULE###'
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 7
+  jobTemplate:
+    metadata:
+      name: cloud-sync-cronjob
+    spec:
+      activeDeadlineSeconds: 28800
+      template:
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                    - nextcloud
+                topologyKey: "kubernetes.io/hostname"
+          containers:
+          - name: s3-sync
+            image: amazon/aws-cli:2.9.12
+            command:
+            - /bin/sh
+            - -c
+            - aws s3 sync ###ZARF_VAR_BACKUP_DIR### ###ZARF_VAR_S3_BUCKET_PATH
+            volumeMounts:
+            - name: aws-creds
+              mountPath: "/root/.aws"
+              readOnly: true
+            - name: data
+              mountPath: "/data"
+          volumes:
+          - name: aws-creds
+            secret:
+              secretName: aws-sec
+          - name: data
+            persistentVolumeClaim:
+              claimName: ###ZARF_VAR_CLAIM_NAME###
+          restartPolicy: Never
