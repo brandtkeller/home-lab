@@ -29,7 +29,7 @@ spec:
             command:
             - /bin/sh
             - -c
-            - aws s3 sync ###ZARF_VAR_BACKUP_DIR### ###ZARF_VAR_S3_BUCKET_PATH
+            - aws s3 sync ###ZARF_VAR_BACKUP_DIR### ###ZARF_VAR_S3_BUCKET_PATH###
             volumeMounts:
             - name: aws-creds
               mountPath: "/root/.aws"

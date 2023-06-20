@@ -59,5 +59,6 @@ components:
     namespace: nextcloud
     files:
     - configs/cronjob.yaml
+    - configs/secret.yaml
   images:
   - amazon/aws-cli:2.9.12
