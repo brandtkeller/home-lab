@@ -7,6 +7,29 @@ data:
     env:
     - name: TZ
       value: America/Los_Angeles
+    config:
+    - name: configuration.yaml
+      path: /config
+      content: |
+        # Loads default set of integrations. Do not remove.
+        default_config:
+
+        http:
+          use_x_forwarded_for: true
+          trusted_proxies:
+            - 127.0.0.6
+
+        # Load frontend themes from the themes folder
+        frontend:
+          themes: !include_dir_merge_named themes
+
+        # Text to speech
+        tts:
+          - platform: google_translate
+
+        automation: !include automations.yaml
+        script: !include scripts.yaml
+        scene: !include scenes.yaml
     persistence:
       enabled: true
     zwavejs:
@@ -15,3 +38,4 @@ data:
         path: /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_f0d36ebf3694eb118dec3a703d98b6d1-if00-port0
       persistence:
         enabled: true
+    
