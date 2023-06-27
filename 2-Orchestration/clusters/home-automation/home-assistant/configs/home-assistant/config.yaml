@@ -14,10 +14,43 @@ data:
         # Loads default set of integrations. Do not remove.
         default_config:
 
+        # For use behind istio proxy
         http:
           use_x_forwarded_for: true
           trusted_proxies:
             - 127.0.0.6
+
+        cover:
+        - platform: template
+          covers:
+            garage_door:
+              device_class: garage
+              friendly_name: "Garage Door"
+              position_template: "{{ states('sensor.garage_door') }}"
+              open_cover:
+                - condition: state
+                  entity_id: sensor.garage_door
+                  state: "off"
+                - service: switch.turn_on
+                  target:
+                    entity_id: switch.garage_door
+              close_cover:
+                - condition: state
+                  entity_id: sensor.garage_door
+                  state: "on"
+                - service: switch.turn_off
+                  target:
+                    entity_id: switch.garage_door
+              stop_cover:
+                service: switch.turn_on
+                target:
+                  entity_id: switch.garage_door
+              icon_template: >-
+                {% if states('sensor.garage_door')|float > 0 %}
+                  mdi:garage-open
+                {% else %}
+                  mdi:garage
+                {% endif %}
 
         # Load frontend themes from the themes folder
         frontend:
