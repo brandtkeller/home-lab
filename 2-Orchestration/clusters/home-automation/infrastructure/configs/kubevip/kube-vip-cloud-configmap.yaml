@@ -7,3 +7,4 @@ metadata:
 data:
   range-istio-system: 192.168.0.133-192.168.0.133
   range-openvpn: 192.168.0.134-192.168.0.134
+  range-unifi: 192.168.0.135-192.168.0.135

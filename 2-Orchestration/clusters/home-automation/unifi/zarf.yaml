@@ -1,0 +1,26 @@
+kind: ZarfPackageConfig
+metadata:
+  name: unifi
+  description: "Components comprising my home automation orchestration"
+  version: 0.0.1
+  architecture: amd64
+
+# variables:
+#   - name: CRON_SCHEDULE
+#     description: "Cron Schedule for the aws sync"
+#     default: "0 8 * * *"
+#     prompt: true
+#     sensitive: false
+
+components:
+- name: unifi
+  required: true
+  manifests:
+  - name: manifests
+    namespace: unifi
+    files:
+    - configs/deployment.yaml
+    - configs/lb-service.yaml
+    - configs/pvc.yaml
+  images:
+  - linuxserver/unifi-controller:7.4.162
