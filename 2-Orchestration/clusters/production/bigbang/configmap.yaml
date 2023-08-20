@@ -3,14 +3,14 @@ domain: prod.kellerhome.us
 istio:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-controlplane.git
-    tag: "1.17.2-bb.2"
+    tag: "1.17.3-bb.1"
     path: "./chart"
   enabled: true
 
 istioOperator:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/core/istio-operator.git
-    tag: "1.17.2-bb.2"
+    tag: "1.17.3-bb.0"
     path: "./chart"
   enabled: true
 
@@ -32,7 +32,7 @@ loki:
 promtail:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/promtail.git
-    tag: "6.11.0-bb.1"
+    tag: "6.11.3-bb.0"
     path: "./chart"
   enabled: true
 
@@ -151,7 +151,7 @@ kyvernoPolicies:
 neuvector:
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/neuvector.git
-    tag: "2.4.3-bb.0"
+    tag: "2.4.5-bb.0"
     path: "./chart"
   enabled: true
   values:
