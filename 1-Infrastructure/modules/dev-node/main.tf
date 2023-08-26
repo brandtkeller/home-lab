@@ -11,9 +11,11 @@ resource "proxmox_vm_qemu" "dev_node" {
   name        = var.name
   target_node = var.pve_node
   clone       = var.clone_image
+  onboot      = var.boot
   os_type     = "cloud-init"
   cores       = var.cpus
-  sockets     = "1"
+  agent       = 0
+  sockets     = 1
   cpu         = "host"
   memory      = var.memory
   scsihw      = "virtio-scsi-pci"
@@ -24,11 +26,6 @@ resource "proxmox_vm_qemu" "dev_node" {
     type    = "scsi"
     storage = var.storage_type
   }
-  disk {
-    size    = "80G"
-    type    = "scsi"
-    storage = "hddpool1"
-  }
   network {
     model  = "virtio"
     bridge = var.net_bridge
@@ -38,10 +35,11 @@ resource "proxmox_vm_qemu" "dev_node" {
       network,
     ]
   }
-
+  
   provisioner "file" {
-    source      = "setup.sh"
-    destination = "/tmp/setup.sh"
+    source      = "bootstrap.sh"
+    destination = "/tmp/bootstrap.sh"
+
     connection {
       type     = "ssh"
       user     = "dev"
@@ -49,17 +47,19 @@ resource "proxmox_vm_qemu" "dev_node" {
       host     = var.ip_addr
     }
   }
-
+  
+  # iscsid required for openebs-jiva
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/setup.sh",
-      "/tmp/setup.sh",
+      "chmod +x /tmp/bootstrap.sh",
+      "/tmp/bootstrap.sh",
     ]
+
     connection {
-      type     = "ssh"
-      user     = "dev"
+      type        = "ssh"
+      user        = "dev"
       private_key = file("${var.ssh_priv_key_path}")
-      host     = var.ip_addr
+      host        = var.ip_addr
     }
   }
 

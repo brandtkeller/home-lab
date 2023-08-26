@@ -11,7 +11,7 @@ Check your local classifieds/ebay/etc. Beefy machines of 1-2 generations old can
 - Second, Identify both "good" and "ideal" solutions - If "ideal" will consume 2x more time - execute with "good" first
 
 ### Why not shoot for "ideal"?
-I focus on my daily work responsiblities without having to interact with this equipment often (Maybe I should change that in order to justify testing these services more). More often than not, I'll get super busy and have to focus on work without much time to put towards this infrastructure. At the same time, I'll day-dream and research these complex methods for meeting the same end goal -  without ever getting something up and running do to howmuch freetime I have available. Rather than let "perfect" be the enemy of "good" - we're going to identify the multiple approaches - and target the option that produces the goals without over-engineering initially. 
+I focus on my daily work responsibilities without having to interact with this equipment often (Maybe I should change that in order to justify testing these services more). More often than not, I'll get super busy and have to focus on work without much time to put towards this infrastructure. At the same time, I'll day-dream and research these complex methods for meeting the same end goal -  without ever getting something up and running due to how much free-stime I have available. Rather than let "perfect" be the enemy of "good" - we're going to identify the multiple approaches - and target the option that produces the goals without over-engineering initially. 
 
 ## High Level Plan
 - DNS that routes a legit domain internally.
@@ -30,14 +30,9 @@ I focus on my daily work responsiblities without having to interact with this eq
 ## Notes and Current Thoughts
 
 ### Priority
-- [Mover](https://github.com/brandtkeller/Mover) MVP
-- [CouchDB](https://github.com/apache/couchdb-helm) Deployment to Prod
-  - Connect from and test Obsidian self-hosted sync
-- [Nginx + Hugo](https://gideonwolfe.com/posts/sysadmin/hugonginx/)
-- Nginx Reverse Proxy for serving multiple domains from a single public IP
-- Rebuild support cluster
-  - Update docs/scripts
-  - Utilize [Zarf](https://github.com/defenseunicorns/zarf) to remove reliance on upstream availability/connectivity
+- Solidify Home-Automation Cluster
+  - Deploy a multi-node k3s cluster for home services using zarf
+  - 
 
 ### Investigation
 - Investigate kube-VIP for node comms loadbalancing

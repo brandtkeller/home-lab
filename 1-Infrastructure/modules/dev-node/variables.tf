@@ -69,3 +69,9 @@ variable "net_bridge" {
   type        = string
   default     = "vmbr0"
 }
+
+variable "boot" {
+  description = "boot on server start"
+  type        = bool
+  default     = false
+}
