@@ -7,7 +7,7 @@ terraform {
   }
 }
 
-resource "proxmox_vm_qemu" "rke2_node" {
+resource "proxmox_vm_qemu" "k3s_node" {
   name        = var.name
   target_node = var.pve_node
   clone       = var.clone_image
@@ -54,7 +54,7 @@ resource "proxmox_vm_qemu" "rke2_node" {
       "chmod +x /tmp/bootstrap.sh",
       "/tmp/bootstrap.sh",
       "mkdir -p /home/dev/local-vols",
-      "mkdir -p /home/dev/rke2-artifacts",
+      "mkdir -p /home/dev/k3s-artifacts",
     ]
 
     connection {
