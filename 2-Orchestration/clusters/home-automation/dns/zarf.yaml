@@ -23,5 +23,6 @@ components:
       files:
         - configs/configmap.yaml
         - configs/daemonset.yaml
+        # TODO: Add LB service
     images:
       - coredns/coredns:1.10.0

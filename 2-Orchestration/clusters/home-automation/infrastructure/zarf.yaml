@@ -156,7 +156,7 @@ components:
       - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.17.2
       - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.17.2
   
-  - name: import-openvpn
+  - name: openvpn
     required: true
     import:
       name: openvpn
