@@ -64,10 +64,10 @@ variable "nameservers" {
   default     = "8.8.8.8"
 }
 
-variable "rke2_version" {
+variable "k3s_version" {
   description = "version of rke2 to install"
   type        = string
-  default     = "v1.24.3+rke2r1"
+  default     = "v1.27.4+k3s1"
 }
 
 variable "role" {

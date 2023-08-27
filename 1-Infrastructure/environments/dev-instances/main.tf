@@ -14,7 +14,7 @@ provider "proxmox" {
 
 # prox Hosts
 module "dev-zarf-test-1" {
-  source = "../modules/zarf-k3s-node"
+  source = "../../modules/zarf-k3s-node"
 
   name = "dev-zarf-test-1"
   boot = true
@@ -36,7 +36,7 @@ module "dev-zarf-test-1" {
 }
 
 module "dev-zarf-test-2" {
-  source = "../modules/zarf-k3s-node"
+  source = "../../modules/zarf-k3s-node"
 
   name = "dev-zarf-test-2"
   boot = true
@@ -62,7 +62,7 @@ module "dev-zarf-test-2" {
 }
 
 module "dev-zarf-test-3" {
-  source = "../modules/zarf-k3s-node"
+  source = "../../modules/zarf-k3s-node"
 
   name = "dev-zarf-test-3"
   boot = true

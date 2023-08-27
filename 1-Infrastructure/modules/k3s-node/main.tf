@@ -48,12 +48,11 @@ resource "proxmox_vm_qemu" "k3s_node" {
     }
   }
   
-  # iscsid required for openebs-jiva
+  # bootstrapping and initial artifact directory creation
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/bootstrap.sh",
       "/tmp/bootstrap.sh",
-      "mkdir -p /home/dev/local-vols",
       "mkdir -p /home/dev/k3s-artifacts",
     ]
 
@@ -65,6 +64,7 @@ resource "proxmox_vm_qemu" "k3s_node" {
     }
   }
 
+  # config file for k3s installation templating
   provisioner "file" {
     content     = templatefile("${path.module}/files/config.yaml.tftpl", { primary = var.primary, taint = var.taint, role = var.role, ip_addr = var.ip_addr, cluster_host = var.cluster_host, node_host = var.node_host, domain = var.domain, join_server = var.join_server })
     destination = "/home/dev/config.yaml"
@@ -76,9 +76,10 @@ resource "proxmox_vm_qemu" "k3s_node" {
     }
   }
 
+  # Copy all artifacts to the node
   provisioner "file" {
-    source      = "artifacts/"
-    destination = "/home/dev/rke2-artifacts/"
+    source      = "${path.module}/artifacts/"
+    destination = "/home/dev/k3s-artifacts/"
     connection {
       type        = "ssh"
       user        = "dev"
@@ -90,28 +91,14 @@ resource "proxmox_vm_qemu" "k3s_node" {
   # Execute all required processes
   provisioner "remote-exec" {
     inline = [
-      "sudo mkdir -p /etc/rancher/rke2",
-      "sudo mkdir -p /data/volumes",
-      "sudo chmod 777 /data/volumes",
-      "sudo cp /home/dev/config.yaml /etc/rancher/rke2/config.yaml",
-      "sudo INSTALL_RKE2_ARTIFACT_PATH=/home/dev/rke2-artifacts %{if var.role != "server"}INSTALL_RKE2_TYPE='agent'%{endif} sh /home/dev/rke2-artifacts/install.sh",
-      "sudo systemctl enable rke2-${var.role}.service"
+      "sudo mv /home/dev/k3s-artifacts/k3s-amd64-${var.k3s_version} /usr/local/bin/k3s",
+      "sudo chmod +x /usr/local/bin/k3s",
+      "sudo mkdir -p /var/lib/rancher/k3s/agent/images/",
+      "sudo cp /home/dev/k3s-artifacts/k3s-airgap-images-${var.k3s_version}-amd64.tar.zst /var/lib/rancher/k3s/agent/images/",
+      "sudo mkdir -p /etc/rancher/k3s/",
+      "sudo cp /home/dev/config.yaml /etc/rancher/k3s/config.yaml",
+      "sudo INSTALL_K3S_SKIP_DOWNLOAD=true %{if var.role == "server"}INSTALL_K3S_EXEC='server'%{else}INSTALL_K3S_EXEC='agent'%{endif} sh /home/dev/k3s-artifacts/install.sh",
     ]
-
-    connection {
-      type        = "ssh"
-      user        = "dev"
-      private_key = file("${var.ssh_priv_key_path}")
-      host        = var.ip_addr
-    }
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo systemctl start rke2-${var.role}.service"
-    ]
-
-    on_failure = continue
 
     connection {
       type        = "ssh"
