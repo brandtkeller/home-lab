@@ -38,14 +38,18 @@ variables:
     sensitive: false
 
 components:
+- name: import-redis
+  import:
+    name: redis
+    url: oci://ghcr.io/brandtkeller/zarf/nextcloud:4.1.0-skeleton
+
 - name: import-nextcloud
   required: true
   import:
     name: nextcloud
-    url: oci://ghcr.io/brandtkeller/zarf/nextcloud:0.0.8-skeleton
+    url: oci://ghcr.io/brandtkeller/zarf/nextcloud:4.1.0-skeleton
 
 - name: nextcloud-virtualservice
-  required: true
   manifests:
   - name: virtualservice
     namespace: nextcloud
@@ -53,7 +57,6 @@ components:
     - configs/virtualservice.yaml
 
 - name: nextcloud-s3-sync
-  required: true
   manifests:
   - name: s3-sync
     namespace: nextcloud

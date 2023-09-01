@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-automation
   description: "Components comprising my home automation orchestration"
-  version: 0.0.5
+  version: 0.0.6
   architecture: amd64
 
 variables:
@@ -42,6 +42,11 @@ components:
     import:
       url: oci://ghcr.io/brandtkeller/zarf/local-path-provisioner:0.0.3-skeleton
       name: local-path-provisioner
+
+  - name: import-rook
+    import:
+      name: rook-ceph
+      url: oci://ghcr.io/brandtkeller/zarf/rook:v1.12.2-skeleton
 
   - name: kube-vip
     required: true
@@ -96,12 +101,12 @@ components:
       - name: flux-installer
         # This will be built on the package create side and deployed as a regular manifest on package deploy
         kustomizations:
-          - https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base/flux?ref=2.2.0
+          - https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base/flux?ref=2.9.0
     images:
-      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v0.32.1
-      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v0.35.1
-      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v0.33.0
-      - registry1.dso.mil/ironbank/fluxcd/source-controller:v0.36.1
+      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v0.35.0
+      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v1.0.1
+      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v1.0.0
+      - registry1.dso.mil/ironbank/fluxcd/source-controller:v1.0.1
 
   - name: istio-operator
     required: true
@@ -122,9 +127,9 @@ components:
         valuesFiles:
           - configs/istio-operator/flux.yaml
     repos:
-      - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.17.2-bb.1
+      - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.18.2-bb.0
     images:
-      - registry1.dso.mil/ironbank/opensource/istio/operator:1.17.2
+      - registry1.dso.mil/ironbank/opensource/istio/operator:1.18.2
 
   - name: istio-controlplane
     required: true
@@ -149,15 +154,9 @@ components:
         valuesFiles:
           - configs/istio/flux.yaml
     repos:
-      - https://repo1.dso.mil/big-bang/product/packages/istio-controlplane.git@1.17.2-bb.1
+      - https://repo1.dso.mil/big-bang/product/packages/istio-controlplane.git@1.18.2-bb.1
     images:
       - registry1.dso.mil/ironbank/big-bang/base:2.0.0
-      - registry1.dso.mil/ironbank/opensource/istio/pilot:1.17.2
-      - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.17.2
-      - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.17.2
-  
-  - name: openvpn
-    required: true
-    import:
-      name: openvpn
-      url: oci://ghcr.io/brandtkeller/zarf/openvpn:0.0.4-skeleton
+      - registry1.dso.mil/ironbank/opensource/istio/pilot:1.18.2
+      - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.18.2
+      - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.18.2

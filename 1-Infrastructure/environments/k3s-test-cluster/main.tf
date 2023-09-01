@@ -33,7 +33,7 @@ module "k3s-test-1" {
   memory = 16384
   cpus = 4
 
-  ip_addr = "192.168.1.72"
+  ip_addr = "192.168.1.81"
   node_host = "k3s-test-1"
   cluster_host = "test"
   domain = "kellerhome.us"
@@ -42,96 +42,96 @@ module "k3s-test-1" {
 
 }
 
-module "k3s-test-2" {
-  source = "github.com/brandtkeller/proxmox-terraform-modules//k3s-node"
+# module "k3s-test-2" {
+#   source = "github.com/brandtkeller/proxmox-terraform-modules//k3s-node"
 
-  name = "k3s-test-2.kellerhome.us"
-  boot = true
-  join_server = "192.168.1.72"
-  pve_node = "prox"
-  clone_image  = "ubuntu-cloudimg-prox"
-  role = "server"
-  k3s_arch = "amd64"
-  primary = false
-  taint = false
+#   name = "k3s-test-2.kellerhome.us"
+#   boot = true
+#   join_server = "192.168.1.72"
+#   pve_node = "prox"
+#   clone_image  = "ubuntu-cloudimg-prox"
+#   role = "server"
+#   k3s_arch = "amd64"
+#   primary = false
+#   taint = false
 
-  storage_size = "100G"
-  storage_type = "local-lvm"
-  memory = 16384
-  cpus = 4
+#   storage_size = "100G"
+#   storage_type = "local-lvm"
+#   memory = 16384
+#   cpus = 4
 
-  ip_addr = "192.168.1.73"
-  node_host = "k3s-test-2"
-  cluster_host = "test"
-  domain = "kellerhome.us"
-  nameservers = "192.168.0.130"
-  password = var.password
+#   ip_addr = "192.168.1.73"
+#   node_host = "k3s-test-2"
+#   cluster_host = "test"
+#   domain = "kellerhome.us"
+#   nameservers = "192.168.0.130"
+#   password = var.password
 
-  depends_on = [
-    module.k3s-test-1
-  ]
+#   depends_on = [
+#     module.k3s-test-1
+#   ]
 
-}
+# }
 
-module "k3s-test-3" {
-  source = "github.com/brandtkeller/proxmox-terraform-modules//k3s-node"
+# module "k3s-test-3" {
+#   source = "github.com/brandtkeller/proxmox-terraform-modules//k3s-node"
 
-  name = "k3s-test-3.kellerhome.us"
-  boot = true
-  join_server = "192.168.1.72"
-  pve_node = "prox"
-  clone_image  = "ubuntu-cloudimg-prox"
-  role = "server"
-  k3s_arch = "amd64"
-  primary = false
-  taint = false
+#   name = "k3s-test-3.kellerhome.us"
+#   boot = true
+#   join_server = "192.168.1.72"
+#   pve_node = "prox"
+#   clone_image  = "ubuntu-cloudimg-prox"
+#   role = "server"
+#   k3s_arch = "amd64"
+#   primary = false
+#   taint = false
 
-  storage_size = "100G"
-  storage_type = "local-lvm"
-  memory = 16384
-  cpus = 4
+#   storage_size = "100G"
+#   storage_type = "local-lvm"
+#   memory = 16384
+#   cpus = 4
 
-  ip_addr = "192.168.1.74"
-  node_host = "k3s-test-3"
-  cluster_host = "test"
-  domain = "kellerhome.us"
-  nameservers = "192.168.0.130"
-  password = var.password
+#   ip_addr = "192.168.1.74"
+#   node_host = "k3s-test-3"
+#   cluster_host = "test"
+#   domain = "kellerhome.us"
+#   nameservers = "192.168.0.130"
+#   password = var.password
 
-  depends_on = [
-    module.k3s-test-1
-  ]
+#   depends_on = [
+#     module.k3s-test-1
+#   ]
 
-}
+# }
 
-module "k3s-test-1-agent" {
-  source = "github.com/brandtkeller/proxmox-terraform-modules//k3s-node"
+# module "k3s-test-1-agent" {
+#   source = "github.com/brandtkeller/proxmox-terraform-modules//k3s-node"
 
-  name = "k3s-test-1-agent.kellerhome.us"
-  boot = true
-  join_server = "192.168.1.72"
-  pve_node = "prox"
-  clone_image  = "ubuntu-cloudimg-prox"
+#   name = "k3s-test-1-agent.kellerhome.us"
+#   boot = true
+#   join_server = "192.168.1.72"
+#   pve_node = "prox"
+#   clone_image  = "ubuntu-cloudimg-prox"
   
-  k3s_arch = "amd64"
-  role = "agent"
-  primary = false
-  taint = false
+#   k3s_arch = "amd64"
+#   role = "agent"
+#   primary = false
+#   taint = false
 
-  storage_size = "100G"
-  storage_type = "local-lvm"
-  memory = 16384
-  cpus = 4
+#   storage_size = "100G"
+#   storage_type = "local-lvm"
+#   memory = 16384
+#   cpus = 4
 
-  ip_addr = "192.168.1.75"
-  node_host = "k3s-test-1-agent"
-  cluster_host = "test"
-  domain = "kellerhome.us"
-  nameservers = "192.168.0.130"
-  password = var.password
+#   ip_addr = "192.168.1.75"
+#   node_host = "k3s-test-1-agent"
+#   cluster_host = "test"
+#   domain = "kellerhome.us"
+#   nameservers = "192.168.0.130"
+#   password = var.password
 
-  depends_on = [
-    module.k3s-test-3
-  ]
+#   depends_on = [
+#     module.k3s-test-3
+#   ]
 
-}
+# }

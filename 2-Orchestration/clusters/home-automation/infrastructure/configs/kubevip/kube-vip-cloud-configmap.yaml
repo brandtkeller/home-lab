@@ -5,6 +5,7 @@ metadata:
   name: kubevip
   namespace: kube-system
 data:
-  range-istio-system: 192.168.0.133-192.168.0.133
-  range-openvpn: 192.168.0.134-192.168.0.134
-  range-unifi: 192.168.0.135-192.168.0.135
+  range-istio-system: 192.168.0.51-192.168.0.51
+  range-openvpn: 192.168.0.52-192.168.0.52
+  range-dns: 192.168.0.53-192.168.0.53
+  range-unifi: 192.168.0.54-192.168.0.54

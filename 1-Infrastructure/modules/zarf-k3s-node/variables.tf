@@ -86,3 +86,9 @@ variable "join_server" {
   description = "cluster join url for controlplane"
   type        = string
 }
+
+variable "zarf_command" {
+  description = "zarf command for automated init"
+  type = string
+  default = "zarf init --confirm"
+}

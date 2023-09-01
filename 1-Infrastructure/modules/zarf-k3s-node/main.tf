@@ -74,7 +74,7 @@ resource "proxmox_vm_qemu" "dev_node" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/artifacts/zarf_v0.29.0_Linux_amd64"
+    source      = "artifacts/zarf_v0.29.0_Linux_amd64"
     destination = "/home/dev/zarf_v0.29.0_Linux_amd64"
 
     connection {
@@ -86,7 +86,7 @@ resource "proxmox_vm_qemu" "dev_node" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/artifacts/zarf-init-amd64-v0.29.0.tar.zst"
+    source      = "artifacts/zarf-init-amd64-v0.29.0.tar.zst"
     destination = "/home/dev/zarf-init-amd64-v0.29.0.tar.zst"
 
     connection {
@@ -103,7 +103,8 @@ resource "proxmox_vm_qemu" "dev_node" {
       "/tmp/bootstrap.sh",
       "sudo mv /home/dev/zarf_v0.29.0_Linux_amd64 /usr/bin/zarf",
       "sudo chmod +x /usr/bin/zarf",
-      "cd /home/dev && sudo zarf package deploy zarf-init-amd64-v0.29.0.tar.zst %{if var.primary != true }--components=k3s%{else}--components=k3s,zarf-injector,zarf-seed-registry,zarf-registry,zarf-agent,git-server%{endif} --confirm"
+      #"cd /home/dev && sudo zarf package deploy zarf-init-amd64-v0.29.0.tar.zst %{if var.primary != true }--components=k3s%{else}--components=k3s,zarf-injector,zarf-seed-registry,zarf-registry,zarf-agent,git-server%{endif} --confirm"
+      "cd /home/dev && ${var.zarf_command}"
     ]
 
     on_failure = continue

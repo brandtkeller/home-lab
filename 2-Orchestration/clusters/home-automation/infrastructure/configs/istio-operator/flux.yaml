@@ -4,7 +4,7 @@ gitrepo:
   url: https://repo1.dso.mil/big-bang/product/packages/istio-operator.git
   interval: "5m0s"
   ref:
-    tag: "1.17.2-bb.1"
+    tag: "1.18.2-bb.0"
     # branch: ""
     # commit: ""
     # semver: ""

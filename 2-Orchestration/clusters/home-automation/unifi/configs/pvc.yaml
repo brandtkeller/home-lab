@@ -5,6 +5,7 @@ metadata:
   labels:
     app.kubernetes.io/name: unifi-controller
 spec:
+  storageClassName: "###ZARF_VAR_UNIFI_STORAGE_CLASS###"
   accessModes:
     - ReadWriteOnce
   resources:

@@ -1,0 +1,13 @@
+kind: ZarfPackageConfig
+metadata:
+  name: home-vpn
+  description: "Components comprising my home automation orchestration"
+  version: 0.0.1
+  architecture: amd64
+
+components:
+  - name: openvpn
+    required: true
+    import:
+      name: openvpn
+      url: oci://ghcr.io/brandtkeller/zarf/openvpn:0.0.5-skeleton

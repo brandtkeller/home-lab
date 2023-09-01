@@ -2,15 +2,15 @@ kind: ZarfPackageConfig
 metadata:
   name: unifi
   description: "Components comprising my home automation orchestration"
-  version: 0.0.1
+  version: 0.0.2
   architecture: amd64
 
-# variables:
-#   - name: CRON_SCHEDULE
-#     description: "Cron Schedule for the aws sync"
-#     default: "0 8 * * *"
-#     prompt: true
-#     sensitive: false
+variables:
+  - name: UNIFI_STORAGE_CLASS
+    description: "storageclass for data"
+    default: "-"
+    prompt: true
+    sensitive: false
 
 components:
 - name: unifi
