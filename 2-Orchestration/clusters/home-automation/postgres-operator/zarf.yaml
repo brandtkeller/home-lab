@@ -2,18 +2,17 @@ kind: ZarfPackageConfig
 metadata:
   name: postgres-operator
   description: "Components comprising my home automation orchestration"
-  version: 0.0.1
+  version: 0.0.2
   architecture: amd64
 
-variables:
-  - name: PG_STORAGE_CLASS
-    description: "storage class for data"
-    default: "-"
-    prompt: true
-    sensitive: false
+# variables:
+#   - name: PG_STORAGE_CLASS
+#     description: "storage class for data"
+#     default: "-"
+#     prompt: true
+#     sensitive: false
 
 components:
-
 - name: postgres-operator
   charts:
   - name: postgres-operator
@@ -22,20 +21,19 @@ components:
     url: oci://registry.developers.crunchydata.com/crunchydata/pgo
   images:
   - registry.developers.crunchydata.com/crunchydata/postgres-operator:ubi8-5.4.1-0
-
-- name: postgres-databases
-  charts:
-  - name: postgrescluster
-    version: 5.4.1
-    namespace: nextcloud
-    localPath: charts/postgres
-    releaseName: nextcloud
-    valuesFiles:
-    - values/nextcloud-values.yaml
-  images:
   - registry.developers.crunchydata.com/crunchydata/crunchy-postgres:ubi8-14.8-3
   - registry.developers.crunchydata.com/crunchydata/crunchy-postgres-gis:ubi8-14.8-3.2-3
   - registry.developers.crunchydata.com/crunchydata/crunchy-pgbackrest:ubi8-2.45-3
   - registry.developers.crunchydata.com/crunchydata/crunchy-pgbouncer:ubi8-1.19-3
   - registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-5.4.1-0
   - registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.4.1-0
+
+- name: nextcloud-postgres-database
+  charts:
+  - name: postgrescluster
+    version: 5.4.1
+    namespace: nextcloud
+    localPath: charts/postgres
+    releaseName: nextcloud-pg
+    valuesFiles:
+    - values/nextcloud-values.yaml

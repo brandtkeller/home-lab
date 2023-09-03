@@ -77,7 +77,7 @@ imageExporter: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-
 # This defaults to the "default" storage class defined in the cluster.
 # See: 'kubectl get storageclasses.storage.k8s.io | grep default'
 # Settings "instances" overrides this value.
-instanceStorageClassName: "###ZARF_VAR_PG_STORAGE_CLASS###"
+instanceStorageClassName: "longhorn"
 
 # instanceMemory sets the memory limit for the Postgres instances. This defaults
 # to no limit being set, but an example value is set below. Settings "instances"
@@ -134,7 +134,11 @@ instanceReplicas: 2
 
 # users sets any custom Postgres users and databases that they have  access to
 # as well as any permissions associated with the user account.
-# users: {}
+# users:
+# - name: nextcloud
+#   databases:
+#     - nextcloud
+#   options: "SUPERUSER"
 
 # dataSource specifies a data source for bootstrapping a Postgres cluster.
 # dataSource: {}
@@ -152,8 +156,8 @@ instanceReplicas: 2
 # databaseInitSQL references a ConfigMap that contains a SQL file that should be
 # run a cluster bootstrap.
 # databaseInitSQL:
-#   name: bootstrap-sql
-#   key: bootstrap.sql
+#   name: nextcloud-init-cm
+#   key: next.sql
 
 # standby sets whether to run this as a standby cluster. Setting "enabled" to
 # "true" enables the standby cluster while "repoName" points to a pgBackRest
@@ -180,7 +184,7 @@ instanceReplicas: 2
 # backupsStorageClassName sets the storage class to a class existing in Kubernetes.
 # Defaults to the "default" storage class defined in the cluster.
 # Can be overridden by "pgBackRestConfig", if set.
-backupsStorageClassName: "###ZARF_VAR_PG_STORAGE_CLASS###"
+backupsStorageClassName: "longhorn"
 
 # s3 allows for AWS S3 or an S3 compatible storage system to be used for
 # backups. This allows for a quick setup with S3; if you need more advanced

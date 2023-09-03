@@ -37,19 +37,7 @@ variables:
 
 
 components:
-  - name: local-path-provisioner
-    required: true
-    import:
-      url: oci://ghcr.io/brandtkeller/zarf/local-path-provisioner:0.0.3-skeleton
-      name: local-path-provisioner
-
-  - name: import-rook
-    import:
-      name: rook-ceph
-      url: oci://ghcr.io/brandtkeller/zarf/rook:v1.12.2-skeleton
-
   - name: kube-vip
-    required: true
     manifests:
     - name: kube-vip
       namespace: kube-vip
@@ -66,7 +54,6 @@ components:
 
 
   - name: cert-manager-chart
-    required: true
     manifests:
     - name: cert-manager
       files:
@@ -86,7 +73,6 @@ components:
       - quay.io/jetstack/cert-manager-ctl:v1.12.1
   
   - name: cert-manager-addons
-    required: true
     manifests:
     - name: cert-manager-addons
       namespace: cert-manager
@@ -96,7 +82,6 @@ components:
 
   
   - name: flux
-    required: true
     manifests:
       - name: flux-installer
         # This will be built on the package create side and deployed as a regular manifest on package deploy
@@ -109,7 +94,6 @@ components:
       - registry1.dso.mil/ironbank/fluxcd/source-controller:v1.0.1
 
   - name: istio-operator
-    required: true
     manifests:
     - name: istio-operator-config
       namespace: gitops
@@ -132,7 +116,6 @@ components:
       - registry1.dso.mil/ironbank/opensource/istio/operator:1.18.2
 
   - name: istio-controlplane
-    required: true
     manifests:
     - name: istio-config
       namespace: gitops

@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
+  labels:
+    name: local-dns
   name: local-dns
 spec:
   selector:
@@ -19,14 +21,17 @@ spec:
         - /etc/coredns/Corefile
         ports:
         - containerPort: 53
-          hostPort: 53
           protocol: UDP
         - containerPort: 53
-          hostPort: 53
           protocol: TCP
         volumeMounts:
         - mountPath: /etc/coredns
           name: config-volume
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Equal"
+        value: "true"
+        effect: "NoExecute"    
       volumes:
       - name: config-volume
         configMap:

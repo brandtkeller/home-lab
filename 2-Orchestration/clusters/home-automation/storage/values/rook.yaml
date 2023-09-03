@@ -1,0 +1,10 @@
+cephObjectStores: []
+
+cephClusterSpec:
+  placement:
+    all:
+      tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Equal"
+        value: "true"
+        effect: "NoExecute"

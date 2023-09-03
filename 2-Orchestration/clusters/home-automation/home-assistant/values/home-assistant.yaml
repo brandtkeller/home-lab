@@ -1,0 +1,62 @@
+env:
+- name: TZ
+  value: America/Los_Angeles
+config:
+- name: configuration.yaml
+  path: /config
+  content: |
+    # Loads default set of integrations. Do not remove.
+    default_config:
+
+    # For use behind istio proxy
+    http:
+      use_x_forwarded_for: true
+      trusted_proxies:
+        - 127.0.0.6
+        - 10.42.0.48
+
+    # cover:
+    # - platform: template
+    #   covers:
+    #     garage_door:
+    #       device_class: garage
+    #       friendly_name: "Garage Door"
+    #       position_template: "{{ states('sensor.garage_door') }}"
+    #       open_cover:
+    #         - condition: state
+    #           entity_id: sensor.garage_door
+    #           state: "off"
+    #         - service: switch.turn_on
+    #           target:
+    #             entity_id: switch.garage_door
+    #       close_cover:
+    #         - condition: state
+    #           entity_id: sensor.garage_door
+    #           state: "on"
+    #         - service: switch.turn_off
+    #           target:
+    #             entity_id: switch.garage_door
+    #       stop_cover:
+    #         service: switch.turn_on
+    #         target:
+    #           entity_id: switch.garage_door
+    #       icon_template: >-
+    #         {% if states('sensor.garage_door')|float > 0 %}
+    #           mdi:garage-open
+    #         {% else %}
+    #           mdi:garage
+    #         {% endif %}
+
+    # Load frontend themes from the themes folder
+    frontend:
+      themes: !include_dir_merge_named themes
+
+    # Text to speech
+    tts:
+      - platform: google_translate
+
+    automation: !include automations.yaml
+    script: !include scripts.yaml
+    scene: !include scenes.yaml
+persistence:
+  enabled: true

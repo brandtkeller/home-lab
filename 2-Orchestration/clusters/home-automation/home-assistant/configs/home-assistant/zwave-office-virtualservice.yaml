@@ -1,17 +1,17 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: home-assistant
+  name: zwave-office
 spec:
   exportTo:
   - istio-system
   gateways:
   - istio-system/home
   hosts:
-  - assistant.home.kellerhome.us
+  - zwave-office.home.kellerhome.us
   http:
   - route:
     - destination:
-        host: home-assistant
+        host: zwave-js-ui
         port:
-          number: 8123
+          number: 80

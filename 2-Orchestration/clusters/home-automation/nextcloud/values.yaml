@@ -1,0 +1,43 @@
+nextcloud:
+  extraInitContainers:
+    - name: postgresql-isready
+      image: bitnami/postgresql:15.3.0-debian-11-r74
+      env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: nextcloud-pg-pguser-nextcloud-pg
+              key: user
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: nextcloud-pg-pguser-nextcloud-pg
+              key: host
+      command:
+      - "sh"
+      - "-c"
+      - "until pg_isready -h ${POSTGRES_HOST} -U ${POSTGRES_USER} ; do sleep 2 ; done"
+
+externalDatabase:
+  enabled: true
+
+  ## Supported database engines: mysql or postgresql
+  type: postgresql
+
+  ## Use a existing secret from crunchy PGO
+  existingSecret:
+    enabled: true
+    secretName: nextcloud-pg-pguser-nextcloud-pg
+    usernameKey: user
+    passwordKey: password
+    hostKey: host
+    databaseKey: dbname
+
+nodeSelector:
+  office: large-storage
+
+persistence:
+  storageClass: "longhorn"
+
+  nextcloudData:
+    storageClass: "local-path-storage"

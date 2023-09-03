@@ -1,0 +1,33 @@
+kind: ZarfPackageConfig
+metadata:
+  name: storage
+  description: "Components comprising my home automation orchestration storage"
+  version: 0.0.1
+  architecture: amd64
+
+# variables:
+#   - name: VIP_INTERFACE
+#     description: "Interface for the VIP"
+#     prompt: true
+#     sensitive: false
+
+
+components:
+  - name: local-path-provisioner
+    import:
+      url: oci://ghcr.io/brandtkeller/zarf/local-path-provisioner:0.0.3-skeleton
+      name: local-path-provisioner
+
+  - name: import-longhorn-environment-check
+    import:
+      name: longhorn-environment-check
+      url: oci://ghcr.io/brandtkeller/zarf/longhorn:1.5.1-skeleton
+
+  - name: import-longhorn
+    import:
+      name: longhorn
+      url: oci://ghcr.io/brandtkeller/zarf/longhorn:1.5.1-skeleton
+    charts:
+    - name: longhorn
+      valuesFiles:
+      - values/longhorn.yaml

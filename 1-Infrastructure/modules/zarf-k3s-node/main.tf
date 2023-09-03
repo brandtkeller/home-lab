@@ -74,20 +74,8 @@ resource "proxmox_vm_qemu" "dev_node" {
   }
 
   provisioner "file" {
-    source      = "artifacts/zarf_v0.29.0_Linux_amd64"
-    destination = "/home/dev/zarf_v0.29.0_Linux_amd64"
-
-    connection {
-      type     = "ssh"
-      user     = "dev"
-      private_key = file("${var.ssh_priv_key_path}")
-      host     = var.ip_addr
-    }
-  }
-
-  provisioner "file" {
-    source      = "artifacts/zarf-init-amd64-v0.29.0.tar.zst"
-    destination = "/home/dev/zarf-init-amd64-v0.29.0.tar.zst"
+    source      = "artifacts/"
+    destination = "/home/dev/"
 
     connection {
       type     = "ssh"
@@ -101,10 +89,12 @@ resource "proxmox_vm_qemu" "dev_node" {
     inline = [
       "chmod +x /tmp/bootstrap.sh",
       "/tmp/bootstrap.sh",
-      "sudo mv /home/dev/zarf_v0.29.0_Linux_amd64 /usr/bin/zarf",
+      "sudo mv /home/dev/zarf /usr/bin/zarf",
       "sudo chmod +x /usr/bin/zarf",
       #"cd /home/dev && sudo zarf package deploy zarf-init-amd64-v0.29.0.tar.zst %{if var.primary != true }--components=k3s%{else}--components=k3s,zarf-injector,zarf-seed-registry,zarf-registry,zarf-agent,git-server%{endif} --confirm"
-      "cd /home/dev && ${var.zarf_command}"
+      "cd /home/dev && ${var.zarf_command}",
+      "sudo cp /root/.kube/config /home/dev/config",
+      "sudo chmod 777 /home/dev/config"
     ]
 
     on_failure = continue
@@ -116,6 +106,15 @@ resource "proxmox_vm_qemu" "dev_node" {
       host        = var.ip_addr
     }
   }
+
+  provisioner "local-exec" {
+    command = "scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ${var.ssh_priv_key_path} dev@${var.ip_addr}:/home/dev/config ~/.kube/${var.name} && sed -i -e 's/127.0.0.1/${var.ip_addr}/g' ~/.kube/zarf-test"
+  }
+
+  # provisioner "local-exec" {
+  #   when    = destroy
+  #   command = "rm ~/.kube/${var.name}"
+  # }
 
   # Cloud Init Settings
   ipconfig0  = "ip=${var.ip_addr}/24,gw=192.168.1.1"

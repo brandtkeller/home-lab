@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-assistant
   description: "Components comprising my home automation orchestration"
-  version: 0.0.4
+  version: 0.0.5
   architecture: amd64
 
 # variables:
@@ -12,31 +12,46 @@ metadata:
 #     sensitive: false
 
 components:
+- name: home-assistant
+  import:
+    name: home-assistant
+    url: oci://ghcr.io/brandtkeller/zarf/home-assistant:0.0.1-skeleton
+  charts:
   - name: home-assistant
-    required: true
-    manifests:
-    - name: home-assistant-config
-      namespace: gitops
-      files:
-        - configs/home-assistant/config.yaml
-    - name: home-assistant-namespace
-      files:
-        - configs/home-assistant/namespace.yaml
-    - name: virtualservice
+    valuesFiles: 
+    - values/home-assistant.yaml
+  manifests:
+    - name: virtual-service
       namespace: home-assistant
       files:
         - configs/home-assistant/virtualservice.yaml
-        - configs/home-assistant/zwave-virtualservice.yaml
-    charts:
-      - name: flux-generics
-        url: oci://ghcr.io/brandtkeller/flux-generics
-        releaseName: flux-home-assistant
-        namespace: gitops
-        version: 0.0.1
-        valuesFiles:
-          - configs/home-assistant/flux.yaml
-    repos:
-      - https://github.com/brandtkeller/home-assistant-helm.git@0.1.5
-    images:
-      - ghcr.io/home-assistant/home-assistant:2023.6.0
-      - zwavejs/zwave-js-ui:8.17.1
+
+- name: zwave-js-ui-home
+  import:
+    name: zwave-js-ui
+    url: oci://ghcr.io/brandtkeller/zarf/zwave-js-ui:0.0.1-skeleton
+  charts:
+  - name: zwave-js-ui
+    namespace: zwave-home
+    valuesFiles:
+    - values/zwave-home.yaml
+  manifests:
+    - name: virtual-service
+      namespace: zwave-home
+      files:
+        - configs/home-assistant/zwave-home-virtualservice.yaml
+  
+- name: zwave-js-ui-office
+  import:
+    name: zwave-js-ui
+    url: oci://ghcr.io/brandtkeller/zarf/zwave-js-ui:0.0.1-skeleton
+  charts:
+  - name: zwave-js-ui
+    namespace: zwave-office
+    valuesFiles:
+    - values/zwave-office.yaml
+  manifests:
+    - name: virtual-service
+      namespace: zwave-office
+      files:
+        - configs/home-assistant/zwave-office-virtualservice.yaml

@@ -13,7 +13,6 @@ metadata:
 
 components:
   - name: coredns
-    required: true
     manifests:
     - name: dns-namespace
       files:
@@ -23,6 +22,6 @@ components:
       files:
         - configs/configmap.yaml
         - configs/daemonset.yaml
-        # TODO: Add LB service
+        - configs/service.yaml
     images:
       - coredns/coredns:1.10.0

@@ -1,0 +1,9 @@
+usb:
+  path: /dev/serial/by-id/usb-Silicon_Labs_CP2102N_USB_to_UART_Bridge_Controller_640668772287ec11b11eeb3719c2d21c-if00-port0
+
+persistence:
+  enabled: true
+  storageClass: "longhorn"
+
+nodeSelector:
+  office: zwave
