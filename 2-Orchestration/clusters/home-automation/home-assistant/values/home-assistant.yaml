@@ -55,6 +55,24 @@ config:
     tts:
       - platform: google_translate
 
+    #database
+    recorder:
+      purge_keep_days: 5
+      db_url: ###ZARF_VAR_HOME_ASSISTANT_DB###
+      exclude:
+        domains:
+          - automation
+          - update
+        entity_globs:
+          - sensor.sun*
+          - weather.*
+        entities:
+          - sensor.date
+          - sensor.last_boot # Comes from 'systemmonitor' sensor platform
+          - sun.sun # Don't record sun data
+        event_types:
+          - call_service # Don't record service calls
+
     automation: !include automations.yaml
     script: !include scripts.yaml
     scene: !include scenes.yaml

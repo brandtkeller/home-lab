@@ -37,3 +37,30 @@ components:
     releaseName: nextcloud-pg
     valuesFiles:
     - values/nextcloud-values.yaml
+
+- name: home-assistant-postgres-database
+  charts:
+  - name: postgrescluster
+    version: 5.4.1
+    namespace: home-assistant
+    localPath: charts/postgres
+    releaseName: home-assistant-pg
+    valuesFiles:
+    - values/home-assistant-values.yaml
+
+# - name: k3s-external-postgres-database
+#   charts:
+#   - name: postgrescluster
+#     version: 5.4.1
+#     namespace: k3s-external
+#     localPath: charts/postgres
+#     releaseName: k3s-external
+#     valuesFiles:
+#     - values/k3s-external-values.yaml
+#   manifests:
+#   - name: loadbalancer-service
+#     namespace: k3s-external
+#     files:
+#     - manifests/loadbalancer.yaml
+  
+

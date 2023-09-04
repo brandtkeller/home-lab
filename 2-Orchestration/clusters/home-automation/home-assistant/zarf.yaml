@@ -5,11 +5,11 @@ metadata:
   version: 0.0.5
   architecture: amd64
 
-# variables:
-#   - name: VIP_INTERFACE
-#     description: "Interface for the VIP"
-#     prompt: true
-#     sensitive: false
+variables:
+  - name: HOME_ASSISTANT_DB
+    description: "postgresql database string postgresql://USER:PASSWORD@HOST/DATABASE"
+    prompt: false
+    sensitive: true
 
 components:
 - name: home-assistant
