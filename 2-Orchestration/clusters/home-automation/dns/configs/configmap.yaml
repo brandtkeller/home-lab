@@ -27,8 +27,9 @@ data:
     k3s-home-3.kellerhome.us.             IN  A  192.168.0.43
     home.kellerhome.us.                   IN  A  192.168.0.50
     *.home.kellerhome.us.                 IN  A  192.168.0.51
-    vpn.home.kellerhome.us.               IN  A  192.168.0.52
-    dns.home.kellerhome.us.               IN  A  192.168.0.53
-    unifi.home.kellerhome.us.             IN  A  192.168.0.54
+    vpn.kellerhome.us.                    IN  A  192.168.0.52
+    dns.kellerhome.us.                    IN  A  192.168.0.53
+    unifi.kellerhome.us.                  IN  A  192.168.0.54
+    k3s-external.kellerhome.us.           IN  A  192.168.0.55
     manage.kellerhome.us.                 IN  A  192.168.0.130
   

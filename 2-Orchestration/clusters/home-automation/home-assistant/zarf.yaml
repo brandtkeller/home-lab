@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-assistant
   description: "Components comprising my home automation orchestration"
-  version: 0.0.5
+  version: 0.0.6
   architecture: amd64
 
 variables:
