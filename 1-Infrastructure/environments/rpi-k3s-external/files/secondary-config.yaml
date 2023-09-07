@@ -1,0 +1,17 @@
+write-kubeconfig-mode: "0644"
+
+tls-san:
+  - rpi-k3s-2
+  - rpi-k3s-2.kellerhome.us
+  - pi
+  - pi.kellerhome.us
+disable:
+  - traefik
+  - servicelb
+disable-cloud-controller: true
+token: my-shared-secret
+
+datastore-endpoint: postgres://k3s-external:9wl1U0P8rR78dDlsms5jMHhM@192.168.0.55:5432/k3s-external
+datastore-cafile: /root/k3s-external/ca.crt
+datastore-certfile: /root/k3s-external/tls.crt
+datastore-keyfile: /root/k3s-external/tls.key

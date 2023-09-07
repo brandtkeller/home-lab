@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-automation
   description: "Components comprising my home automation orchestration"
-  version: 0.0.6
+  version: 0.0.7
   architecture: amd64
 
 variables:
@@ -79,8 +79,10 @@ components:
       files:
       - configs/cert-manager/secret.yaml
       - configs/cert-manager/cluster-issuer.yaml
+      - configs/cert-manager/selfsigned-cluster-issuer.yaml
+      - configs/cert-manager/ca-cert.yaml
+      - configs/cert-manager/ca-issuer.yaml
 
-  
   - name: flux
     manifests:
       - name: flux-installer

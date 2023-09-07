@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: postgres-operator
   description: "Components comprising my home automation orchestration"
-  version: 0.0.2
+  version: 0.0.3
   architecture: amd64
 
 # variables:
@@ -47,6 +47,14 @@ components:
     releaseName: home-assistant-pg
     valuesFiles:
     - values/home-assistant-values.yaml
+
+- name: k3s-external-certificates
+  manifests:
+  - name: certificates
+    namespace: k3s-external
+    files:
+    - manifests/k3s-pg-primary.yaml
+    - manifests/k3s-pg-replicas.yaml
 
 - name: k3s-external-postgres-database
   charts:

@@ -22,6 +22,10 @@ data:
     prox.kellerhome.us.                   IN  A  192.168.1.8
     prox2.kellerhome.us.                  IN  A  192.168.1.10
     prox3.kellerhome.us.                  IN  A  192.168.1.9
+    rpi-k3s-1.kellerhome.us.              IN  A  192.168.1.21
+    rpi-k3s-2.kellerhome.us.              IN  A  192.168.1.22
+    pi.kellerhome.us.                     IN  A  192.168.1.23
+    *.pi.kellerhome.us.                   IN  A  192.168.1.24
     k3s-home-1.kellerhome.us.             IN  A  192.168.0.41
     k3s-home-2.kellerhome.us.             IN  A  192.168.0.42
     k3s-home-3.kellerhome.us.             IN  A  192.168.0.43
@@ -30,6 +34,6 @@ data:
     vpn.kellerhome.us.                    IN  A  192.168.0.52
     dns.kellerhome.us.                    IN  A  192.168.0.53
     unifi.kellerhome.us.                  IN  A  192.168.0.54
-    k3s-external.kellerhome.us.           IN  A  192.168.0.55
+    k3s-external-pg.kellerhome.us.        IN  A  192.168.0.55
     manage.kellerhome.us.                 IN  A  192.168.0.130
   
