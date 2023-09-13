@@ -48,13 +48,36 @@ components:
       - quay.io/jetstack/cert-manager-acmesolver:v1.12.1
       - quay.io/jetstack/cert-manager-ctl:v1.12.1
   
-  # - name: cert-manager-addons
-  #   manifests:
-  #   - name: cert-manager-addons
-  #     namespace: cert-manager
-  #     files:
-  #     - configs/cert-manager/secret.yaml
-  #     - configs/cert-manager/cluster-issuer.yaml
-  #     - configs/cert-manager/selfsigned-cluster-issuer.yaml
-  #     - configs/cert-manager/ca-cert.yaml
-  #     - configs/cert-manager/ca-issuer.yaml
+  - name: cert-manager-addons
+    manifests:
+    - name: cert-manager-addons
+      namespace: cert-manager
+      files:
+      - configs/cert-manager/secret.yaml
+      - configs/cert-manager/cluster-issuer.yaml
+
+  - name: import-cloudflare-tunnel
+    import:
+      name: cloudflare-tunnel
+      url: oci://ghcr.io/brandtkeller/zarf/cloudflare-tunnel:0.0.1-skeleton
+
+  - name: blog-certificate
+    manifests:
+    - name: blog-certificate
+      namespace: blog
+      files:
+      - configs/nginx/certificate.yaml
+
+## Insert nginx component here
+## Add in a wait command for ready?
+## TODO - containerports - configmap - antiaffinity - zarf ignore 
+  - name: nginx-hugo
+    manifests:
+    - name: nginx
+      namespace: blog
+      files:
+      - manifests/nginx/configmap.yaml
+      - manifests/nginx/deployment.yaml
+      - manifests/nginx/service.yaml
+    images:
+    - ghcr.io/brandtkeller/image/personal-blog:latest
