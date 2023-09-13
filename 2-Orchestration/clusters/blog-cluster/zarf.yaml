@@ -30,10 +30,6 @@ components:
 
 
   - name: cert-manager-chart
-    manifests:
-    - name: cert-manager
-      files:
-      - configs/cert-manager/namespace.yaml
     charts:
       - name: cert-manager
         namespace: cert-manager

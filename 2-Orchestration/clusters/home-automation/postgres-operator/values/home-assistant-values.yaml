@@ -71,7 +71,7 @@ imageExporter: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-
 
 # instanceSize sets the size of the volume that contains the data. This defaults
 # to the value below. Settings "instances" overrides this value.
-# instanceSize: 1Gi
+instanceSize: 10Gi
 
 # instanceStorageClassName sets the storage class for the volume that contains the data.
 # This defaults to the "default" storage class defined in the cluster.
