@@ -1,0 +1,13 @@
+write-kubeconfig-mode: "0644"
+
+tls-san:
+  - k8s-home-2
+  - k8s-home-2.kellerhome.us
+  - home
+  - home.kellerhome.us
+disable:
+  - rke2-ingress-nginx
+disable-cloud-controller: true
+token: my-shared-secret
+node-label:
+  - "office=zwave"

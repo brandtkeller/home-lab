@@ -4,6 +4,7 @@ usb:
 persistence:
   enabled: true
   storageClass: "longhorn"
+  existingClaim: "pvc-8c35c044-121e-4225-a657-f6f80cb9166e"
 
 nodeSelector:
   home: zwave

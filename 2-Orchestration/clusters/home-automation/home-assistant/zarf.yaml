@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-assistant
   description: "Components comprising my home automation orchestration"
-  version: 0.0.6
+  version: 0.0.8
   architecture: amd64
 
 variables:
@@ -15,7 +15,7 @@ components:
 - name: home-assistant
   import:
     name: home-assistant
-    url: oci://ghcr.io/brandtkeller/zarf/home-assistant:0.0.1-skeleton
+    url: oci://ghcr.io/brandtkeller/zarf/home-assistant:0.0.2-skeleton
   charts:
   - name: home-assistant
     valuesFiles: 
@@ -29,7 +29,7 @@ components:
 - name: zwave-js-ui-home
   import:
     name: zwave-js-ui
-    url: oci://ghcr.io/brandtkeller/zarf/zwave-js-ui:0.0.1-skeleton
+    url: oci://ghcr.io/brandtkeller/zarf/zwave-js-ui:0.0.2-skeleton
   charts:
   - name: zwave-js-ui
     namespace: zwave-home
@@ -44,7 +44,7 @@ components:
 - name: zwave-js-ui-office
   import:
     name: zwave-js-ui
-    url: oci://ghcr.io/brandtkeller/zarf/zwave-js-ui:0.0.1-skeleton
+    url: oci://ghcr.io/brandtkeller/zarf/zwave-js-ui:0.0.2-skeleton
   charts:
   - name: zwave-js-ui
     namespace: zwave-office

@@ -6,17 +6,12 @@ nextcloud:
         - name: POSTGRES_USER
           valueFrom:
             secretKeyRef:
-              name: nextcloud-pg-pguser-nextcloud-pg
-              key: user
-        - name: POSTGRES_HOST
-          valueFrom:
-            secretKeyRef:
-              name: nextcloud-pg-pguser-nextcloud-pg
-              key: host
+              name: nextcloud-db
+              key: db-username
       command:
       - "sh"
       - "-c"
-      - "until pg_isready -h ${POSTGRES_HOST} -U ${POSTGRES_USER} ; do sleep 2 ; done"
+      - "until pg_isready -h ###ZARF_VAR_NEXTCLOUD_POSTGRESQL_HOST### -U ${POSTGRES_USER} ; do sleep 2 ; done"
 
 externalDatabase:
   enabled: true
@@ -26,18 +21,14 @@ externalDatabase:
 
   ## Use a existing secret from crunchy PGO
   existingSecret:
-    enabled: true
-    secretName: nextcloud-pg-pguser-nextcloud-pg
-    usernameKey: user
-    passwordKey: password
-    hostKey: host
-    databaseKey: dbname
+    enabled: false
 
 nodeSelector:
   office: large-storage
 
 persistence:
   storageClass: "longhorn"
+  existingClaim: "pvc-11e12470-7738-48b1-bd1c-dbd9e504553c"
 
   nextcloudData:
     storageClass: "local-path-storage"

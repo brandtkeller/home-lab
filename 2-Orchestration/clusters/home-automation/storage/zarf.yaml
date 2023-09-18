@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: storage
   description: "Components comprising my home automation orchestration storage"
-  version: 0.0.1
+  version: 0.0.2
   architecture: amd64
 
 # variables:
@@ -17,6 +17,11 @@ components:
     import:
       url: oci://ghcr.io/brandtkeller/zarf/local-path-provisioner:0.0.3-skeleton
       name: local-path-provisioner
+
+  - name: import-nfs-server
+    import:
+      name: nfs-server
+      url: oci://ghcr.io/brandtkeller/zarf/nfs-server:0.0.1-skeleton
 
   - name: import-longhorn-environment-check
     import:

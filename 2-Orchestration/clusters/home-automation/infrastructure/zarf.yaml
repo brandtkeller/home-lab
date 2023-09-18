@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-automation
   description: "Components comprising my home automation orchestration"
-  version: 0.0.8
+  version: 0.0.9
   architecture: amd64
 
 variables:
@@ -83,65 +83,34 @@ components:
       - configs/cert-manager/ca-cert.yaml
       - configs/cert-manager/ca-issuer.yaml
 
-  - name: flux
-    manifests:
-      - name: flux-installer
-        # This will be built on the package create side and deployed as a regular manifest on package deploy
-        kustomizations:
-          - https://repo1.dso.mil/platform-one/big-bang/bigbang.git//base/flux?ref=2.9.0
-    images:
-      - registry1.dso.mil/ironbank/fluxcd/helm-controller:v0.35.0
-      - registry1.dso.mil/ironbank/fluxcd/kustomize-controller:v1.0.1
-      - registry1.dso.mil/ironbank/fluxcd/notification-controller:v1.0.0
-      - registry1.dso.mil/ironbank/fluxcd/source-controller:v1.0.1
-
   - name: istio-operator
-    manifests:
-    - name: istio-operator-config
-      namespace: gitops
-      files:
-        - configs/istio-operator/config.yaml
-    - name: istio-namespace
-      files:
-        - configs/istio-operator/namespace.yaml
     charts:
-      - name: flux-generics
-        url: oci://ghcr.io/brandtkeller/flux-generics
-        releaseName: flux-istio-operator
-        namespace: gitops
-        version: 0.0.1
-        valuesFiles:
-          - configs/istio-operator/flux.yaml
-    repos:
-      - https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.18.2-bb.0
+    - name: istio-operator
+      version: 1.18.2-bb.0
+      namespace: istio-operator
+      url: https://repo1.dso.mil/big-bang/product/packages/istio-operator.git@1.18.2-bb.0
+      gitPath: chart/
+      valuesFiles:
+      - configs/istio-operator/values.yaml
     images:
-      - registry1.dso.mil/ironbank/opensource/istio/operator:1.18.2
+    - registry1.dso.mil/ironbank/opensource/istio/operator:1.18.2
 
   - name: istio-controlplane
+    charts:
+    - name: istio
+      version: 1.18.2-bb.1
+      namespace: istio-system
+      url: https://repo1.dso.mil/big-bang/product/packages/istio-controlplane.git@1.18.2-bb.1
+      gitPath: chart/
+      valuesFiles:
+      - configs/istio/values.yaml
     manifests:
-    - name: istio-config
-      namespace: gitops
-      files:
-        - configs/istio/config.yaml
-    - name: istio-namespace
-      files:
-        - configs/istio/namespace.yaml
     - name: istio-gateway-cert
       namespace: istio-system
       files:
         - configs/istio/certificate.yaml
-    charts:
-      - name: flux-generics
-        url: oci://ghcr.io/brandtkeller/flux-generics
-        releaseName: flux-istio
-        namespace: gitops
-        version: 0.0.1
-        valuesFiles:
-          - configs/istio/flux.yaml
-    repos:
-      - https://repo1.dso.mil/big-bang/product/packages/istio-controlplane.git@1.18.2-bb.1
     images:
-      - registry1.dso.mil/ironbank/big-bang/base:2.0.0
-      - registry1.dso.mil/ironbank/opensource/istio/pilot:1.18.2
-      - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.18.2
-      - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.18.2
+    - registry1.dso.mil/ironbank/big-bang/base:2.0.0
+    - registry1.dso.mil/ironbank/opensource/istio/pilot:1.18.2
+    - registry1.dso.mil/ironbank/opensource/istio/proxyv2:1.18.2
+    - registry1.dso.mil/ironbank/opensource/istio/install-cni:1.18.2

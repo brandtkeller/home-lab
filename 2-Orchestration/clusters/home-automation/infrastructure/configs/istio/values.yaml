@@ -1,0 +1,49 @@
+authservice:
+  enabled: false
+domain: home.kellerhome.us
+enterprise: false
+gateways:
+  main: null
+  home:
+    autoHttpRedirect:
+      enabled: true
+    selector:
+      app: home-ingressgateway
+    servers:
+    - hosts:
+      - '*.home.kellerhome.us'
+      port:
+        name: https
+        number: 8443
+        protocol: HTTPS
+      tls:
+        credentialName: home-kellerhome-tls
+        mode: SIMPLE
+imagePullPolicy: IfNotPresent
+ingressGateways:
+  istio-ingressgateway:
+    enabled: false
+  home-ingressgateway:
+    k8s:
+      service:
+        type: LoadBalancer
+istiod:
+  env:
+  - name: ENABLE_LEGACY_FSGROUP_INJECTION
+    value: "false"
+  hpaSpec:
+    metrics:
+    - resource:
+        name: cpu
+        target:
+          averageUtilization: 60
+          type: Utilization
+      type: Resource
+kiali:
+  enabled: false
+monitoring:
+  enabled: false
+networkPolicies:
+  controlPlaneCidr: 0.0.0.0/0
+  enabled: true
+openshift: false

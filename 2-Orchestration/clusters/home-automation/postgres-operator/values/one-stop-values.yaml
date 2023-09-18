@@ -71,7 +71,7 @@ imageExporter: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-
 
 # instanceSize sets the size of the volume that contains the data. This defaults
 # to the value below. Settings "instances" overrides this value.
-instanceSize: 10Gi
+instanceSize: 30Gi
 
 # instanceStorageClassName sets the storage class for the volume that contains the data.
 # This defaults to the "default" storage class defined in the cluster.
@@ -134,12 +134,21 @@ instanceReplicas: 2
 
 # users sets any custom Postgres users and databases that they have  access to
 # as well as any permissions associated with the user account.
-# users:
-- name: nextcloud
-  databases:
-    - nextcloud
-  options: "SUPERUSER"
-- name: postgres
+users:
+  - name: nextcloud
+    databases:
+      - nextcloud
+    options: "SUPERUSER"
+  - name: postgres
+  - name: k3s-external
+    databases:
+    - k3s-external
+    password:
+      type: AlphaNumeric
+  - name: home-assistant
+    databases:
+    - home-assistant
+
 # dataSource specifies a data source for bootstrapping a Postgres cluster.
 # dataSource: {}
 

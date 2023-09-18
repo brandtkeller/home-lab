@@ -1,0 +1,10 @@
+createNamespace: false
+
+enterprise: false
+imagePullPolicy: IfNotPresent
+
+networkPolicies:
+  enabled: false
+  controlPlaneCidr: 0.0.0.0/0
+monitoring:
+  enabled: false

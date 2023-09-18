@@ -110,7 +110,7 @@ csi:
   snapshotterReplicaCount: ~
 
 defaultSettings:
-  backupTarget: ~
+  backupTarget: "nfs://nfs-svc.nfs.svc:/"
   backupTargetCredentialSecret: ~
   allowRecurringJobWhileVolumeDetached: ~
   createDefaultDiskLabeledNodes: ~

@@ -80,3 +80,4 @@ config:
     scene: !include scenes.yaml
 persistence:
   enabled: true
+  existingClaim: "pvc-fcc13e34-fd34-4864-ae15-630ca4fbfe39"

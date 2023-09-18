@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: postgres-operator
   description: "Components comprising my home automation orchestration"
-  version: 0.0.3
+  version: 0.0.4
   architecture: amd64
 
 # variables:
@@ -28,42 +28,49 @@ components:
   - registry.developers.crunchydata.com/crunchydata/crunchy-postgres-exporter:ubi8-5.4.1-0
   - registry.developers.crunchydata.com/crunchydata/crunchy-upgrade:ubi8-5.4.1-0
 
-- name: nextcloud-postgres-database
-  charts:
-  - name: postgrescluster
-    version: 5.4.1
-    namespace: nextcloud
-    localPath: charts/postgres
-    releaseName: nextcloud-pg
-    valuesFiles:
-    - values/nextcloud-values.yaml
+# - name: nextcloud-postgres-database
+#   charts:
+#   - name: postgrescluster
+#     version: 5.4.1
+#     namespace: nextcloud
+#     localPath: charts/postgres
+#     releaseName: nextcloud-pg
+#     valuesFiles:
+#     - values/nextcloud-values.yaml
 
-- name: home-assistant-postgres-database
-  charts:
-  - name: postgrescluster
-    version: 5.4.1
-    namespace: home-assistant
-    localPath: charts/postgres
-    releaseName: home-assistant-pg
-    valuesFiles:
-    - values/home-assistant-values.yaml
+# - name: home-assistant-postgres-database
+#   charts:
+#   - name: postgrescluster
+#     version: 5.4.1
+#     namespace: home-assistant
+#     localPath: charts/postgres
+#     releaseName: home-assistant-pg
+#     valuesFiles:
+#     - values/home-assistant-values.yaml
 
-- name: k3s-external-certificates
-  manifests:
-  - name: certificates
-    namespace: k3s-external
-    files:
-    - manifests/k3s-pg-primary.yaml
-    - manifests/k3s-pg-replicas.yaml
+# - name: k3s-external-certificates
+#   manifests:
+#   - name: certificates
+#     namespace: k3s-external
+#     files:
+#     - manifests/k3s-pg-primary.yaml
+#     - manifests/k3s-pg-replicas.yaml
 
-- name: k3s-external-postgres-database
-  charts:
-  - name: postgrescluster
-    version: 5.4.1
-    namespace: k3s-external
-    localPath: charts/postgres
-    releaseName: k3s-external
-    valuesFiles:
-    - values/k3s-external-values.yaml
+# - name: k3s-external-postgres-database
+#   charts:
+#   - name: postgrescluster
+#     version: 5.4.1
+#     namespace: k3s-external
+#     localPath: charts/postgres
+#     releaseName: k3s-external
+#     valuesFiles:
+#     - values/k3s-external-values.yaml
   
-
+- name: one-stop-postgres-database
+  charts:
+  - name: postgrescluster
+    version: 5.4.1
+    namespace: databases
+    localPath: charts/postgres
+    valuesFiles:
+    - values/one-stop-values.yaml

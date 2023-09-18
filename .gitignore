@@ -13,3 +13,4 @@ k3s-arm64
 0-Support_Services/proxmox/certbot/letsencrypt/*
 *zarf-config.toml
 1-infrastructure/environments/*/artifacts/zarf
+*.sql

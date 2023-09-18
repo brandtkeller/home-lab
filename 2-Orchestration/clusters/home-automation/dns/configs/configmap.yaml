@@ -26,9 +26,9 @@ data:
     rpi-k3s-2.kellerhome.us.              IN  A  192.168.1.22
     pi.kellerhome.us.                     IN  A  192.168.1.23
     *.pi.kellerhome.us.                   IN  A  192.168.1.24
-    k3s-home-1.kellerhome.us.             IN  A  192.168.0.41
-    k3s-home-2.kellerhome.us.             IN  A  192.168.0.42
-    k3s-home-3.kellerhome.us.             IN  A  192.168.0.43
+    k8s-home-1.kellerhome.us.             IN  A  192.168.0.41
+    k8s-home-2.kellerhome.us.             IN  A  192.168.0.42
+    k8s-home-3.kellerhome.us.             IN  A  192.168.0.43
     home.kellerhome.us.                   IN  A  192.168.0.50
     *.home.kellerhome.us.                 IN  A  192.168.0.51
     vpn.kellerhome.us.                    IN  A  192.168.0.52
