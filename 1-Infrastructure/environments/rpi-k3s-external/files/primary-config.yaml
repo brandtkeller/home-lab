@@ -11,7 +11,7 @@ disable:
 disable-cloud-controller: true
 token: my-shared-secret
 
-datastore-endpoint: postgres://k3s-external:9wl1U0P8rR78dDlsms5jMHhM@192.168.0.55:5432/k3s-external
+datastore-endpoint: postgres://k3s-external:password@192.168.0.55:5432/k3s-external
 datastore-cafile: /root/k3s-external/ca.crt
 datastore-certfile: /root/k3s-external/tls.crt
 datastore-keyfile: /root/k3s-external/tls.key

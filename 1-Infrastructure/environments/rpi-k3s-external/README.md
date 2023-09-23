@@ -1,7 +1,7 @@
 # RPI K3S Cluster
 
 ```
-mv k3s-arm64 /usr/local/bin/k3s
+cp k3s-arm64 /usr/local/bin/k3s
 chmod +x /usr/local/bin/k3s
 mkdir -p /var/lib/rancher/k3s/agent/images/
 mkdir -p /etc/rancher/k3s/
