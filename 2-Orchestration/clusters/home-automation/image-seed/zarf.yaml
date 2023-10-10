@@ -1,0 +1,61 @@
+kind: ZarfPackageConfig
+metadata:
+  name: image-seed
+  description: "All images required for the cluster"
+  version: 0.0.1
+  architecture: amd64
+
+components:
+  - name: dns
+    # The component logic keys ('required', 'group', and 'default') always override those of the imported package
+    required: true
+    import:
+      # The local relative path to the folder containing this component's package definition
+      path: ../dns
+      # Example optional custom name to point to in the imported package (default is to use this component's name)
+      name: image-seed
+
+  - name: home-assistant
+    # The component logic keys ('required', 'group', and 'default') always override those of the imported package
+    required: true
+    import:
+      # The local relative path to the folder containing this component's package definition
+      path: ../home-assistant
+      # Example optional custom name to point to in the imported package (default is to use this component's name)
+      name: image-seed
+
+  - name: infrastructure
+    # The component logic keys ('required', 'group', and 'default') always override those of the imported package
+    required: true
+    import:
+      # The local relative path to the folder containing this component's package definition
+      path: ../infrastructure
+      # Example optional custom name to point to in the imported package (default is to use this component's name)
+      name: image-seed
+
+  - name: nextcloud
+    # The component logic keys ('required', 'group', and 'default') always override those of the imported package
+    required: true
+    import:
+      # The local relative path to the folder containing this component's package definition
+      path: ../nextcloud
+      # Example optional custom name to point to in the imported package (default is to use this component's name)
+      name: image-seed
+
+  - name: postgres-operator
+    # The component logic keys ('required', 'group', and 'default') always override those of the imported package
+    required: true
+    import:
+      # The local relative path to the folder containing this component's package definition
+      path: ../postgres-operator
+      # Example optional custom name to point to in the imported package (default is to use this component's name)
+      name: image-seed
+
+  - name: storage
+    # The component logic keys ('required', 'group', and 'default') always override those of the imported package
+    required: true
+    import:
+      # The local relative path to the folder containing this component's package definition
+      path: ../storage
+      # Example optional custom name to point to in the imported package (default is to use this component's name)
+      name: image-seed

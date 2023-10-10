@@ -13,13 +13,13 @@ provider "proxmox" {
 
 
 # prox Hosts
-module "k3s-test-1" {
+module "k3s-databases-1" {
   source = "github.com/brandtkeller/proxmox-terraform-modules//k3s-node"
 
-  name = "k3s-test-1.kellerhome.us"
+  name = "k3s-databases-1.kellerhome.us"
   boot = true
-  pve_node = "prox"
-  clone_image  = "ubuntu-cloudimg-prox"
+  pve_node = "prox2"
+  clone_image  = "ubuntu-cloudimg-prox2"
   
   join_server = ""
   role = "server"
@@ -28,16 +28,16 @@ module "k3s-test-1" {
   taint = false
   
 
-  storage_size = "100G"
-  storage_type = "local-lvm"
+  storage_size = "200G"
+  storage_type = "ssdpoolprox2"
   memory = 16384
   cpus = 4
 
-  ip_addr = "192.168.1.81"
-  node_host = "k3s-test-1"
-  cluster_host = "test"
+  ip_addr = "192.168.1.41"
+  node_host = "k3s-databases-1"
+  cluster_host = "home"
   domain = "kellerhome.us"
-  nameservers = "192.168.0.130"
+  nameservers = "192.168.1.1"
   password = var.password
 
 }

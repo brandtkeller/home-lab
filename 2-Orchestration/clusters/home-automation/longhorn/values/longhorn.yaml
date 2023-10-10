@@ -81,10 +81,10 @@ service:
     loadBalancerSourceRanges: ""
 
 persistence:
-  defaultClass: true
+  defaultClass: false
   defaultFsType: ext4
   defaultMkfsParams: ""
-  defaultClassReplicaCount: 3
+  defaultClassReplicaCount: 2
   defaultDataLocality: disabled # best-effort otherwise
   reclaimPolicy: Delete
   migratable: false
@@ -223,11 +223,7 @@ longhornDriver:
 longhornUI:
   replicas: 2
   priorityClass: ~
-  tolerations:
-  - key: "CriticalAddonsOnly"
-    operator: "Equal"
-    value: "true"
-    effect: "NoExecute"
+  tolerations: []
   ## If you want to set tolerations for Longhorn UI Deployment, delete the `[]` in the line above
   ## and uncomment this example block
   # - key: "key"

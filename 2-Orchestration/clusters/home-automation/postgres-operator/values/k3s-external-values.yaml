@@ -71,7 +71,7 @@ imageExporter: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-
 
 # instanceSize sets the size of the volume that contains the data. This defaults
 # to the value below. Settings "instances" overrides this value.
-instanceSize: 10Gi
+instanceSize: 20Gi
 
 # instanceStorageClassName sets the storage class for the volume that contains the data.
 # This defaults to the "default" storage class defined in the cluster.
@@ -186,7 +186,7 @@ customReplicationTLSSecret:
 
 # backupsSize sets the storage size of the backups to a volume in Kubernetes.
 # can be overridden by "pgBackRestConfig", if set. Defaults to the value below.
-# backupsSize: 1Gi
+backupsSize: 30Gi
 
 # backupsStorageClassName sets the storage class to a class existing in Kubernetes.
 # Defaults to the "default" storage class defined in the cluster.

@@ -28,7 +28,7 @@ nodeSelector:
 
 persistence:
   storageClass: "longhorn"
-  existingClaim: "pvc-11e12470-7738-48b1-bd1c-dbd9e504553c"
+  # existingClaim: "pvc-11e12470-7738-48b1-bd1c-dbd9e504553c"
 
   nextcloudData:
     storageClass: "local-path-storage"

@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-assistant
   description: "Components comprising my home automation orchestration"
-  version: 0.0.8
+  version: 0.0.10
   architecture: amd64
 
 variables:
@@ -12,6 +12,11 @@ variables:
     sensitive: true
 
 components:
+- name : image-seed
+  images:
+  - ghcr.io/home-assistant/home-assistant:2023.6.2
+  - zwavejs/zwave-js-ui:8.17.1
+
 - name: home-assistant
   import:
     name: home-assistant

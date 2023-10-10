@@ -71,13 +71,13 @@ imageExporter: registry.developers.crunchydata.com/crunchydata/crunchy-postgres-
 
 # instanceSize sets the size of the volume that contains the data. This defaults
 # to the value below. Settings "instances" overrides this value.
-instanceSize: 30Gi
+instanceSize: 20Gi
 
 # instanceStorageClassName sets the storage class for the volume that contains the data.
 # This defaults to the "default" storage class defined in the cluster.
 # See: 'kubectl get storageclasses.storage.k8s.io | grep default'
 # Settings "instances" overrides this value.
-instanceStorageClassName: "longhorn"
+# instanceStorageClassName: "longhorn"
 
 # instanceMemory sets the memory limit for the Postgres instances. This defaults
 # to no limit being set, but an example value is set below. Settings "instances"
@@ -135,11 +135,15 @@ instanceReplicas: 2
 # users sets any custom Postgres users and databases that they have  access to
 # as well as any permissions associated with the user account.
 users:
-  - name: nextcloud
+  - name: k3s-external
     databases:
-      - nextcloud
-    options: "SUPERUSER"
-  - name: postgres
+    - k3s-external
+    password:
+      type: AlphaNumeric
+# - name: nextcloud
+#   databases:
+#     - nextcloud
+#   options: "SUPERUSER"
 
 # dataSource specifies a data source for bootstrapping a Postgres cluster.
 # dataSource: {}
@@ -147,12 +151,14 @@ users:
 # customTLSSecret references a Secret that contains the relevant information for
 # bringing external TLS artifacts to a PostgreSQL cluster. This provides the
 # TLS for the cluster itself.
-# customTLSSecret: {}
+customTLSSecret:
+  name: k3s-pg-primary-tls
 
 # customReplicationTLSSecret references a Secret that contains the relevant
 # information for bringing external TLS artifacts to a PostgreSQL cluster. This
 # provides the information for the replication user.
-# customReplicationTLSSecret: {}
+customReplicationTLSSecret:
+  name: k3s-pg-replicas-tls
 
 # databaseInitSQL references a ConfigMap that contains a SQL file that should be
 # run a cluster bootstrap.
@@ -180,12 +186,12 @@ users:
 
 # backupsSize sets the storage size of the backups to a volume in Kubernetes.
 # can be overridden by "pgBackRestConfig", if set. Defaults to the value below.
-backupsSize: 3Gi
+backupsSize: 30Gi
 
 # backupsStorageClassName sets the storage class to a class existing in Kubernetes.
 # Defaults to the "default" storage class defined in the cluster.
 # Can be overridden by "pgBackRestConfig", if set.
-backupsStorageClassName: "longhorn"
+# backupsStorageClassName: "longhorn"
 
 # s3 allows for AWS S3 or an S3 compatible storage system to be used for
 # backups. This allows for a quick setup with S3; if you need more advanced
@@ -293,8 +299,8 @@ backupsStorageClassName: "longhorn"
 # metadata: {}
 
 # service customizes the Service that exposes the Postgres primary.
-# service:
-#   type: LoadBalancer
+service:
+  type: LoadBalancer
 
 # imagePullPolicy sets the pull policy for all the images. This defaults to
 # the Kubernetes heuristic:

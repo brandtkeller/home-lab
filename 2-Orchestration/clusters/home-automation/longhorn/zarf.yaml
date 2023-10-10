@@ -1,0 +1,44 @@
+kind: ZarfPackageConfig
+metadata:
+  name: longhorn
+  description: "Components comprising my home automation orchestration storage"
+  version: 0.0.2
+  architecture: amd64
+
+# variables:
+#   - name: VIP_INTERFACE
+#     description: "Interface for the VIP"
+#     prompt: true
+#     sensitive: false
+
+
+components:
+  - name: image-seed
+    images:
+    - longhornio/csi-attacher:v4.2.0
+    - longhornio/csi-provisioner:v3.4.1
+    - longhornio/csi-resizer:v1.7.0
+    - longhornio/csi-snapshotter:v6.2.1
+    - longhornio/csi-node-driver-registrar:v2.7.0
+    - longhornio/livenessprobe:v2.9.0
+    - longhornio/backing-image-manager:v1.5.1
+    - longhornio/longhorn-engine:v1.5.1
+    - longhornio/longhorn-instance-manager:v1.5.1
+    - longhornio/longhorn-manager:v1.5.1
+    - longhornio/longhorn-share-manager:v1.5.1
+    - longhornio/longhorn-ui:v1.5.1
+    - longhornio/support-bundle-kit:v0.0.25
+
+  - name: import-longhorn-environment-check
+    import:
+      name: longhorn-environment-check
+      url: oci://ghcr.io/brandtkeller/zarf/longhorn:1.5.1-skeleton
+
+  - name: import-longhorn
+    import:
+      name: longhorn
+      url: oci://ghcr.io/brandtkeller/zarf/longhorn:1.5.1-skeleton
+    charts:
+    - name: longhorn
+      valuesFiles:
+      - values/longhorn.yaml

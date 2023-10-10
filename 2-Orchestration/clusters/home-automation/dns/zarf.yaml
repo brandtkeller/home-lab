@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: home-dns
   description: "dns component for home automation cluster"
-  version: 0.0.2
+  version: 0.0.3
   architecture: amd64
 
 # variables:
@@ -12,6 +12,9 @@ metadata:
 #     sensitive: false
 
 components:
+  - name : image-seed
+    images:
+      - coredns/coredns:1.10.0
   - name: coredns
     manifests:
     - name: dns-namespace
@@ -25,3 +28,8 @@ components:
         - configs/service.yaml
     images:
       - coredns/coredns:1.10.0
+    actions:
+      onDeploy:
+        after:
+          - cmd: "./zarf tools kubectl rollout restart ds/local-dns -n dns"
+            description: "Restart the dns pods for updates to take effect"

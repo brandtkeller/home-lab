@@ -77,7 +77,7 @@ instanceSize: 30Gi
 # This defaults to the "default" storage class defined in the cluster.
 # See: 'kubectl get storageclasses.storage.k8s.io | grep default'
 # Settings "instances" overrides this value.
-instanceStorageClassName: "longhorn"
+# instanceStorageClassName: "longhorn"
 
 # instanceMemory sets the memory limit for the Postgres instances. This defaults
 # to no limit being set, but an example value is set below. Settings "instances"
@@ -140,6 +140,9 @@ users:
       - nextcloud
     options: "SUPERUSER"
   - name: postgres
+  - name: home-assistant
+    databases:
+    - home-assistant
 
 # dataSource specifies a data source for bootstrapping a Postgres cluster.
 # dataSource: {}
@@ -185,7 +188,7 @@ backupsSize: 3Gi
 # backupsStorageClassName sets the storage class to a class existing in Kubernetes.
 # Defaults to the "default" storage class defined in the cluster.
 # Can be overridden by "pgBackRestConfig", if set.
-backupsStorageClassName: "longhorn"
+# backupsStorageClassName: "longhorn"
 
 # s3 allows for AWS S3 or an S3 compatible storage system to be used for
 # backups. This allows for a quick setup with S3; if you need more advanced
@@ -293,8 +296,8 @@ backupsStorageClassName: "longhorn"
 # metadata: {}
 
 # service customizes the Service that exposes the Postgres primary.
-# service:
-#   type: LoadBalancer
+service:
+  type: LoadBalancer
 
 # imagePullPolicy sets the pull policy for all the images. This defaults to
 # the Kubernetes heuristic:

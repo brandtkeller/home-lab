@@ -2,7 +2,7 @@ kind: ZarfPackageConfig
 metadata:
   name: nextcloud
   description: "Components comprising my home automation orchestration"
-  version: 0.0.5
+  version: 0.0.6
   architecture: amd64
 
 variables:
@@ -38,6 +38,13 @@ variables:
     sensitive: false
 
 components:
+- name: image-seed
+  images:
+  - bitnami/redis:7.0.12-debian-11-r2
+  - nextcloud:27.0.2-apache
+  - bitnami/postgresql:15.3.0-debian-11-r74
+  - amazon/aws-cli:2.9.12
+
 - name: import-redis
   import:
     name: redis
@@ -51,8 +58,6 @@ components:
     - name: nextcloud
       valuesFiles:
       - values.yaml
-  images:
-    - bitnami/postgresql:15.3.0-debian-11-r74
 
 - name: nextcloud-virtualservice
   manifests:
@@ -68,5 +73,3 @@ components:
     files:
     - configs/cronjob.yaml
     - configs/secret.yaml
-  images:
-  - amazon/aws-cli:2.9.12

@@ -8,3 +8,9 @@ persistence:
 
 nodeSelector:
   office: zwave
+
+tolerations:
+- key: "CriticalAddonsOnly"
+  operator: "Equal"
+  value: "true"
+  effect: "NoExecute"   
