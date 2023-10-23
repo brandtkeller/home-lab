@@ -1,0 +1,63 @@
+kind: ZarfPackageConfig
+metadata:
+  name: knative-cluster
+  description: "knative cluster"
+  version: 0.0.1
+  architecture: amd64
+  yolo: true
+
+components:
+  # install cert-manager 
+
+  # install cert-manager CRs
+
+  # install required istio controlplane
+  - name: istio-controlplane
+    required: true
+    charts:
+      - name: base
+        namespace: istio-system
+        url: https://istio-release.storage.googleapis.com/charts
+        version: 1.19.0
+      - name: istiod
+        namespace: istio-system
+        url: https://istio-release.storage.googleapis.com/charts
+        version: 1.19.0
+
+  # create knative-serving namespace with istio-injection=enabled
+  - name: knative-namespace
+    required: true
+    manifests:
+    - name: namespace
+      files:
+        - manifests/knative/knative-ns.yaml
+
+  # install knative serving
+  - name: knative-serving-crd
+    required: true
+    manifests:
+    - name: serving-crd
+      files:
+      - manifests/knative/serving-crds.yaml
+
+  - name: knative-serving
+    required: true
+    manifests:
+    - name: serving
+      files:
+      - manifests/knative/serving-core.yaml
+
+  # install knative istio controller
+  - name: knative-istio
+    required: true
+    manifests:
+    - name: istio
+      files:
+      - manifests/knative/net-istio.yaml
+
+
+  # install app namespace w/ istio injection
+
+  # install cloudflared tunnel
+
+  # installkservice
