@@ -29,38 +29,29 @@ I focus on my daily work responsibilities without having to interact with this e
 
 ## Notes and Current Thoughts
 
-### Priority
-- Solidify Home-Automation Cluster
-  - Deploy a multi-node k3s cluster for home services using zarf
-  - 
+### Goals
+- Highly Available Kubernetes Cluster w/ 3x Server nodes and minimum of 2x agent nodes (TBD).
+  - Server nodes hosts Kube-VIP and manage traffic routing
+- 1x agent node inside the house for Zwave
+- 1 -> N agent node(s) in the office for Zwave & NFS
+  - Continue to use NUC due to footprint and resource requirements
+    - Stays online in the event of power failure
 
-### Investigation
-- Investigate kube-VIP for node comms loadbalancing
-  - How necessary is this really?
-- create an infrastructure directory under `0-Support_Services`
-  - Create a zarf.yaml manifest for the infrastructure node
-    - NFS server
-    - Docker registry pull-through caches
-      - docker hub
-      - registry1
-    - S3 compatible storage
-- telmate/prox-api-go
-    - Build CLI for local dev?
-    - Integrate with k8s autoscaler?
-- Rsync Cronjob chart to redundant storage (Onsite-Backup)
-- velero configuration to S3 (Offsite-Backup)
-
-### Cert-Manager native Integration with Big Bang
-
-- Will need the ability to deploy cert-manager
-  - `packages` can work here
-- Configure cert-manager
-  - Should there be a helm-chart that essentially allows templating a list of resources generically?
-    - Could wrapper do this?
-  - Deploy Cluster-issuer resource
-  - Deploy certificate resources (into istio-system namespace)
-- Umbrella modifications
-  - Ideally need the ability to make the istio helm release `dependsOn` the cert-manager helm release
-  - Configure gateways
-    - Use the correct secrets from the cert-manager certificates
-    - Can likely opt-out of umbrella gateways and instead use istio `values` directly
+### Questions
+- Do we need a storage class on any of the server nodes?
+  - Move zwave home to agent node then no
+- Can we reformat the cluster entirely? 
+  - Would we lose any data?
+  - Would we lose any configuration?
+- How could we migrate the database VM to the NUC?
+  - How is migration done generically?
+- 
+### Execution
+- Backup data as required
+- Zarf-init-longhorn
+  - Add local path storage for NFS
+  - Add NFS server
+  - Add NFS provisioner
+  - Add NFS as backup location for longhorn
+  - Restore required PVC's
+- Deploy infrastructure package
