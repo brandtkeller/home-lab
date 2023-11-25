@@ -11,7 +11,7 @@ Check your local classifieds/ebay/etc. Beefy machines of 1-2 generations old can
 - Second, Identify both "good" and "ideal" solutions - If "ideal" will consume 2x more time - execute with "good" first
 
 ### Why not shoot for "ideal"?
-I focus on my daily work responsibilities without having to interact with this equipment often (Maybe I should change that in order to justify testing these services more). More often than not, I'll get super busy and have to focus on work without much time to put towards this infrastructure. At the same time, I'll day-dream and research these complex methods for meeting the same end goal -  without ever getting something up and running due to how much free-stime I have available. Rather than let "perfect" be the enemy of "good" - we're going to identify the multiple approaches - and target the option that produces the goals without over-engineering initially. 
+I focus on my daily work responsibilities without having to interact with this equipment often (Maybe I should change that in order to justify testing these services more). More often than not, I'll get super busy and have to focus on work without much time to put towards this infrastructure. At the same time, I'll day-dream and research these complex methods for meeting the same end goal -  without ever getting something up and running due to how much free-time I have available. Rather than let "perfect" be the enemy of "good" - we're going to identify the multiple approaches - and target the option that produces the goals without over-engineering initially. 
 
 ## High Level Plan
 - DNS that routes a legit domain internally.
@@ -47,11 +47,40 @@ I focus on my daily work responsibilities without having to interact with this e
   - How is migration done generically?
 - 
 ### Execution
+
+#### Bootstrap
+- Create new support-services cluster
+  - How do I make this easily transferrable across compute?
+    - This is further complicated by the large storage only being accessible by a single VM
+    - Could attempt an in-place upgrade but that could be risky
+    - Velero w/ NFS backend 
+  - Build to be scalable if required
+  - Deploy infrastructure
+    - Cert-manager
+    - kube-vip
+  - Deploy databases
+    - Cloudnative PG
+  - Migrate databases as required
+    - Nextcloud
+  - Deploy NFS server
 - Backup data as required
-- Zarf-init-longhorn
-  - Add local path storage for NFS
-  - Add NFS server
-  - Add NFS provisioner
-  - Add NFS as backup location for longhorn
-  - Restore required PVC's
-- Deploy infrastructure package
+- Clear all compute
+  - Uninstall from bare-metal
+  - Destroy VMs
+- Create first server node
+- Join server 2 & 3
+- Join Agents
+  - Laptop Agent in House?
+  - 2x Prox VM's 
+- Deploy zarf-init-longhorn package
+  - Add NFS backup endpoint
+- Deploy NFS provisioner package
+- Deploy Infrastructure package
+- Deploy DNS
+  - Run on server nodes only?
+  - LoadBalancer Service
+- Restore PVC's
+- Deploy Nextcloud
+- Deploy Home Assistant
+
+
