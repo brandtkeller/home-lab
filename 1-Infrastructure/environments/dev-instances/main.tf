@@ -12,22 +12,22 @@ provider "proxmox" {
 }
 
 
-# prox Hosts
-module "dev-test-1" {
+# prox2 Hosts
+module "mk8s-test-1" {
   source = "github.com/brandtkeller/proxmox-terraform-modules//dev-node"
 
-  name = "dev-test-1"
+  name = "mk8s-test-1"
   boot = true
-  pve_node = "prox"
-  clone_image  = "ubuntu-cloudimg-prox"
+  pve_node = "prox2"
+  clone_image  = "ubuntu-cloudimg-prox2"
 
   storage_size = "100G"
-  storage_type = "local-lvm"
+  storage_type = "ssdpoolprox2"
   memory = 16384
   cpus = 4
 
   ip_addr = "192.168.1.61"
-  nameservers = "8.8.8.8"
+  nameservers = "192.168.1.1"
   password = var.password
 
 }
