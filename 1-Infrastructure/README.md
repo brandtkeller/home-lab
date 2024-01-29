@@ -10,7 +10,7 @@ What would this look like based on the services provided?
 
 
 ## Hardware
-R710
+R720
 - Purpose: Hosting long-lived kubernetes cluster - Provide no-cloud-cost dev environments for quick provision w/ terraform
 - Storage
     - 2x 4tb btrfs raid1 array
