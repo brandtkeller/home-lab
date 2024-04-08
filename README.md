@@ -12,6 +12,28 @@ Plan:
 - Deploy the home stack -> integrate renovate to track updates to dependencies
 - Re-establish proxmox cluster for Virtual Machines
 
+Dependencies:
+- Backup all data
+  - May require some rsync pods w/ longhorn mounts
+    - zwavejs data (Just for the node migrating off kubernetes)
+- Setup backwards-compatible network (subnet support)
+- Setup the Core node
+  - Ubuntu
+  - NFS
+  - Zwavejs
+  - DNS
+  - Unifi Controller
+  - Database?
+- Re-deploy Prod cluster
+  - 3x control-plane machines
+  - 1x agent machine
+    - Add label for zwavejs
+  - Orchestration
+    - Longhorn init package
+    - uds-core-slim
+    - Home-Assistant
+    - NextCloud
+
 > [!WARNING]
 > All Content below may be outdated or changed.
 
