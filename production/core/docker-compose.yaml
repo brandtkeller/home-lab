@@ -1,0 +1,13 @@
+version: '3.5'
+
+services:
+  dns:
+    restart: always
+    image: coredns/coredns:1.10.0
+    command: -conf /etc/coredns/Corefile
+    volumes:
+      - "./config/dns:/etc/coredns"
+    ports:
+      - 53:53
+  
+

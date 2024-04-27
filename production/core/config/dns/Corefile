@@ -1,0 +1,11 @@
+kellerhome.us:53 {
+    file /etc/coredns/dns.db
+    log
+    errors
+}
+
+.:53 {
+    forward . 8.8.8.8 9.9.9.9
+    log
+    errors
+}
