@@ -23,4 +23,4 @@ components:
     - configs/lb-service.yaml
     - configs/pvc.yaml
   images:
-  - linuxserver/unifi-controller:7.4.162
+  - linuxserver/unifi-controller:8.0.24
