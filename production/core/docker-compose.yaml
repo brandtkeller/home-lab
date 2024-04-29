@@ -25,6 +25,7 @@ services:
   zwave:
     restart: unless-stopped
     image: zwavejs/zwave-js-ui:9.11.1
+    privileged: true
     environment:
       - SESSION_SECRET=mysupersecretkey
     ports:
