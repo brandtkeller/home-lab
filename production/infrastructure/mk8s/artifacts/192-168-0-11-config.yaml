@@ -1,0 +1,13 @@
+disable:
+    - rke2-ingress-nginx
+    - rke2-metrics-server
+disable-cloud-controller: true
+node-taint:
+    - CriticalAddonsOnly=true:NoExecute
+tls-san:
+    - k8s-home-1
+    - k8s-home-1.kellerhome.us
+    - home
+    - home.kellerhome.us
+token: my-shared-secret
+write-kubeconfig-mode: "0644"

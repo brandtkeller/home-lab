@@ -5,7 +5,7 @@ distro: rke2
 version: v1.28.3+rke2r2
 arch: amd64
 airgap: true # this is assumed for now
-# artifacts:
+# artifacts: 
 
 ## Individual Node Configuration
 nodes:
@@ -26,6 +26,7 @@ nodes:
         - home.kellerhome.us
       disable:
         - rke2-ingress-nginx
+        - rke2-metrics-server
       disable-cloud-controller: true
       token: my-shared-secret
       node-taint:
@@ -48,6 +49,7 @@ nodes:
         - home.kellerhome.us
       disable:
         - rke2-ingress-nginx
+        - rke2-metrics-server
       disable-cloud-controller: true
       token: my-shared-secret
       node-taint:
@@ -70,6 +72,7 @@ nodes:
         - home.kellerhome.us
       disable:
         - rke2-ingress-nginx
+        - rke2-metrics-server
       disable-cloud-controller: true
       token: my-shared-secret
       node-taint:

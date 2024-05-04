@@ -1,0 +1,2 @@
+server: https://192.168.0.11:9345
+token: my-shared-secret
