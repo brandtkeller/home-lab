@@ -1,0 +1,15 @@
+tasks:
+  - name: create-zarf-packages
+    description: Create child Zarf packages
+    actions:
+      - description: "Create the exemptions Zarf package"
+        cmd: uds zarf package create packages/exemptions --confirm --no-progress --skip-sbom -o build/
+
+  - name: create-uds-bundle
+    description: Create the UDS Core bundle
+    actions:
+      # Run dependent task to create Zarf packages first.
+      - task: create-zarf-packages
+
+      - description: "Create the production Bundle"
+        cmd: "uds create bundles/ --confirm --no-progress --architecture=${ZARF_ARCHITECTURE}"

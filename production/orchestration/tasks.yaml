@@ -1,0 +1,15 @@
+includes:
+  - create: ./tasks/create.yaml
+
+tasks:
+  - name: create-bundle
+    actions:
+      - description: "Create the UDS Core RKE2 Bundle"
+        task: create:create-uds-bundle
+   
+  - name: clean
+    actions:
+      - description: "Remove build artifacts"
+        cmd: |
+          rm -rf build/
+          rm bundles/*.tar.zst

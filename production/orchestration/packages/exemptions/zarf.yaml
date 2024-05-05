@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/defenseunicorns/zarf/v0.29.2/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: exemptions-package
+  description: "Pepr exemptions for this Bundle"
+  architecture: amd64
+  version: v0.0.1
+
+components:
+
+  - name: exemptions-component
+    description: "Custom Resource definitions for Pepr policy exemptions"
+    required: true
+    manifests:
+    - name: exemptions-manifests
+      namespace: uds-policy-exemptions
+      files:
+        - manifests/longhorn-exemption.yaml
