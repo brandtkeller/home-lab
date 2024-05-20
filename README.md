@@ -5,20 +5,20 @@
 
 Update
 
-
-
 Dependencies:
-- Backup all data
+- (DONE)Backup all data
   - May require some rsync pods w/ longhorn mounts
     - zwavejs data (Just for the node migrating off kubernetes)
-- Setup backwards-compatible network (subnet support)
+- (DONE) Setup backwards-compatible network (subnet support)
+- Create self-hosted github runner for the repository
+  - Performs bundle build
+  - Performs bundle deploy
 - Setup the Core node
-  - Ubuntu
-  - NFS
-  - Zwavejs
-  - DNS
+  - (DONE) Ubuntu
+  - (DONE) NFS
+  - (DONE) Zwavejs
+  - (DONE) DNS
   - Unifi Controller
-  - Database?
 - Re-deploy Prod cluster
   - 3x control-plane machines
   - 1x agent machine

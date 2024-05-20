@@ -4,7 +4,7 @@ includes:
 tasks:
   - name: create-bundle
     actions:
-      - description: "Create the UDS Core RKE2 Bundle"
+      - description: "Create the UDS Core Bundle"
         task: create:create-uds-bundle
    
   - name: clean
