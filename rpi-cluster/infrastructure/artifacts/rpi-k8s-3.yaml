@@ -1,8 +1,9 @@
+server: https://192.168.0.21:6443
 write-kubeconfig-mode: "0644"
 
 tls-san:
-  - rpi-k8s-1
-  - rpi-k8s-1.kellerhome.us
+  - rpi-k8s-3
+  - rpi-k8s-3.kellerhome.us
   - pi
   - pi.kellerhome.us
 disable:

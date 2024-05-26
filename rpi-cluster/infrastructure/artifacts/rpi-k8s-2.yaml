@@ -1,3 +1,4 @@
+server: https://192.168.0.21:6443
 write-kubeconfig-mode: "0644"
 
 tls-san:
