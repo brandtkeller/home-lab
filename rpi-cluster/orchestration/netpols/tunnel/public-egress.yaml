@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-public-egress
+spec:
+# https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/install-and-setup/ports-and-ips/
+  podSelector: {}
+  policyTypes:
+  - Egress
+  - Ingress
+  egress:
+  - ports:
+    - protocol: TCP
+      port: 443
+    - protocol: UDP
+      port: 7844
+    - protocol: TCP
+      port: 7844
+    to:
+    - ipBlock:
+        cidr: 0.0.0.0/0

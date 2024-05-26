@@ -1,0 +1,95 @@
+kind: ZarfPackageConfig
+metadata:
+  name: blog-platform
+  description: "Cluster for serving my personal blog"
+  version: 0.0.1
+  architecture: arm64
+
+# variables:
+#   - name: VIP_INTERFACE
+#     description: "Interface for the VIP"
+#     prompt: true
+#     sensitive: false
+
+
+components:
+  - name: cert-manager-chart
+    charts:
+      - name: cert-manager
+        namespace: cert-manager
+        url: https://charts.jetstack.io
+        version: v1.14.5
+        valuesFiles:
+          - configs/cert-manager/values.yaml
+    images:
+      - quay.io/jetstack/cert-manager-controller:v1.14.5
+      - quay.io/jetstack/cert-manager-webhook:v1.14.5
+      - quay.io/jetstack/cert-manager-cainjector:v1.14.5
+      - quay.io/jetstack/cert-manager-acmesolver:v1.14.5
+      - quay.io/jetstack/cert-manager-ctl:v1.14.5
+      - quay.io/jetstack/cert-manager-startupapicheck:v1.14.5
+  
+  - name: cert-manager-addons
+    manifests:
+    - name: cert-manager-addons
+      namespace: cert-manager
+      files:
+      - configs/cert-manager/secret.yaml
+      - configs/cert-manager/cluster-issuer.yaml
+  
+  - name: cloudflare-tunnel-bk
+    required: true
+    manifests:
+    - name: network-policies
+      namespace: cloudflare-tunnel
+      files:
+      - netpols/default-deny.yaml
+      - netpols/tunnel/dns-egress.yaml
+      - netpols/tunnel/public-egress.yaml
+      - netpols/tunnel/blog-egress.yaml
+    charts:
+    - name: cloudflare-tunnel
+      releaseName: bk-cloudflared-tunnel
+      namespace: cloudflare-tunnel
+      url:  https://cloudflare.github.io/helm-charts
+      version: 0.3.0
+      valuesFiles:
+      - values/tunnel-bk.yaml
+    images:
+    - cloudflare/cloudflared:2024.5.0
+
+  - name: cloudflare-tunnel-bkcv
+    required: true
+    charts:
+    - name: cloudflare-tunnel
+      releaseName: bkcv-cloudflared-tunnel
+      namespace: cloudflare-tunnel
+      url:  https://cloudflare.github.io/helm-charts
+      version: 0.3.0
+      valuesFiles:
+      - values/tunnel-bkcv.yaml
+    images:
+    - cloudflare/cloudflared:2024.5.0
+
+  - name: blog-certificate
+    manifests:
+    - name: blog-certificate
+      namespace: blog
+      files:
+      - configs/nginx/certificate.yaml
+      - configs/nginx/bkcv-certificate.yaml
+
+## TODO - containerports - configmap - antiaffinity - zarf ignore 
+  - name: nginx-hugo
+    manifests:
+    - name: network-policies
+      namespace: blog
+      files:
+      - netpols/default-deny.yaml
+      - netpols/blog/https-ingress.yaml
+    - name: nginx
+      namespace: blog
+      files:
+      - manifests/nginx/configmap.yaml
+      - manifests/nginx/deployment.yaml
+      - manifests/nginx/service.yaml
