@@ -1,3 +1,6 @@
 kellerhome.us.        IN  SOA dns.kellerhome.us. keller.kellerhome.us. 2015082541 7200 3600 1209600 3600
 router.kellerhome.us.                 IN  A  192.168.0.1
 core.kellerhome.us.                   IN  A  192.168.0.10
+rpi-k8s-1.kellerhome.us.              IN  A  192.168.0.21
+rpi-k8s-2.kellerhome.us.              IN  A  192.168.0.22
+rpi-k8s-3.kellerhome.us.              IN  A  192.168.0.23

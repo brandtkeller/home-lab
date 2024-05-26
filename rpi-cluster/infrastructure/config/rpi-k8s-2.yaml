@@ -1,0 +1,12 @@
+write-kubeconfig-mode: "0644"
+
+tls-san:
+  - rpi-k8s-2
+  - rpi-k8s-2.kellerhome.us
+  - pi
+  - pi.kellerhome.us
+disable:
+  - traefik
+  - servicelb
+disable-cloud-controller: true
+token: my-shared-secret

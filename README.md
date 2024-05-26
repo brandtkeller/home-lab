@@ -1,7 +1,7 @@
 # Home Lab
 
 > [!IMPORTANT]  
-> As of 4/7/24 I am beginning to refresh the homelab infrastructure.
+> As of 4/7/24 I am beginning to refresh the homelab infrastructure. Directories will now be comprised of both infrastructure and orchestration that comprise their target intent. 
 
 Update
 
