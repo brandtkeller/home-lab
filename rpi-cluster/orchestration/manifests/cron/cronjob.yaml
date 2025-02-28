@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nginx-rollout-restart
+  namespace: blog
+spec:
+  schedule: "0 8 * * *"  # Runs daily at 08:00 UTC (midnight PST)
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: rollout-restart-sa  # Ensure this SA has proper permissions
+          containers:
+          - name: kubectl
+            image: bitnami/kubectl:1.29
+            command:
+            - /bin/sh
+            - -c
+            - "kubectl rollout restart deployment/nginx -n blog"
+          restartPolicy: Never

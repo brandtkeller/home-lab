@@ -93,3 +93,15 @@ components:
       - manifests/nginx/configmap.yaml
       - manifests/nginx/deployment.yaml
       - manifests/nginx/service.yaml
+
+  - name: blog-cron
+    manifests:
+      - name: cronjob
+        namespace: blog
+        files:
+        - manifests/cron/serviceaccount.yaml
+        - manifests/cron/role.yaml
+        - manifests/cron/rolebinding.yaml
+        - manifests/cron/cronjob.yaml
+    images:
+    - bitnami/kubectl:1.29
