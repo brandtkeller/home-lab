@@ -1,34 +1,5 @@
 # Home Lab
 
-> [!IMPORTANT]  
-> As of 4/7/24 I am beginning to refresh the homelab infrastructure. Directories will now be comprised of both infrastructure and orchestration that comprise their target intent. 
-
-Update
-
-Dependencies:
-- (DONE)Backup all data
-  - May require some rsync pods w/ longhorn mounts
-    - zwavejs data (Just for the node migrating off kubernetes)
-- (DONE) Setup backwards-compatible network (subnet support)
-- Create self-hosted github runner for the repository
-  - Performs bundle build
-  - Performs bundle deploy
-- Setup the Core node
-  - (DONE) Ubuntu
-  - (DONE) NFS
-  - (DONE) Zwavejs
-  - (DONE) DNS
-  - Unifi Controller
-- Re-deploy Prod cluster
-  - 3x control-plane machines
-  - 1x agent machine
-    - Add label for zwavejs
-  - Orchestration
-    - Longhorn init package
-    - uds-core-slim
-    - Home-Assistant
-    - NextCloud
-
 > [!WARNING]
 > All Content below may be outdated or changed.
 

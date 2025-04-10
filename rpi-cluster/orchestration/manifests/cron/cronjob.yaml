@@ -4,7 +4,7 @@ metadata:
   name: nginx-rollout-restart
   namespace: blog
 spec:
-  schedule: "0 8 * * *"  # Runs daily at 08:00 UTC (midnight PST)
+  schedule: "0 13 * * *"  # Runs daily at 13:00 UTC (05:00 PST)
   jobTemplate:
     spec:
       template:
